@@ -75,7 +75,7 @@ nav a:hover {
     }
     10%, 30%, 50%, 70%, 90% {
         transform: skewX(-5deg);
-        color: #ff0000; /* Change color to a glitchy color */
+        color: #00e38c; /* Change color to a glitchy color */
     }
 }
 
