@@ -4,6 +4,7 @@
 const h4ch1netElement = document.getElementById('h4ch1net');
 
 h4ch1netElement.addEventListener('click', () => {
+    console.log('Clicked!'); // Log to the console for debugging
     // Add the "shake" class to trigger the shake animation
     h4ch1netElement.classList.add('shake');
 
