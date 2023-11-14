@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'JetBrains Mono';
-    src: url('JetBrainsMonoNL-Thin.ttf') format('truetype'); /* Update the font file name if needed */
+    src: url('JetBrainsMonoNL-Thin.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -10,7 +10,7 @@
 body {
     background-color: #1a1a1a;
     color: #056d45;
-    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
+    font-family: 'JetBrains Mono', monospace;
     margin: 0;
     padding: 0;
     display: flex;
@@ -31,7 +31,7 @@ header {
     z-index: 1;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Align items vertically in the center */
+    align-items: center;
 }
 
 h1 {
@@ -39,23 +39,24 @@ h1 {
     margin: 0;
     opacity: 0;
     animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite;
-    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
+    font-family: 'JetBrains Mono', monospace;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
-    position: relative; /* Add position relative for cursor positioning */
+    position: relative;
 }
 
 h1::after {
-    content: '_'; /* Display the cursor */
-    animation: blinkCursor 0.8s infinite; /* Blink animation */
+    content: '_';
+    animation: blinkCursor 0.8s infinite;
     position: absolute;
-    bottom: -2px; /* Adjust the vertical position as needed */
+    bottom: -2px;
 }
 
 nav {
     display: flex;
     gap: 20px;
     font-family: 'JetBrains Mono', monospace;
+    margin-right: 15px;
 }
 
 nav a {
@@ -75,7 +76,7 @@ nav a:hover {
     }
     10%, 30%, 50%, 70%, 90% {
         transform: skewX(-5deg);
-        color: #00e38c; /* Change color to a glitchy color */
+        color: #00e38c;
     }
 }
 
@@ -112,28 +113,6 @@ p {
     text-align: center;
     padding-top: 80px;
 }
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(3, 3, 3, 0);
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Align items vertically in the center */
-}
-
-nav {
-    display: flex;
-    gap: 20px;
-    font-family: 'JetBrains Mono', monospace;
-    margin-right: 15px; /* Add margin to the right */
-}
-/* Add this keyframe animation */
 
 @keyframes shake {
     0%, 100% {
