@@ -30,7 +30,25 @@ header {
     box-shadow: 0 4px 8px rgba(3, 3, 3, 0);
     z-index: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* Updated to space-between for positioning */
+}
+
+h1 {
+    color: #056d45;
+    margin: 0;
+    opacity: 0;
+    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite;
+    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    position: relative; /* Add position relative for cursor positioning */
+}
+
+h1::after {
+    content: '_'; /* Display the cursor */
+    animation: blinkCursor 0.8s infinite; /* Blink animation */
+    position: absolute;
+    bottom: -2px; /* Adjust the vertical position as needed */
 }
 
 nav {
@@ -49,24 +67,6 @@ nav a:hover {
     color: #056d45;
 }
 
-h1 {
-    color: #056d45;
-    margin: 0;
-    opacity: 0;
-    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 6s infinite;
-    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
-    position: relative; /* Add position relative for cursor positioning */
-}
-
-h1::after {
-    content: '_'; /* Display the cursor */
-    animation: blinkCursor 0.8s infinite; /* Blink animation */
-    position: absolute;
-    bottom: -2px; /* Adjust the vertical position as needed */
-}
-
 @keyframes glitch {
     0%, 20%, 40%, 60%, 80%, 100% {
         transform: none;
@@ -74,7 +74,7 @@ h1::after {
     }
     10%, 30%, 50%, 70%, 90% {
         transform: skewX(-5deg);
-        color: #00c67a; /* Change color to a glitchy color */
+        color: #ff0000; /* Change color to a glitchy color */
     }
 }
 
@@ -85,29 +85,4 @@ h1::after {
     }
 }
 
-@keyframes hoverAnimation {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-@keyframes blinkCursor {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
-p {
-    line-height: 1.5;
-}
-
-.container {
-    text-align: center;
-    padding-top: 80px;
-}
+@key
