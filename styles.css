@@ -111,3 +111,24 @@ p {
     text-align: center;
     padding-top: 80px;
 }
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(3, 3, 3, 0);
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items vertically in the center */
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-right: 15px; /* Add margin to the right */
+}
