@@ -30,7 +30,8 @@ header {
     box-shadow: 0 4px 8px rgba(3, 3, 3, 0);
     z-index: 1;
     display: flex;
-    justify-content: space-between; /* Updated to space-between for positioning */
+    justify-content: space-between;
+    align-items: center; /* Align items vertically in the center */
 }
 
 h1 {
