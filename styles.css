@@ -53,7 +53,7 @@ h1 {
     color: #056d45;
     margin: 0;
     opacity: 0;
-    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite;
+    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 6s infinite;
     font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
@@ -74,7 +74,7 @@ h1::after {
     }
     10%, 30%, 50%, 70%, 90% {
         transform: skewX(-5deg);
-        color: #ff0000; /* Change color to a glitchy color */
+        color: #00c67a; /* Change color to a glitchy color */
     }
 }
 
