@@ -85,4 +85,29 @@ nav a:hover {
     }
 }
 
-@key
+@keyframes hoverAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes blinkCursor {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+p {
+    line-height: 1.5;
+}
+
+.container {
+    text-align: center;
+    padding-top: 80px;
+}
