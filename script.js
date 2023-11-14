@@ -6,11 +6,13 @@ const h4ch1netElement = document.getElementById('h4ch1net');
 h4ch1netElement.addEventListener('click', () => {
     console.log('Clicked!'); // Log to the console for debugging
 
-    // Remove all classes to stop any ongoing animations
-    h4ch1netElement.classList.remove('shake');
+    // Add the "shake" class to trigger the shake animation
+    h4ch1netElement.classList.add('shake');
 
-    // Reset the glitch animation
-    h4ch1netElement.style.animation = '';
+    // Remove the "shake" class after the shake animation completes
+    setTimeout(() => {
+        h4ch1netElement.classList.remove('shake');
+    }, 500); // 500ms matches the shake animation duration
 
     // Trigger the glitch effect after a delay of 3 seconds
     setTimeout(() => {
