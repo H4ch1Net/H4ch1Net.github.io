@@ -12,5 +12,8 @@ h4ch1netElement.addEventListener('click', () => {
     // Reset the glitch animation
     h4ch1netElement.style.animation = '';
 
-    // Add any additional actions you want to perform on click
+    // Trigger the glitch effect after a delay of 3 seconds
+    setTimeout(() => {
+        h4ch1netElement.style.animation = 'glitch 3s infinite';
+    }, 3000); // 3000ms matches the glitch animation duration
 });
