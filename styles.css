@@ -1,8 +1,16 @@
 /* styles.css */
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('path/to/JetBrainsMonoNL-Thin.ttf') format('truetype'); /* Update the path accordingly */
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: #1a1a1a;
     color: #056d45;
-    font-family: 'Courier New', monospace;
+    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
     margin: 0;
     padding: 0;
     display: flex;
@@ -28,7 +36,7 @@ h1 {
     margin: 0;
     opacity: 0;
     animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out;
-    font-family: 'Courier New', monospace;
+    font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
 }
