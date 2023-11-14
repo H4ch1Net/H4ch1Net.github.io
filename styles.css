@@ -35,18 +35,22 @@ h1 {
     color: #056d45;
     margin: 0;
     opacity: 0;
-    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out;
+    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 1s infinite;
     font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
     position: relative; /* Add position relative for cursor positioning */
 }
 
-h1::after {
-    content: '_'; /* Display the cursor */
-    animation: blinkCursor 0.8s infinite; /* Blink animation */
-    position: absolute;
-    bottom: -2px; /* Adjust the vertical position as needed */
+@keyframes glitch {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transform: none;
+        color: #056d45;
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: skewX(-5deg);
+        color: #ff0000; /* Change color to a glitchy color */
+    }
 }
 
 @keyframes slideIn {
@@ -62,15 +66,6 @@ h1::after {
     }
     50% {
         transform: translateY(-5px);
-    }
-}
-
-@keyframes blinkCursor {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
     }
 }
 
