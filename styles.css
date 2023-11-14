@@ -69,6 +69,15 @@ nav a:hover {
     color: #056d45;
 }
 
+nav {
+    display: flex;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-right: 15px;
+    max-width: 70%; /* Adjust this value as needed */
+}
+
+
 @keyframes glitch {
     0%, 20%, 40%, 60%, 80%, 100% {
         transform: none;
