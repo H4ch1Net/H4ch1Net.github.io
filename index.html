@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H4ch1net - Hacker Theme</title>
+    <title>H4ch1net</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         /* Additional styles for the shake animation */
@@ -38,10 +38,10 @@
         const h4ch1netElement = document.getElementById('h4ch1net');
 
         h4ch1netElement.addEventListener('click', () => {
-            // Toggle the "shake" class to trigger the animation
-            h4ch1netElement.classList.toggle('shake');
+            // Add the "shake" class to trigger the animation
+            h4ch1netElement.classList.add('shake');
             
-            // Reset the class after the animation completes
+            // Remove the "shake" class after the animation completes
             setTimeout(() => {
                 h4ch1netElement.classList.remove('shake');
             }, 500); // 500ms matches the animation duration
