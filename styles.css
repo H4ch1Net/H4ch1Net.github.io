@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'JetBrains Mono';
-    src: url('path/to/JetBrainsMonoNL-Thin.ttf') format('truetype'); /* Update the path accordingly */
+    src: url('JetBrainsMonoNL-Thin.ttf') format('truetype'); /* Update the font file name if needed */
     font-weight: normal;
     font-style: normal;
 }
@@ -39,15 +39,14 @@ h1 {
     font-family: 'JetBrains Mono', monospace; /* Use JetBrains Mono */
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
+    position: relative; /* Add position relative for cursor positioning */
 }
 
-p {
-    line-height: 1.5;
-}
-
-.container {
-    text-align: center;
-    padding-top: 80px;
+h1::after {
+    content: '_'; /* Display the cursor */
+    animation: blinkCursor 0.8s infinite; /* Blink animation */
+    position: absolute;
+    bottom: -2px; /* Adjust the vertical position as needed */
 }
 
 @keyframes slideIn {
@@ -64,4 +63,22 @@ p {
     50% {
         transform: translateY(-5px);
     }
+}
+
+@keyframes blinkCursor {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+p {
+    line-height: 1.5;
+}
+
+.container {
+    text-align: center;
+    padding-top: 80px;
 }
