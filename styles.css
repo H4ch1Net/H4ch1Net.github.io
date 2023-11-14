@@ -1,0 +1,59 @@
+/* styles.css */
+body {
+    background-color: #1a1a1a;
+    color: #056d45;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+h1 {
+    color: #056d45;
+    margin: 0;
+    opacity: 0;
+    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out;
+    font-family: 'Courier New', monospace;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+p {
+    line-height: 1.5;
+}
+
+.container {
+    text-align: center;
+    padding-top: 80px;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes hoverAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
