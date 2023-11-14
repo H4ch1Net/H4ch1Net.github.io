@@ -3,16 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H4ch1net - Hacker Theme</title>
+    <title>H4ch1net</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        /* Additional styles for the movement animation */
+        .silly-movement {
+            animation: sillyMovement 0.5s ease-in-out;
+        }
+
+        @keyframes sillyMovement {
+            0%, 100% {
+                transform: translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateX(-5px) rotate(-5deg);
+            }
+            50% {
+                transform: translateX(5px) rotate(5deg);
+            }
+            75% {
+                transform: translateX(-5px) rotate(-5deg);
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>H4ch1net</h1>
+        <h1 id="h4ch1net">H4ch1net</h1>
     </header>
     <div class="container">
         <p>Your gateway to the digital world.</p>
         <!-- Add more content as needed -->
     </div>
+
+    <script>
+        // JavaScript code to handle the silly movement
+        const h4ch1netElement = document.getElementById('h4ch1net');
+
+        h4ch1netElement.addEventListener('click', () => {
+            // Toggle the "silly-movement" class to trigger the animation
+            h4ch1netElement.classList.toggle('silly-movement');
+            
+            // Reset the class after the animation completes
+            setTimeout(() => {
+                h4ch1netElement.classList.remove('silly-movement');
+            }, 500); // 500ms matches the animation duration
+        });
+    </script>
 </body>
 </html>
