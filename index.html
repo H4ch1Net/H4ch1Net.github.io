@@ -5,27 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H4ch1net</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        /* Additional styles for the shake animation */
-        .shake {
-            animation: shake 0.5s ease-in-out;
-        }
-
-        @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            10%, 30%, 50%, 70%, 90% {
-                transform: translateX(-5px);
-            }
-            20%, 40%, 60%, 80% {
-                transform: translateX(5px);
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
+        <nav>
+            <a href="#">About Me</a>
+            <a href="#">Projects</a>
+            <a href="https://github.com/H4ch1Net/" target="_blank">GitHub</a>
+        </nav>
         <h1 id="h4ch1net">~$H4ch1net</h1>
     </header>
     <div class="container">
@@ -33,19 +20,6 @@
         <!-- Add more content as needed -->
     </div>
 
-    <script>
-        // JavaScript code to handle the shake movement
-        const h4ch1netElement = document.getElementById('h4ch1net');
-
-        h4ch1netElement.addEventListener('click', () => {
-            // Add the "shake" class to trigger the animation
-            h4ch1netElement.classList.add('shake');
-            
-            // Remove the "shake" class after the animation completes
-            setTimeout(() => {
-                h4ch1netElement.classList.remove('shake');
-            }, 100); // 500ms matches the animation duration
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
