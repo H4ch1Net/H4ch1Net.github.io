@@ -78,6 +78,24 @@ nav {
     overflow-x: auto; /* Add this rule to enable horizontal scrolling if needed */
 }
 
+nav {
+    display: flex;
+    gap: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-right: 15px;
+    max-width: 70%; /* Adjust this value as needed */
+    overflow-x: auto; /* Add this rule to enable horizontal scrolling if needed */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Ensure smooth color transition on hover */
+}
+
+nav a:hover {
+    color: #056d45;
+}
 
 
 @keyframes glitch {
