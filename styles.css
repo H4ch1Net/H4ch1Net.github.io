@@ -1,4 +1,3 @@
-/* styles.css */
 
 @font-face {
     font-family: 'JetBrains Mono';
@@ -187,9 +186,6 @@ h1:hover {
 .eyes-transform {
     animation: transformToEyes 2s forwards;
 }
-/* styles.css */
-
-/* ... (your existing styles) */
 
 @keyframes transformToEyes {
     0% {
@@ -208,10 +204,6 @@ h1:hover {
 }
 
 
-/* styles.css */
-
-/* ... (your existing styles) */
-
 nav {
     display: flex;
     gap: 30px;
@@ -227,7 +219,6 @@ nav a {
     transition: color 0.3s ease-in-out;
 }
 
-/* Add a media query for smaller screen sizes */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
