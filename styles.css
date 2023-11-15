@@ -74,8 +74,10 @@ nav {
     gap: 20px;
     font-family: 'JetBrains Mono', monospace;
     margin-right: 15px;
-    max-width: 60%; /* Adjust this value as needed */
+    max-width: 50%; /* Adjust this value as needed */
+    overflow-x: auto; /* Add this rule to enable horizontal scrolling if needed */
 }
+
 
 
 @keyframes glitch {
