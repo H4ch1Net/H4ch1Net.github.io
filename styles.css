@@ -38,11 +38,15 @@ h1 {
     color: #056d45;
     margin: 0;
     opacity: 0;
-    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite;
+    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite, hoverAnimationText 1s infinite;
     font-family: 'JetBrains Mono', monospace;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
     position: relative;
+}
+
+h1:hover {
+    transform: translateY(-5px);
 }
 
 h1::after {
@@ -56,7 +60,9 @@ nav {
     display: flex;
     gap: 20px;
     font-family: 'JetBrains Mono', monospace;
-    margin-right: 10px;
+    margin-right: 15px;
+    max-width: 70%;
+    overflow-x: auto;
 }
 
 nav a {
@@ -68,35 +74,6 @@ nav a {
 nav a:hover {
     color: #056d45;
 }
-
-nav {
-    display: flex;
-    gap: 20px;
-    font-family: 'JetBrains Mono', monospace;
-    margin-right: 15px;
-    max-width: 50%; /* Adjust this value as needed */
-    overflow-x: auto; /* Add this rule to enable horizontal scrolling if needed */
-}
-
-nav {
-    display: flex;
-    gap: 20px;
-    font-family: 'JetBrains Mono', monospace;
-    margin-right: 15px;
-    max-width: 70%; /* Adjust this value as needed */
-    overflow-x: auto; /* Add this rule to enable horizontal scrolling if needed */
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out; /* Ensure smooth color transition on hover */
-}
-
-nav a:hover {
-    color: #056d45;
-}
-
 
 @keyframes glitch {
     0%, 20%, 40%, 60%, 80%, 100% {
@@ -121,6 +98,17 @@ nav a:hover {
         transform: translateY(0);
     }
     50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes hoverAnimationText {
+    0%, 100% {
+        color: #056d45;
+        transform: translateY(0);
+    }
+    50% {
+        color: #00e38c;
         transform: translateY(-5px);
     }
 }
@@ -153,4 +141,49 @@ p {
     20%, 40%, 60%, 80% {
         transform: translateX(5px);
     }
+}
+
+@keyframes distortionAnimation {
+    0%, 100% {
+        transform: none;
+    }
+    25% {
+        transform: scaleX(1.1) skewY(-5deg);
+    }
+    50% {
+        transform: scaleY(0.9) skewX(5deg);
+    }
+    75% {
+        transform: scaleX(0.95) skewY(5deg);
+    }
+}
+
+h1:hover {
+    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite, hoverAnimationText 1s infinite, distortionAnimation 1s infinite;
+    transform: translateY(-5px);
+}
+
+@keyframes transformToEmoji {
+    0%, 100% {
+        content: '~$H4ch1net';
+    }
+    50% {
+        content: '👁️👁️';
+    }
+}
+
+@keyframes transformToEyes {
+    0% {
+        transform: none;
+    }
+    50% {
+        transform: scale(0.5);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+.eyes-transform {
+    animation: transformToEyes 2s forwards;
 }

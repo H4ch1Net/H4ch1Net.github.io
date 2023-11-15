@@ -1,22 +1,15 @@
 // script.js
 
-// JavaScript code to handle the shake and glitch movements
-const h4ch1netElement = document.getElementById('h4ch1net');
-let animationsPaused = false;
+document.addEventListener("DOMContentLoaded", function () {
+    const h1Element = document.getElementById("h4ch1net");
 
-h4ch1netElement.addEventListener('click', () => {
-    console.log('Clicked!'); // Log to the console for debugging
+    setTimeout(() => {
+        // Add a class to apply the transformation to eyes
+        h1Element.classList.add("eyes-transform");
 
-    if (animationsPaused) {
-        // If animations are paused, resume them
-        h4ch1netElement.classList.remove('shake');
-        h4ch1netElement.style.animation = 'glitch 3s infinite';
-    } else {
-        // If animations are not paused, pause them
-        h4ch1netElement.classList.add('shake');
-        h4ch1netElement.style.animation = '';
-    }
-
-    // Toggle the animation state
-    animationsPaused = !animationsPaused;
+        // Remove the class after another 2 seconds to revert to the original state
+        setTimeout(() => {
+            h1Element.classList.remove("eyes-transform");
+        }, 20000);
+    }, 10000);
 });
