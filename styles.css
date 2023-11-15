@@ -58,7 +58,7 @@ h1::after {
 
 nav {
     display: flex;
-    gap: 20px;
+    gap: 200px;
     font-family: 'JetBrains Mono', monospace;
     margin-right: 15px;
     max-width: 70%;
@@ -186,4 +186,58 @@ h1:hover {
 
 .eyes-transform {
     animation: transformToEyes 2s forwards;
+}
+/* styles.css */
+
+/* ... (your existing styles) */
+
+@keyframes transformToEyes {
+    0% {
+        transform: none;
+    }
+    50% {
+        transform: scale(0.5);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+.eyes-transform {
+    animation: transformToEyes 2s forwards;
+}
+
+
+/* styles.css */
+
+/* ... (your existing styles) */
+
+nav {
+    display: flex;
+    gap: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-right: 100px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Add a media query for smaller screen sizes */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-end;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    nav a {
+        display: block;
+        margin-bottom: 10px;
+    }
 }
