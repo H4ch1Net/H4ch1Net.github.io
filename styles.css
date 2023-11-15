@@ -56,7 +56,7 @@ nav {
     display: flex;
     gap: 20px;
     font-family: 'JetBrains Mono', monospace;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 nav a {
