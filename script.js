@@ -2,20 +2,21 @@
 
 // JavaScript code to handle the shake and glitch movements
 const h4ch1netElement = document.getElementById('h4ch1net');
+let animationsPaused = false;
 
 h4ch1netElement.addEventListener('click', () => {
     console.log('Clicked!'); // Log to the console for debugging
 
-    // Add the "shake" class to trigger the shake animation
-    h4ch1netElement.classList.add('shake');
-
-    // Remove the "shake" class after the shake animation completes
-    setTimeout(() => {
+    if (animationsPaused) {
+        // If animations are paused, resume them
         h4ch1netElement.classList.remove('shake');
-    }, 500); // 500ms matches the shake animation duration
-
-    // Trigger the glitch effect after a delay of 3 seconds
-    setTimeout(() => {
         h4ch1netElement.style.animation = 'glitch 3s infinite';
-    }, 3000); // 3000ms matches the glitch animation duration
+    } else {
+        // If animations are not paused, pause them
+        h4ch1netElement.classList.add('shake');
+        h4ch1netElement.style.animation = '';
+    }
+
+    // Toggle the animation state
+    animationsPaused = !animationsPaused;
 });
