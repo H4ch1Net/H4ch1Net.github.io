@@ -298,6 +298,47 @@ body {
   
   .meta-link > span {
     color: white;
-    font-family: "Rubik", sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 500;
   }
+  @media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-end;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    nav a {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* Mobile optimization styles */
+    body {
+        display: grid;
+        place-items: center;
+        overflow: auto;
+    }
+
+    header {
+        position: static;
+    }
+
+    nav {
+        margin-right: 0;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+}
