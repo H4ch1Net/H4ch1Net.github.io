@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 10000);
 
     const titleSequence = [
-        { title: "H4ch1net", delay: 2000 },
+        { title: "H4ch1Net", delay: 2000 },
         { title: "👁️👁️", delay: 500 },
         { title: "👁️", delay: 5 },
-        { title: "H4ch1net", delay: 6000 },
+        { title: "H4ch1Net", delay: 6000 },
         { title: "Nerd", delay: 100 }
     ];
 
