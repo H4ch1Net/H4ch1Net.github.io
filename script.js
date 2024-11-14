@@ -99,3 +99,44 @@ document.addEventListener("DOMContentLoaded", function () {
   // Start the sequence
   changeHeaderTextSequence();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const h1Element = document.getElementById("h4ch1net");
+
+  setTimeout(() => {
+      // Add a class to apply the transformation to eyes
+      h1Element.classList.add("eyes-transform");
+
+      // Remove the class after another 2 seconds to revert to the original state
+      setTimeout(() => {
+          h1Element.classList.remove("eyes-transform");
+      }, 2000);
+  }, 10000);
+
+  const titleSequence = [
+      { title: "H4ch1Net", delay: 6000 },
+      { title: "👁️👁️", delay: 500 },
+      { title: "👁️", delay: 5 },
+      { title: "H4ch1Net", delay: 6000 },
+      { title: "Nerd", delay: 100 }
+  ];
+
+  function changeTitle(newTitle) {
+      document.title = newTitle; // Immediately update the title
+  }
+
+  function titleLoop() {
+      let currentIndex = 0;
+
+      function nextTitle() {
+          changeTitle(titleSequence[currentIndex].title); // Update title based on the sequence
+          setTimeout(nextTitle, titleSequence[currentIndex].delay);
+          currentIndex = (currentIndex + 1) % titleSequence.length;
+      }
+
+      nextTitle();
+  }
+
+  // Start the title loop
+  titleLoop();
+});
