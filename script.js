@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Step 1: Display "~$H4ch1Net" for 5 seconds
       h1Element.innerText = "~$H4ch1Net";
       setTimeout(() => {
-          // Step 2: Random letter effect to transition to "~$Mauro" for 6 seconds
-          startRandomLetterEffect(h1Element, "~$Mauro", 6000, () => {
+          // Step 2: Random letter effect to transition to "~$Mauro" for ? seconds
+          startRandomLetterEffect(h1Element, "~$Mauro", 3000, () => {
               // Step 3: Random chance to display "Nerd"
               if (Math.random() < 0.3) { // 30% chance to display "Nerd"
                   h1Element.innerText = "Nerd";
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       h1Element.innerText = "~$Mauro";
       setTimeout(() => {
           // Step 5: Random letter effect to transition to "~$H4ch1" for 6 seconds
-          startRandomLetterEffect(h1Element, "~$H4ch1", 6000, () => {
+          startRandomLetterEffect(h1Element, "~$H4ch1", 3000, () => {
               // Step 6: Random chance to display "Nerd"
               if (Math.random() < 0.3) { // 30% chance to display "Nerd"
                   h1Element.innerText = "Nerd";
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
       h1Element.innerText = "~$H4ch1";
       setTimeout(() => {
           // Step 8: Random letter effect to transition to "~$H4ch1Net" for 6 seconds
-          startRandomLetterEffect(h1Element, "~$H4ch1Net", 6000, () => {
+          startRandomLetterEffect(h1Element, "~$H4ch1Net", 3000, () => {
               // Step 9: Restart the sequence by displaying "~$H4ch1Net"
               changeHeaderTextSequence();
           });
