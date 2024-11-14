@@ -1,102 +1,101 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const h1Element = document.getElementById("h4ch1net");
+  const h1Element = document.getElementById("h4ch1net");
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789`~!@#$%^&*()-=+<>/\"";
 
-    setTimeout(() => {
-        // Add a class to apply the transformation to eyes
-        h1Element.classList.add("eyes-transform");
+  let iterationTimeout;
+  let effectInterval;
 
-        // Remove the class after another 2 seconds to revert to the original state
-        setTimeout(() => {
-            h1Element.classList.remove("eyes-transform");
-        }, 2000);
-    }, 10000);
+  function startRandomLetterEffect(target, newText, duration, callback) {
+      let iteration = 0;
 
-    const titleSequence = [
-        { title: "H4ch1Net", delay: 2000 },
-        { title: "👁️👁️", delay: 500 },
-        { title: "👁️", delay: 5 },
-        { title: "H4ch1Net", delay: 6000 },
-        { title: "Nerd", delay: 100 }
-    ];
+      // Clear any existing effect interval to prevent overlapping effects
+      clearInterval(effectInterval);
+      clearTimeout(iterationTimeout);
 
-    function changeTitle(newTitle, delay) {
-        setTimeout(function () {
-            document.title = newTitle;
-        }, delay);
-    }
+      // Set a longer duration for the random letter effect
+      effectInterval = setInterval(() => {
+          target.innerText = newText
+              .split("")
+              .map((letter, index) => {
+                  if (index < iteration) {
+                      return newText[index];
+                  }
+                  return characters[Math.floor(Math.random() * characters.length)];
+              })
+              .join("");
 
-    function titleLoop() {
-        let currentIndex = 0;
+          // Slow down the iteration to make the effect more gradual
+          iteration += 1 / newText.length; // Increment more slowly for a smoother transition
 
-        function nextTitle() {
-            changeTitle(titleSequence[currentIndex].title, titleSequence[currentIndex].delay);
-            currentIndex = (currentIndex + 1) % titleSequence.length;
-            setTimeout(nextTitle, titleSequence[currentIndex].delay);
-        }
+          if (iteration >= newText.length) {
+              clearInterval(effectInterval);
+              if (callback) {
+                  setTimeout(callback, 500);
+              }
+          }
+      }, 50); // Slowed down interval for a more noticeable effect
 
-        nextTitle();
-    }
+      // Ensure that the effect stops after the extended duration
+      iterationTimeout = setTimeout(() => {
+          clearInterval(effectInterval);
+          if (callback) {
+              callback();
+          }
+      }, duration);
+  }
 
-    // Start the title loop
-    titleLoop();
-});
-
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-let interval = null;
-
-document.querySelector("h1").onmouseover = event => {
-  let iteration = 0;
-
-  clearInterval(interval);
-
-  interval = setInterval(() => {
-    event.target.innerText = event.target.innerText
-      .split("")
-      .map((letter, index) => {
-        if (index < iteration) {
-          return event.target.dataset.value[index];
-        }
-
-        return letters[Math.floor(Math.random() * 26)];
-      })
-      .join("");
-
-    if (iteration >= event.target.dataset.value.length) {
-      clearInterval(interval);
-
-      // After the random number effect, show "Mauro" with a delay
+  function changeHeaderTextSequence() {
+      // Step 1: Display "~$H4ch1Net" for 5 seconds
+      h1Element.innerText = "~$H4ch1Net";
       setTimeout(() => {
-        event.target.innerText = "~$Mauro";
+          // Step 2: Random letter effect to transition to "~$Mauro" for 6 seconds
+          startRandomLetterEffect(h1Element, "~$Mauro", 6000, () => {
+              // Step 3: Random chance to display "Nerd"
+              if (Math.random() < 0.3) { // 30% chance to display "Nerd"
+                  h1Element.innerText = "Nerd";
+                  setTimeout(() => {
+                      // Continue sequence after showing "Nerd" for 2 seconds
+                      continueSequenceFromMauro();
+                  }, 2000);
+              } else {
+                  continueSequenceFromMauro();
+              }
+          });
+      }, 5000);
+  }
 
-        // Another delay before restarting the random number effect with "~$H4ch1net"
-        setTimeout(() => {
-          startRandomNumberEffect(event.target, event.target.dataset.value);
-        }, 1000);
-      }, 1000);
-    }
+  function continueSequenceFromMauro() {
+      // Step 4: Display "~$Mauro" for 3 seconds
+      h1Element.innerText = "~$Mauro";
+      setTimeout(() => {
+          // Step 5: Random letter effect to transition to "~$H4ch1" for 6 seconds
+          startRandomLetterEffect(h1Element, "~$H4ch1", 6000, () => {
+              // Step 6: Random chance to display "Nerd"
+              if (Math.random() < 0.3) { // 30% chance to display "Nerd"
+                  h1Element.innerText = "Nerd";
+                  setTimeout(() => {
+                      // Continue sequence after showing "Nerd" for 2 seconds
+                      continueSequenceFromH4ch1();
+                  }, 2000);
+              } else {
+                  continueSequenceFromH4ch1();
+              }
+          });
+      }, 3000);
+  }
 
-    iteration += 1 / 3;
-  }, 30);
-}
+  function continueSequenceFromH4ch1() {
+      // Step 7: Display "~$H4ch1" for 3 seconds
+      h1Element.innerText = "~$H4ch1";
+      setTimeout(() => {
+          // Step 8: Random letter effect to transition to "~$H4ch1Net" for 6 seconds
+          startRandomLetterEffect(h1Element, "~$H4ch1Net", 6000, () => {
+              // Step 9: Restart the sequence by displaying "~$H4ch1Net"
+              changeHeaderTextSequence();
+          });
+      }, 3000);
+  }
 
-function startRandomNumberEffect(target, originalText) {
-  interval = setInterval(() => {
-    target.innerText = target.innerText
-      .split("")
-      .map(() => letters[Math.floor(Math.random() * 26)])
-      .join("");
-  }, 30);
-
-  // After a short delay, reset the text to the original value
-  setTimeout(() => {
-    clearInterval(interval);
-    target.innerText = originalText;
-  }, 2000);
-}
-
-// Initial random number effect on page load
-window.onload = () => {
-  const h1 = document.querySelector("h1");
-  startRandomNumberEffect(h1, h1.dataset.value);
-};
+  // Start the sequence
+  changeHeaderTextSequence();
+});
