@@ -9,7 +9,7 @@ body {
 header {
     text-align: center;
     padding: 20px;
-    background-color: #000000;
+    background-color: #000;
     color: #00e38c;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -123,11 +123,7 @@ a:hover {
     background-color: #3385cc;
 }
 
-#blog ul {
-    text-align: left;
-}
-
-#contact ul {
+#blog ul, #contact ul {
     text-align: left;
 }
 
@@ -177,5 +173,22 @@ a:hover {
 
     .project-card {
         padding: 20px;
+    }
+}
+
+h1::after {
+    content: '_';
+    animation: blinkCursor 0.8s infinite;
+    position: relative;
+    bottom: 5px;
+    color: #00e38c;
+}
+
+@keyframes blinkCursor {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
     }
 }
