@@ -1,388 +1,132 @@
-@font-face {
-    font-family: 'JetBrains Mono';
-    src: url('JetBrainsMonoNL-Thin.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
-    background-color: #1a1a1a;
-    color: #056d45;
     font-family: 'JetBrains Mono', monospace;
+    background-color: #1a1a1a;
+    color: #00e38c;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
 }
 
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    text-align: center;
+    padding: 20px;
     background-color: #000000;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(3, 3, 3, 0);
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-h1 {
-    color: #056d45;
-    margin: 0;
-    opacity: 0;
-    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite, hoverAnimationText 1s infinite;
-    font-family: 'JetBrains Mono', monospace;
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
-    position: relative;
-}
-
-h1:hover {
-    transform: translateY(-5px);
-}
-
-h1::after {
-    content: '_';
-    animation: blinkCursor 0.8s infinite;
-    position: absolute;
-    bottom: -2px;
-}
-
-nav {
-    display: flex;
-    gap: 200px;
-    font-family: 'JetBrains Mono', monospace;
-    margin-right: 15px;
-    max-width: 70%;
-    overflow-x: auto;
+    color: #00e38c;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 nav a {
-    color: #fff;
+    margin: 0 10px;
+    color: #00e38c;
     text-decoration: none;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s;
 }
 
 nav a:hover {
-    color: #056d45;
-}
-
-@keyframes glitch {
-
-    0%,
-    20%,
-    40%,
-    60%,
-    80%,
-    100% {
-        transform: none;
-        color: #056d45;
-    }
-
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: skewX(-5deg);
-        color: #00e38c;
-    }
-}
-
-@keyframes slideIn {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes hoverAnimation {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-@keyframes hoverAnimationText {
-
-    0%,
-    100% {
-        color: #056d45;
-        transform: translateY(0);
-    }
-
-    50% {
-        color: #00e38c;
-        transform: translateY(-5px);
-    }
-}
-
-@keyframes blinkCursor {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
-}
-
-p {
-    line-height: 1.5;
+    color: #4da6ff;
 }
 
 .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+    line-height: 1.8;
+    background: rgba(38, 38, 38, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #00e38c;
+    margin-bottom: 20px;
     text-align: center;
-    padding-top: 80px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: translateX(-5px);
-    }
-
-    20%,
-    40%,
-    60%,
-    80% {
-        transform: translateX(5px);
-    }
+p, ul {
+    font-size: 1.2rem;
+    color: #e6e6e6;
+    text-align: center;
 }
 
-@keyframes distortionAnimation {
-
-    0%,
-    100% {
-        transform: none;
-    }
-
-    25% {
-        transform: scaleX(1) skewY(-5deg);
-    }
-
-    50% {
-        transform: scaleY(1) skewX(5deg);
-    }
-
-    75% {
-        transform: scaleX(1) skewY(5deg);
-    }
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-h1:hover {
-    animation: slideIn 1s forwards, hoverAnimation 2s infinite ease-in-out, glitch 3s infinite, hoverAnimationText 1s infinite, distortionAnimation 1s infinite;
-    transform: translateY(-5px);
+ul li {
+    margin-bottom: 10px;
 }
 
-@keyframes transformToEmoji {
-
-    0%,
-    100% {
-        content: '~$H4ch1net';
-    }
-
-    50% {
-        content: '👁️👁️';
-    }
-}
-
-@keyframes transformToEyes {
-    0% {
-        transform: none;
-    }
-
-    50% {
-        transform: scale(0.5);
-    }
-
-    100% {
-        transform: none;
-    }
-}
-
-.eyes-transform {
-    animation: transformToEyes 2s forwards;
-}
-
-@keyframes transformToEyes {
-    0% {
-        transform: none;
-    }
-
-    50% {
-        transform: scale(0.5);
-    }
-
-    100% {
-        transform: none;
-    }
-}
-
-.eyes-transform {
-    animation: transformToEyes 2s forwards;
-}
-
-
-nav {
-    display: flex;
-    gap: 30px;
-    font-family: 'JetBrains Mono', monospace;
-    margin-right: 100px;
-    max-width: 100%;
-    overflow-x: auto;
-}
-
-nav a {
-    color: #fff;
+a {
+    color: #4da6ff;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-end;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    nav a {
-        display: block;
-        margin-bottom: 10px;
-    }
+a:hover {
+    color: #00e38c;
 }
 
-
-
-body {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    background-color: #1a1a1a;
-    margin: 0rem;
-    overflow: hidden;
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-h1:hover {
-
-    color: black;
+.project-card {
+    background: #262626;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 350px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* -- YouTube Link Styles -- */
-
-body.menu-toggled>.meta-link>span {
-    color: rgb(11, 11, 11);
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-#source-link {
-    bottom: 60px;
+.project-card h3 {
+    color: #00e38c;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
 }
 
-#source-link>i {
-    color: rgb(94, 106, 210);
+.project-card p {
+    font-size: 1rem;
+    color: #e6e6e6;
+    margin-bottom: 20px;
 }
 
-#yt-link>i {
-    color: rgb(239, 83, 80);
-}
-
-.meta-link {
-    align-items: center;
-    backdrop-filter: blur(3px);
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    bottom: 10px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    display: inline-flex;
-    gap: 5px;
-    left: 10px;
-    padding: 10px 20px;
-    position: fixed;
+.project-card a {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #00e38c;
+    color: #1a1a1a;
+    padding: 12px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
     text-decoration: none;
-    transition: background-color 400ms, border-color 400ms;
-    z-index: 10000;
 }
 
-.meta-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+.project-card a:hover {
+    background-color: #3385cc;
 }
 
-.meta-link>i,
-.meta-link>span {
-    height: 20px;
-    line-height: 20px;
+#blog ul {
+    text-align: left;
 }
 
-.meta-link>span {
-    color: white;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-}
-
-@media (max-width: 1080) {
-    nav {
-        flex-direction: column;
-        align-items: flex-end;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    nav a {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    /* Mobile optimization styles */
-    body {
-        display: grid;
-        place-items: center;
-        overflow: auto;
-    }
-
-    header {
-        position: static;
-    }
-
-    nav {
-        margin-right: 0;
-    }
-
-    nav a {
-        display: inline-block;
-        margin: 0 10px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
+#contact ul {
+    text-align: left;
 }
