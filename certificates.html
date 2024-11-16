@@ -15,14 +15,37 @@
         }
         .certificate-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             margin-top: 40px;
         }
+        .certificate-card {
+            background: #262626;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 1s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        .certificate-card img {
+            max-width: 100px;
+            margin-bottom: 15px;
+        }
+        .certificate-card h3 {
+            font-size: 1.5rem;
+            color: #00e38c;
+            margin-bottom: 15px;
+        }
         .buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
             margin-top: 10px;
         }
         .buttons a {
@@ -35,6 +58,14 @@
         }
         .buttons a:hover {
             background-color: #056d45;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -51,62 +82,80 @@
     </header>
     <div class="container">
         <h2>Certificates of Participation</h2>
-        <p>Below are the certificates I received for participating in the National Cyber League (NCL) competitions, along with detailed reports of my performance.</p>
+        <p>Below are the certificates I received for participating in the National Cyber League (NCL) competitions, along with my professional certifications.</p>
         
         <div class="certificate-grid">
-            <section>
+            <div class="certificate-card">
+                <img src="certificates/6-2C6-M4997.png" alt="PC Pro Certification Badge">
+                <h3>PC Pro Certification</h3>
+                <div class="buttons">
+                    <a href="https://certification.testout.com/verifycert/6-2C6-M4997" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <img src="certificates/6-2C6-SP9QT.png" alt="Network Pro Certification Badge">
+                <h3>Network Pro Certification</h3>
+                <div class="buttons">
+                    <a href="https://certification.testout.com/verifycert/6-2C6-SP9QT" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
+                <img src="certificates/6-2C6-V3A3KA.png" alt="Security Pro Certification Badge">
+                <h3>Security Pro Certification</h3>
+                <div class="buttons">
+                    <a href="https://certification.testout.com/verifycert/6-2C6-V3A3KA" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
+                </div>
+            </div>
+
+            <div class="certificate-card">
                 <h3>Fall 2022 Team Game</h3>
-                <embed src="certificates/Mauro_Hernandez_Fall_2022_Team.pdf" type="application/pdf">
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/3RXF0FUJXNAW" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
                     <a href="https://cyberskyline.com/report/Y5ALL50FVXKT" target="_blank"><i class="fas fa-file-alt"></i> View Full Report</a>
                 </div>
-            </section>
+            </div>
 
-            <section>
+            <div class="certificate-card">
                 <h3>Fall 2022 Individual Game</h3>
-                <embed src="certificates/Mauro_Hernandez_Fall_2022_Individual.pdf" type="application/pdf">
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/MUXA657MJX6X" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
                     <a href="https://cyberskyline.com/report/1PWWYTQ7JE21" target="_blank"><i class="fas fa-file-alt"></i> View Full Report</a>
                 </div>
-            </section>
+            </div>
 
-            <section>
+            <div class="certificate-card">
                 <h3>Spring 2023 Team Game</h3>
-                <embed src="certificates/Mauro_Hernandez_Rico_Spring_2023_Team.pdf" type="application/pdf">
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/UCQR3H95VD3V" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
                     <a href="https://cyberskyline.com/report/YTHP86KXXKWN" target="_blank"><i class="fas fa-file-alt"></i> View Full Report</a>
                 </div>
-            </section>
+            </div>
 
-            <section>
+            <div class="certificate-card">
                 <h3>Spring 2023 Individual Game</h3>
-                <embed src="certificates/Mauro_Hernandez_Rico_Spring_2023_Individual.pdf" type="application/pdf">
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/CPCFW8GL10N4" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
                     <a href="https://cyberskyline.com/report/CQWL1VV7EMYM" target="_blank"><i class="fas fa-file-alt"></i> View Full Report</a>
                 </div>
-            </section>
+            </div>
 
-            <section>
+            <div class="certificate-card">
                 <h3>Fall 2023 Team Game</h3>
-                <embed src="certificates/Mauro_Hernandez_Rico_Fall_2023_Team.pdf" type="application/pdf">
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/MLBDDJNL01K0" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
                     <a href="https://cyberskyline.com/report/AN8EDTRL46EF" target="_blank"><i class="fas fa-file-alt"></i> View Full Report</a>
                 </div>
-            </section>
+            </div>
 
-            <section>
+            <div class="certificate-card">
                 <h3>Fall 2023 Individual Game</h3>
-                <embed src="certificates/Mauro_Hernandez_Rico_Fall_2023_Individual.pdf" type="application/pdf">
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/JNDQPQJLPJPC" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
                     <a href="https://cyberskyline.com/report/5E790W4D4KPP" target="_blank"><i class="fas fa-file-alt"></i> View Full Report</a>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
     <script src="script.js" defer></script>
