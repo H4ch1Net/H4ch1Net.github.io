@@ -25,9 +25,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s, opacity 1s ease-in-out;
+            transition: transform 0.3s, box-shadow 0.3s;
             opacity: 0;
-            animation: fadeIn 1s forwards;
+            animation: popIn 1s forwards ease-in-out;
         }
         .certificate-card:hover {
             transform: translateY(-10px);
@@ -59,13 +59,19 @@
         .buttons a:hover {
             background-color: #056d45;
         }
-        @keyframes fadeIn {
+        @keyframes popIn {
             0% {
+                transform: scale(0.5);
                 opacity: 0;
             }
             100% {
+                transform: scale(1);
                 opacity: 1;
             }
+        }
+        .medal {
+            max-width: 50px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -110,6 +116,7 @@
             </div>
 
             <div class="certificate-card">
+                <img src="https://assets.cyberskyline.com/img/medals/gold.svg" alt="Gold Medal" class="medal">
                 <h3>Fall 2022 Team Game</h3>
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/3RXF0FUJXNAW" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
@@ -118,6 +125,7 @@
             </div>
 
             <div class="certificate-card">
+                <img src="https://assets.cyberskyline.com/img/medals/platinum.svg" alt="Platinum Medal" class="medal">
                 <h3>Fall 2022 Individual Game</h3>
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/MUXA657MJX6X" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
@@ -126,6 +134,7 @@
             </div>
 
             <div class="certificate-card">
+                <img src="https://assets.cyberskyline.com/img/medals/platinum.svg" alt="Platinum Medal" class="medal">
                 <h3>Spring 2023 Team Game</h3>
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/UCQR3H95VD3V" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
@@ -134,6 +143,7 @@
             </div>
 
             <div class="certificate-card">
+                <img src="https://assets.cyberskyline.com/img/medals/platinum.svg" alt="Platinum Medal" class="medal">
                 <h3>Spring 2023 Individual Game</h3>
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/CPCFW8GL10N4" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
@@ -142,6 +152,7 @@
             </div>
 
             <div class="certificate-card">
+                <img src="https://assets.cyberskyline.com/img/medals/gold.svg" alt="Gold Medal" class="medal">
                 <h3>Fall 2023 Team Game</h3>
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/MLBDDJNL01K0" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
@@ -150,6 +161,7 @@
             </div>
 
             <div class="certificate-card">
+                <img src="https://assets.cyberskyline.com/img/medals/bronze.svg" alt="Bronze Medal" class="medal">
                 <h3>Fall 2023 Individual Game</h3>
                 <div class="buttons">
                     <a href="https://cyberskyline.com/verify/JNDQPQJLPJPC" target="_blank"><i class="fas fa-check-circle"></i> Verify Certificate</a>
