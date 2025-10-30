@@ -1,4 +1,4 @@
-import Section from '../components/Section';
+import Layout from '../components/Layout';
 import CertificateCard from '../components/CertificateCard';
 
 const Certificates = () => {
@@ -57,24 +57,16 @@ const Certificates = () => {
   ];
 
   return (
-    <>
-      <Section title="Certificates of Participation">
-        <p style={{
-          fontSize: '1.2rem',
-          color: '#00e38c',
-          textAlign: 'center',
-          marginBottom: '40px',
-          lineHeight: '1.8',
-        }}>
+    <Layout>
+      <section className="mb-16 p-8 bg-gray-900/60 rounded-xl border border-[#00e38c]/20 shadow-2xl">
+        <h2 className="text-4xl text-[#00e38c] mb-8 text-center tracking-wide" style={{ textShadow: '0 0 20px rgba(0, 227, 140, 0.4)' }}>
+          Certificates of Participation
+        </h2>
+        <p className="text-xl text-[#00e38c] text-center mb-10 leading-relaxed">
           Below are the certificates I received for participating in the National Cyber League (NCL)
           competitions, along with my professional certifications.
         </p>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '30px',
-          marginTop: '40px',
-        }}>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8 mt-10">
           {certificates.map((cert, index) => (
             <CertificateCard
               key={index}
@@ -85,8 +77,8 @@ const Certificates = () => {
             />
           ))}
         </div>
-      </Section>
-    </>
+      </section>
+    </Layout>
   );
 };
 
