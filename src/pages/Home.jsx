@@ -10,7 +10,7 @@ const Home = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      const sections = ['home', 'about', 'projects', 'achievements', 'contact'];
+      const sections = ['home', 'about', 'projects', 'focus', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -38,18 +38,18 @@ const Home = () => {
     {
       title: "Bagley-Bot",
       description: "A Discord bot powered by ChatGPT that responds intelligently to user messages, bringing AI conversation capabilities to your server.",
-      tech: ["Python", "Discord.py", "OpenAI API"],
+      tech: ["Python", "discord.py", "OpenAI API"],
       icon: <Terminal className="w-8 h-8" />
     },
     {
       title: "H4ch1.Net Portfolio",
-      description: "The website you're currently viewing - a modern, responsive portfolio showcasing projects and achievements.",
+      description: "The website you're currently viewing—a modern, responsive portfolio showcasing projects and achievements.",
       tech: ["React", "Tailwind CSS", "JavaScript"],
       icon: <Code className="w-8 h-8" />
     }
   ];
 
-  const achievements = [
+  const focusAreas = [
     {
       title: "Cybersecurity Research",
       description: "Ongoing exploration of security vulnerabilities and defensive strategies",
@@ -81,15 +81,15 @@ const Home = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'projects', 'achievements', 'contact'].map((item) => (
+              {['home', 'about', 'projects', 'focus', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-colors ${
-                    activeSection === item ? 'text-[#00e38c]' : 'text-white hover:text-[#00e38c]'
+                  className={`capitalize transition-colors px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00e38c] focus:ring-offset-2 focus:ring-offset-black ${
+                    activeSection === item ? 'text-[#00e38c]' : 'text-gray-300 hover:text-[#00e38c]'
                   }`}
                 >
-                  {item}
+                  {item === 'focus' ? 'Focus Areas' : item}
                 </button>
               ))}
             </div>
@@ -105,16 +105,16 @@ const Home = () => {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden py-4 space-y-4">
-              {['home', 'about', 'projects', 'achievements', 'contact'].map((item) => (
+            <div className="md:hidden py-4 space-y-2">
+              {['home', 'about', 'projects', 'focus', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`block w-full text-left capitalize py-2 ${
-                    activeSection === item ? 'text-[#00e38c]' : 'text-white'
+                  className={`block w-full text-left capitalize py-3 px-4 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-[#00e38c] focus:ring-offset-2 focus:ring-offset-black ${
+                    activeSection === item ? 'text-[#00e38c] bg-[#00e38c]/10' : 'text-gray-300 hover:text-[#00e38c] hover:bg-[#00e38c]/5'
                   }`}
                 >
-                  {item}
+                  {item === 'focus' ? 'Focus Areas' : item}
                 </button>
               ))}
             </div>
@@ -141,8 +141,7 @@ const Home = () => {
             Computer Science & Information Systems Student
           </p>
           <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-            Passionate about coding, cybersecurity, and everything tech-related.
-            Building innovative solutions and exploring the digital frontier.
+            Passionate about coding, cybersecurity, and everything tech-related—building innovative solutions and exploring the digital frontier.
           </p>
           <button
             onClick={() => scrollToSection('projects')}
@@ -158,42 +157,42 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section id="about" className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">
             <span className="text-[#00e38c]">&lt;</span>
             About Me
             <span className="text-[#00e38c]">/&gt;</span>
           </h2>
 
-          <div className="bg-gradient-to-br from-gray-900 to-black border border-[#00e38c]/20 rounded-xl p-8 shadow-2xl">
+          <div className="bg-gradient-to-br from-gray-900 to-black border border-[#00e38c]/20 rounded-xl p-8 md:p-10 shadow-2xl">
             <div className="prose prose-invert max-w-none">
-              <p className="text-lg text-gray-300 mb-6">
+              <p className="text-lg text-gray-300 mb-6 text-center md:text-left">
                 I'm a computer science and information systems student with a deep interest in coding,
                 cybersecurity, and anything tech-related. My journey in technology is driven by curiosity
                 and the desire to create meaningful solutions to complex problems.
               </p>
-              <p className="text-lg text-gray-300 mb-6">
-                From building Discord bots to exploring security vulnerabilities, I love diving deep into
-                projects that challenge me and expand my skillset. I believe in continuous learning and
+              <p className="text-lg text-gray-300 mb-8 text-center md:text-left">
+                Whether building Discord bots or exploring security vulnerabilities, I love diving deep into
+                projects that challenge me and expand my skill set. I believe in continuous learning and
                 staying at the forefront of technological innovation.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-                <div className="bg-black/50 border border-[#00e38c]/30 rounded-lg p-6 text-center">
-                  <Code className="w-12 h-12 text-[#00e38c] mx-auto mb-4" />
+                <div className="bg-black/50 border border-[#00e38c]/30 rounded-lg p-6 text-center flex flex-col items-center">
+                  <Code className="w-12 h-12 text-[#00e38c] mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Development</h3>
-                  <p className="text-gray-400">Full-stack web & software development</p>
+                  <p className="text-gray-400 text-sm">Full-stack web & software development</p>
                 </div>
-                <div className="bg-black/50 border border-[#00e38c]/30 rounded-lg p-6 text-center">
-                  <Shield className="w-12 h-12 text-[#00e38c] mx-auto mb-4" />
+                <div className="bg-black/50 border border-[#00e38c]/30 rounded-lg p-6 text-center flex flex-col items-center">
+                  <Shield className="w-12 h-12 text-[#00e38c] mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Security</h3>
-                  <p className="text-gray-400">Cybersecurity research & analysis</p>
+                  <p className="text-gray-400 text-sm">Cybersecurity research & analysis</p>
                 </div>
-                <div className="bg-black/50 border border-[#00e38c]/30 rounded-lg p-6 text-center">
-                  <Terminal className="w-12 h-12 text-[#00e38c] mx-auto mb-4" />
+                <div className="bg-black/50 border border-[#00e38c]/30 rounded-lg p-6 text-center flex flex-col items-center">
+                  <Terminal className="w-12 h-12 text-[#00e38c] mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Innovation</h3>
-                  <p className="text-gray-400">Building the future of technology</p>
+                  <p className="text-gray-400 text-sm">Building the future of technology</p>
                 </div>
               </div>
             </div>
@@ -202,23 +201,25 @@ const Home = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-6xl mx-auto">
+      <section id="projects" className="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
+        <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">
             <span className="text-[#00e38c]">&lt;</span>
             Projects
             <span className="text-[#00e38c]">/&gt;</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
             {projects.map((project, idx) => (
               <div
                 key={idx}
-                className="bg-black border border-[#00e38c]/20 rounded-xl p-8 hover:border-[#00e38c]/60 transition-all transform hover:-translate-y-2 shadow-lg hover:shadow-[#00e38c]/20"
+                className="bg-black border border-[#00e38c]/20 rounded-xl p-8 hover:border-[#00e38c]/60 transition-all transform hover:-translate-y-2 shadow-lg hover:shadow-[#00e38c]/20 w-full"
               >
-                <div className="text-[#00e38c] mb-4">{project.icon}</div>
+                <div className="flex items-start mb-4">
+                  <div className="text-[#00e38c] flex-shrink-0 mt-1">{project.icon}</div>
+                </div>
                 <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
-                <p className="text-gray-400 mb-6">{project.description}</p>
+                <p className="text-gray-400 mb-6 leading-relaxed">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, i) => (
                     <span
@@ -235,26 +236,26 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <section id="achievements" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      {/* Focus Areas Section */}
+      <section id="focus" className="py-20 px-6 bg-gradient-to-b from-gray-900 to-black">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">
             <span className="text-[#00e38c]">&lt;</span>
-            Achievements
+            Focus Areas
             <span className="text-[#00e38c]">/&gt;</span>
           </h2>
 
           <div className="space-y-6">
-            {achievements.map((achievement, idx) => (
+            {focusAreas.map((area, idx) => (
               <div
                 key={idx}
                 className="bg-gradient-to-r from-gray-900 to-black border border-[#00e38c]/20 rounded-xl p-6 hover:border-[#00e38c]/60 transition-all"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="text-[#00e38c] mt-1">{achievement.icon}</div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{achievement.title}</h3>
-                    <p className="text-gray-400">{achievement.description}</p>
+                  <div className="text-[#00e38c] mt-1 flex-shrink-0">{area.icon}</div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-2">{area.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{area.description}</p>
                   </div>
                 </div>
               </div>
@@ -262,7 +263,7 @@ const Home = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-gray-400 italic">
+            <p className="text-gray-400 italic text-sm">
               "Nerd things that I have done recently or other things..."
             </p>
           </div>
@@ -270,8 +271,8 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-4xl mx-auto text-center">
+      <section id="contact" className="py-20 px-6 bg-gradient-to-b from-gray-900 to-black">
+        <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">
             <span className="text-[#00e38c]">&lt;</span>
             Get In Touch
@@ -303,11 +304,9 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#00e38c]/20 py-8 px-4 text-center">
+      <footer className="border-t border-[#00e38c]/20 py-8 px-4 text-center bg-black">
         <p className="text-gray-400">
-          <span className="text-[#00e38c]">~$</span> H4ch1.Net © {new Date().getFullYear()}
-          <span className="mx-2">|</span>
-          Built with React & Tailwind CSS
+          <span className="text-[#00e38c]">~$</span> H4ch1.Net © {new Date().getFullYear()} <span className="mx-3 text-[#00e38c]/50">|</span> Built with React & Tailwind CSS
         </p>
       </footer>
     </div>
