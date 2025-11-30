@@ -172,10 +172,23 @@ body {
 }
 
 /* Certificates */
+.cert-category {
+  color: #00e38c;
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.cert-category:first-of-type {
+  margin-top: 0;
+}
+
 .certs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .cert-item {
@@ -225,6 +238,26 @@ body {
 .badge.bronze {
   background: #cd7f32;
   color: #fff;
+}
+
+.badge.diamond {
+  background: linear-gradient(135deg, #b9f2ff 0%, #4fc3f7 50%, #81d4fa 100%);
+  color: #000;
+  box-shadow: 0 2px 8px rgba(79, 195, 247, 0.3);
+}
+
+.percentile {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  font-style: italic;
+}
+
+.achievement {
+  display: block;
+  font-size: 0.9rem;
+  color: #00e38c;
+  font-weight: 500;
 }
 
 /* Contact */
