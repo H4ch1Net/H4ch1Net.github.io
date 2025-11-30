@@ -54,6 +54,13 @@ function App() {
             <h3>Projects</h3>
             <div className="projects-grid">
               <div className="card">
+                <h4>KS LED Controller</h4>
+                <p>Hardware LED controller with custom firmware and web interface.</p>
+                <a href="https://github.com/H4ch1Net/ks-led-controller" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+              <div className="card">
                 <h4>Bagley-Bot</h4>
                 <p>A Discord bot that uses ChatGPT to answer user messages.</p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
@@ -74,7 +81,15 @@ function App() {
         <section id="certificates" className="section">
           <div className="container">
             <h3>Certifications</h3>
+
+            <h4 className="cert-category">Professional Certifications</h4>
             <div className="certs-grid">
+              <div className="cert-item">
+                <strong>CompTIA A+</strong>
+                <a href="https://cp.certmetrics.com/comptia/en/public/verify/credential/NXCDHT0Y8JFE20DJ" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </div>
               <div className="cert-item">
                 <strong>PC Pro Certification</strong>
                 <a href="https://certification.testout.com/verifycert/6-2C6-M4997" target="_blank" rel="noopener noreferrer">
@@ -90,6 +105,42 @@ function App() {
               <div className="cert-item">
                 <strong>Security Pro Certification</strong>
                 <a href="https://certification.testout.com/verifycert/6-2C6-V3A3KA" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </div>
+            </div>
+
+            <h4 className="cert-category">National Cyber League (NCL)</h4>
+            <div className="certs-grid">
+              <div className="cert-item">
+                <strong>NCL Fall 2025 Team Game</strong>
+                <span className="badge diamond">Diamond-4</span>
+                <span className="percentile">87th Percentile</span>
+                <a href="https://cyberskyline.com/verify/433Q1RTAP7WT" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </div>
+              <div className="cert-item">
+                <strong>NCL Fall 2025 Individual</strong>
+                <span className="badge diamond">Diamond-1</span>
+                <span className="percentile">83rd Percentile</span>
+                <a href="https://cyberskyline.com/verify/P0GK5KL1N4VA" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </div>
+              <div className="cert-item">
+                <strong>NCL Fall 2024 Team Game</strong>
+                <span className="badge diamond">Diamond-3</span>
+                <span className="percentile">97th Percentile</span>
+                <a href="https://cyberskyline.com/verify/8N631HG39DG2" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </div>
+              <div className="cert-item">
+                <strong>NCL Fall 2024 Individual</strong>
+                <span className="badge diamond">Diamond-1</span>
+                <span className="percentile">87th Percentile</span>
+                <a href="https://cyberskyline.com/verify/D7YWWNXMDH4N" target="_blank" rel="noopener noreferrer">
                   Verify
                 </a>
               </div>
@@ -132,6 +183,33 @@ function App() {
                 <strong>NCL Fall 2023 Individual</strong>
                 <span className="badge bronze">Bronze</span>
                 <a href="https://cyberskyline.com/verify/JNDQPQJLPJPC" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </div>
+            </div>
+
+            <h4 className="cert-category">Cyber Cup Competitions</h4>
+            <div className="certs-grid">
+              <div className="cert-item">
+                <strong>IE CA Mayors Cyber Cup 2025 Main Event</strong>
+                <span className="achievement">3rd Place / 143 Teams</span>
+                <span className="achievement">1st in Inland Empire Colleges</span>
+                <span className="percentile">1470 / 2075 Points</span>
+              </div>
+              <div className="cert-item">
+                <strong>SoCal Cyber Cup Final Round 2024</strong>
+                <a href="https://cyberskyline.com/verify/8D3FU1H344UM" target="_blank" rel="noopener noreferrer">
+                  Verify
+                </a>
+              </div>
+              <div className="cert-item">
+                <strong>IE/Desert CA Mayors Cyber Cup 2023</strong>
+                <span className="achievement">25th Place / 91 Teams</span>
+                <span className="percentile">725 / 2000 Points</span>
+              </div>
+              <div className="cert-item">
+                <strong>SoCal Cyber Cup Qualifier Round</strong>
+                <a href="https://cyberskyline.com/verify/UFVQF7TAVHP0" target="_blank" rel="noopener noreferrer">
                   Verify
                 </a>
               </div>
