@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrepreneurship Reflection | CRT Terminal</title>
+  <style>
+    /* ===========================
+       CRT TERMINAL REFLECTION PAGE
+       =========================== */
+
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* CRT Wrapper - Full viewport background */
+    .crt-wrapper {
+      min-height: 100vh;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      font-family: 'Fira Code', 'SF Mono', Menlo, Consolas, Monaco, 'Courier New', monospace;
+    }
+
+    /* CRT Frame - The monitor bezel */
+    .crt-frame {
+      width: 100%;
+      max-width: 960px;
+      background: #1a1a1a;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    /* CRT Screen - The glowing terminal inside */
+    .crt-screen {
+      background: 
+        radial-gradient(ellipse at center, #001a00 0%, #000a00 100%);
+      border-radius: 8px;
+      padding: 40px;
+      position: relative;
+      overflow-y: auto;
+      max-height: 85vh;
+      color: #00ff41;
+      
+      /* Subtle flicker animation */
+      animation: flicker 0.15s infinite alternate;
+      
+      /* Text glow effect */
+      text-shadow: 
+        0 0 5px rgba(0, 255, 65, 0.8),
+        0 0 10px rgba(0, 255, 65, 0.4);
+    }
+
+    /* Flicker animation - very subtle */
+    @keyframes flicker {
+      0% {
+        opacity: 0.98;
+        filter: brightness(1);
+      }
+      100% {
+        opacity: 1;
+        filter: brightness(1.02);
+      }
+    }
+
+    /* Scanlines overlay */
+    .scanlines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Vignette overlay */
+    .vignette {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+      pointer-events: none;
+      z-index: 9;
+    }
+
+    /* Header */
+    .crt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+      position: relative;
+      z-index: 11;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .header-left {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .status-dot {
+      color: #00ff41;
+      font-size: 16px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+      }
+      50% {
+        opacity: 0.6;
+        text-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+      }
+    }
+
+    /* Main Content */
+    .crt-content {
+      position: relative;
+      z-index: 11;
+      line-height: 1.6;
+    }
+
+    /* Intro Section */
+    .intro-section {
+      margin-bottom: 40px;
+    }
+
+    .terminal-line {
+      margin-bottom: 8px;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    /* Log Section */
+    .log-section {
+      margin-bottom: 50px;
+    }
+
+    .log-entry {
+      margin-bottom: 35px;
+      padding: 20px;
+      background: rgba(0, 255, 65, 0.03);
+      border-left: 3px solid rgba(0, 255, 65, 0.4);
+      border-radius: 4px;
+    }
+
+    .log-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+
+    .log-tag {
+      color: #00ff41;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .log-label {
+      color: #00cc33;
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .log-entry h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #00ff41;
+      line-height: 1.4;
+    }
+
+    .log-entry p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #00dd37;
+      opacity: 0.92;
+    }
+
+    /* Application Section */
+    .application-section,
+    .questions-section {
+      margin-bottom: 40px;
+    }
+
+    .section-heading {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #00ff41;
+      letter-spacing: 0.5px;
+    }
+
+    .application-section p,
+    .questions-section p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      color: #00dd37;
+      opacity: 0.92;
+    }
+
+    .application-section ul,
+    .questions-section ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .application-section li,
+    .questions-section li {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      color: #00dd37;
+      opacity: 0.92;
+      list-style-type: square;
+    }
+
+    .application-section li::marker,
+    .questions-section li::marker {
+      color: #00ff41;
+    }
+
+    /* Outro Section */
+    .outro-section {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 255, 65, 0.3);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .crt-wrapper {
+        padding: 10px;
+      }
+      
+      .crt-frame {
+        padding: 15px;
+        border-radius: 12px;
+      }
+      
+      .crt-screen {
+        padding: 20px;
+        max-height: 90vh;
+      }
+      
+      .crt-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 12px;
+      }
+      
+      .header-left {
+        font-size: 14px;
+      }
+      
+      .terminal-line {
+        font-size: 12px;
+      }
+      
+      .log-entry {
+        padding: 15px;
+      }
+      
+      .log-entry h2 {
+        font-size: 16px;
+      }
+      
+      .log-entry p,
+      .application-section p,
+      .questions-section p,
+      .application-section li,
+      .questions-section li {
+        font-size: 13px;
+      }
+      
+      .section-heading {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .crt-screen {
+        padding: 15px;
+      }
+      
+      .log-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      
+      .application-section ul,
+      .questions-section ul {
+        margin-left: 15px;
+      }
+    }
+
+    /* Accessibility - ensure contrast */
+    @media (prefers-reduced-motion: reduce) {
+      .crt-screen {
+        animation: none;
+      }
+      
+      .status-dot {
+        animation: none;
+      }
+    }
+
+    /* Print styles - if needed for assignment submission */
+    @media print {
+      .crt-wrapper {
+        background: white;
+        padding: 0;
+      }
+      
+      .crt-frame {
+        box-shadow: none;
+        background: white;
+        padding: 20px;
+      }
+      
+      .crt-screen {
+        background: white;
+        color: black;
+        text-shadow: none;
+        animation: none;
+        max-height: none;
+      }
+      
+      .scanlines,
+      .vignette {
+        display: none;
+      }
+      
+      .log-entry,
+      .application-section p,
+      .questions-section p,
+      .application-section li,
+      .questions-section li,
+      .terminal-line {
+        color: black;
+      }
+      
+      .log-entry h2,
+      .section-heading {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="crt-wrapper">
+    <div class="crt-frame">
+      <div class="crt-screen">
+        <div class="scanlines"></div>
+        <div class="vignette"></div>
+        
+        <header class="crt-header">
+          <div class="header-left">entrepreneurship.log</div>
+          <div class="header-right">
+            <span class="status-dot">●</span> CONNECTED
+          </div>
+        </header>
+
+        <main class="crt-content">
+          <!-- Intro Section -->
+          <section class="intro-section">
+            <div class="terminal-line">&gt; INIT COURSE_REFLECTION --mode=ENTREPRENEURSHIP</div>
+            <div class="terminal-line">&gt; STATUS: completed</div>
+            <div class="terminal-line">&gt; NOTE: started as "just another GE"; ended as a mindset shift.</div>
+            <div class="terminal-line">&gt; DISPLAY top_10_lessons</div>
+          </section>
+
+          <!-- Log Entries Section -->
+          <section class="log-section">
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 01]</span>
+                <span class="log-label">mindset</span>
+              </div>
+              <h2>Entrepreneurship is a mindset, not just a startup.</h2>
+              <p>
+                I used to think entrepreneurship meant launching a business. Now I see it as a way of acting: spotting real needs, taking a step with the resources I have, learning from what happens, and adjusting. This applies to school, work, and my own life, even if I never file an LLC.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 02]</span>
+                <span class="log-label">iteration</span>
+              </div>
+              <h2>Small, simple steps beat perfect plans.</h2>
+              <p>
+                I learned to stop waiting to "feel ready." This course pushed me to start small, do one action, watch what happens, and treat that as data for the next version. Progress is a series of small experiments, not one big moment.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 03]</span>
+                <span class="log-label">opportunity</span>
+              </div>
+              <h2>Problems are opportunities hiding in plain sight.</h2>
+              <p>
+                I started noticing small frictions in everyday life: confusing apps, people scared of scams, messy processes at work. Instead of just being annoyed, I see them as starting points. My computer literacy idea grew from watching people struggle with privacy, scams, and basic device settings.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 04]</span>
+                <span class="log-label">grit</span>
+              </div>
+              <h2>Grit and persistence matter more than raw talent.</h2>
+              <p>
+                The idea that grit beats talent showed up often. Stories like Kevin Hart's showed how consistent work over time matters more than being naturally gifted. Sticking with something through the boring and hard parts leads farther than relying on intelligence alone.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 05]</span>
+                <span class="log-label">reflection</span>
+              </div>
+              <h2>Reflection is a tool, not just homework.</h2>
+              <p>
+                Weekly reflections forced me to slow down and analyze what I did. Writing about what worked, what failed, and why made my thinking clearer. Reflection turned vague "I'm stuck" moments into better decisions and next steps.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 06]</span>
+                <span class="log-label">simplicity</span>
+              </div>
+              <h2>Simplicity and "what works" beat fancy ideas.</h2>
+              <p>
+                I used to care a lot about how ideas sounded. The course shifted my focus to whether they actually help people. Examples like the Embrace Infant Warmer showed that good solutions are often simple, affordable, and reliable, not flashy.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 07]</span>
+                <span class="log-label">creativity</span>
+              </div>
+              <h2>Creativity is everyday problem-solving, not just art.</h2>
+              <p>
+                I still feel like a "level 1" in creativity, but now I define it differently. Creativity shows up in how I plan, communicate, and design processes. My plan is: short idea bursts, list three options before picking one, start with small changes, then check results. It is a skill I can train.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 08]</span>
+                <span class="log-label">teamwork</span>
+              </div>
+              <h2>Teamwork and communication multiply impact.</h2>
+              <p>
+                Cross-functional teamwork showed me how much better ideas get when different perspectives collide. Simple, frequent updates and clear communication keep projects organized and lower stress. Trust and communication turn a group into a team that can execute.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 09]</span>
+                <span class="log-label">impact</span>
+              </div>
+              <h2>Social entrepreneurs and intrapreneurs change systems from different places.</h2>
+              <p>
+                I learned the roles of social entrepreneurs, intrapreneurs, nonprofits, and not-for-profits. Social entrepreneurs use new ideas to fix real problems; intrapreneurs innovate inside existing organizations. This helped me see my computer literacy idea as something that could live as its own project or within a school or workplace.
+              </p>
+            </article>
+
+            <article class="log-entry">
+              <div class="log-meta">
+                <span class="log-tag">[LOG 10]</span>
+                <span class="log-label">risk</span>
+              </div>
+              <h2>You do not have to be an expert to act, but you must manage risk.</h2>
+              <p>
+                The TEDx story about people stepping up in an emergency showed that leadership often means acting before you feel fully qualified. In class we broke risk into demand, technology, execution, and financing. Small tests, staged effort, and clear stories help manage those risks. I do not need to know everything to start, but I do need to start intelligently.
+              </p>
+            </article>
+          </section>
+
+          <!-- Application Section -->
+          <section class="application-section">
+            <h2 class="section-heading">&gt; APPLICATION: how I plan to use this</h2>
+            <p>
+              In the present, I am applying this mindset to my computer literacy idea. Instead of designing a full program in my head, I will:
+            </p>
+            <ul>
+              <li>Talk to students, family, or coworkers about where they struggle with devices and online safety.</li>
+              <li>Pick one small topic (for example, recognizing scams or basic privacy settings).</li>
+              <li>Run a small test: a short guide, micro-workshop, or simple resource.</li>
+              <li>Reflect on what worked, what confused people, and what needs to change.</li>
+              <li>Iterate and repeat.</li>
+            </ul>
+            <p>
+              Long term, as I work in IT and related fields, these lessons guide how I handle problems: stay calm when things break, communicate clearly, use small tests, and focus on simple solutions that actually help users.
+            </p>
+          </section>
+
+          <!-- Open Questions Section -->
+          <section class="questions-section">
+            <h2 class="section-heading">&gt; OPEN QUESTIONS: what remains unresolved</h2>
+            <p>
+              Even after the course, some questions stay active in the log:
+            </p>
+            <ul>
+              <li>How do I balance risk and stability when I am responsible for supporting myself and my family?</li>
+              <li>How do I decide which opportunities are worth pursuing and which are distractions?</li>
+              <li>What is the best way to measure impact for a computer literacy project beyond attendance or clicks?</li>
+              <li>How can I keep my grit and motivation strong over years, not just weeks or months?</li>
+              <li>How do I bring an entrepreneurial mindset into future workplaces without always needing to be "the founder"?</li>
+            </ul>
+            <p>
+              The course did not answer everything, but it changed the way I see problems, chances, and my own role in creating change. That shift is the real output of this log.
+            </p>
+          </section>
+
+          <!-- Outro Section -->
+          <section class="outro-section">
+            <div class="terminal-line">&gt; END LOG</div>
+            <div class="terminal-line">&gt; RETURN mindset=ENTREPRENEURIAL</div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
