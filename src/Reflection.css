@@ -1,0 +1,379 @@
+/* ===========================
+   CRT TERMINAL REFLECTION PAGE
+   =========================== */
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CRT Wrapper - Full viewport background */
+.crt-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Fira Code', 'SF Mono', Menlo, Consolas, Monaco, 'Courier New', monospace;
+}
+
+/* CRT Frame - The monitor bezel */
+.crt-frame {
+  width: 100%;
+  max-width: 960px;
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* CRT Screen - The glowing terminal inside */
+.crt-screen {
+  background: 
+    radial-gradient(ellipse at center, #001a00 0%, #000a00 100%);
+  border-radius: 8px;
+  padding: 40px;
+  position: relative;
+  overflow-y: auto;
+  max-height: 85vh;
+  color: #00ff41;
+  
+  /* Subtle flicker animation */
+  animation: flicker 0.15s infinite alternate;
+  
+  /* Text glow effect */
+  text-shadow: 
+    0 0 5px rgba(0, 255, 65, 0.8),
+    0 0 10px rgba(0, 255, 65, 0.4);
+}
+
+/* Flicker animation - very subtle */
+@keyframes flicker {
+  0% {
+    opacity: 0.98;
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1.02);
+  }
+}
+
+/* Scanlines overlay */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Vignette overlay */
+.vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+  pointer-events: none;
+  z-index: 9;
+}
+
+/* Header */
+.crt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+  position: relative;
+  z-index: 11;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.header-left {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.status-dot {
+  color: #00ff41;
+  font-size: 16px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+  }
+  50% {
+    opacity: 0.6;
+    text-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+  }
+}
+
+/* Main Content */
+.crt-content {
+  position: relative;
+  z-index: 11;
+  line-height: 1.6;
+}
+
+/* Intro Section */
+.intro-section {
+  margin-bottom: 40px;
+}
+
+.terminal-line {
+  margin-bottom: 8px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+/* Log Section */
+.log-section {
+  margin-bottom: 50px;
+}
+
+.log-entry {
+  margin-bottom: 35px;
+  padding: 20px;
+  background: rgba(0, 255, 65, 0.03);
+  border-left: 3px solid rgba(0, 255, 65, 0.4);
+  border-radius: 4px;
+}
+
+.log-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.log-tag {
+  color: #00ff41;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.log-label {
+  color: #00cc33;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.log-entry h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #00ff41;
+  line-height: 1.4;
+}
+
+.log-entry p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #00dd37;
+  opacity: 0.92;
+}
+
+/* Application Section */
+.application-section,
+.questions-section {
+  margin-bottom: 40px;
+}
+
+.section-heading {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #00ff41;
+  letter-spacing: 0.5px;
+}
+
+.application-section p,
+.questions-section p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  color: #00dd37;
+  opacity: 0.92;
+}
+
+.application-section ul,
+.questions-section ul {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.application-section li,
+.questions-section li {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: #00dd37;
+  opacity: 0.92;
+  list-style-type: square;
+}
+
+.application-section li::marker,
+.questions-section li::marker {
+  color: #00ff41;
+}
+
+/* Outro Section */
+.outro-section {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .crt-wrapper {
+    padding: 10px;
+  }
+  
+  .crt-frame {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  .crt-screen {
+    padding: 20px;
+    max-height: 90vh;
+  }
+  
+  .crt-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+  }
+  
+  .header-left {
+    font-size: 14px;
+  }
+  
+  .terminal-line {
+    font-size: 12px;
+  }
+  
+  .log-entry {
+    padding: 15px;
+  }
+  
+  .log-entry h2 {
+    font-size: 16px;
+  }
+  
+  .log-entry p,
+  .application-section p,
+  .questions-section p,
+  .application-section li,
+  .questions-section li {
+    font-size: 13px;
+  }
+  
+  .section-heading {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crt-screen {
+    padding: 15px;
+  }
+  
+  .log-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .application-section ul,
+  .questions-section ul {
+    margin-left: 15px;
+  }
+}
+
+/* Accessibility - ensure contrast */
+@media (prefers-reduced-motion: reduce) {
+  .crt-screen {
+    animation: none;
+  }
+  
+  .status-dot {
+    animation: none;
+  }
+}
+
+/* Print styles - if needed for assignment submission */
+@media print {
+  .crt-wrapper {
+    background: white;
+    padding: 0;
+  }
+  
+  .crt-frame {
+    box-shadow: none;
+    background: white;
+    padding: 20px;
+  }
+  
+  .crt-screen {
+    background: white;
+    color: black;
+    text-shadow: none;
+    animation: none;
+    max-height: none;
+  }
+  
+  .scanlines,
+  .vignette {
+    display: none;
+  }
+  
+  .log-entry,
+  .application-section p,
+  .questions-section p,
+  .application-section li,
+  .questions-section li,
+  .terminal-line {
+    color: black;
+  }
+  
+  .log-entry h2,
+  .section-heading {
+    color: black;
+  }
+}
