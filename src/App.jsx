@@ -10,7 +10,6 @@ function App() {
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#certificates">Certificates</a>
-            <a href="/reflection.html" target="_blank">Reflection</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
