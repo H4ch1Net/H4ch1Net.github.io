@@ -3,7 +3,6 @@ import './App.css'
 import Particles from './components/Particles'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
-import AsciiText from './components/AsciiText'
 import DecryptedText from './components/DecryptedText'
 import ScrambledText from './components/ScrambledText'
 import LetterGlitch from './components/LetterGlitch'
@@ -213,25 +212,21 @@ function App() {
           </div>
           <div className="hero-particles">
             <Particles
-              particleCount={80}
+              particleCount={120}
               particleSpread={8}
               speed={0.05}
               particleColors={['#00e38c', '#00e38c', '#00c078']}
               alphaParticles={true}
-              particleBaseSize={60}
+              particleBaseSize={80}
               sizeRandomness={0.8}
               disableRotation={false}
             />
           </div>
           <div className="container hero-content">
             <HeroName />
-            <div className="subtitle-ascii-wrapper">
-              <AsciiText
-                text="Computer Science & Information Systems Student"
-                color="#00e38c"
-                fontSize={8}
-              />
-            </div>
+            <p className="subtitle-terminal">
+              Computer Science &amp; Information Systems Student
+            </p>
             <p className="description">
               Passionate about cybersecurity, software development, and all things tech.
             </p>
