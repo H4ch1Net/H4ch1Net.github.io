@@ -1,4 +1,8 @@
 import './App.css'
+import Particles from './components/Particles'
+import BlurText from './components/BlurText'
+import SplitText from './components/SplitText'
+import SpotlightCard from './components/SpotlightCard'
 
 function App() {
   return (
@@ -17,8 +21,29 @@ function App() {
 
       <main>
         <section className="hero">
-          <div className="container">
-            <h2>Hi, I'm Mauro</h2>
+          <div className="hero-particles">
+            <Particles
+              particleCount={80}
+              particleSpread={8}
+              speed={0.05}
+              particleColors={['#00e38c', '#00e38c', '#00c078']}
+              alphaParticles={true}
+              particleBaseSize={60}
+              sizeRandomness={0.8}
+              disableRotation={false}
+            />
+          </div>
+          <div className="container hero-content">
+            <h2>
+              <BlurText
+                text="Hi, I'm Mauro"
+                delay={120}
+                animateBy="words"
+                direction="top"
+                stepDuration={0.4}
+                className="hero-blur-text"
+              />
+            </h2>
             <p className="subtitle">Computer Science & Information Systems Student</p>
             <p className="description">
               Passionate about cybersecurity, software development, and all things tech.
@@ -28,7 +53,18 @@ function App() {
 
         <section id="about" className="section">
           <div className="container">
-            <h3>About Me</h3>
+            <h3>
+              <SplitText
+                text="About Me"
+                tag="span"
+                splitType="chars"
+                delay={40}
+                duration={0.8}
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                rootMargin="-80px"
+              />
+            </h3>
             <div className="content">
               <p>
                 I'm currently studying Computer Science at California State University, San Bernardino,
@@ -51,36 +87,58 @@ function App() {
 
         <section id="projects" className="section section-alt">
           <div className="container">
-            <h3>Projects</h3>
+            <h3>
+              <SplitText
+                text="Projects"
+                tag="span"
+                splitType="chars"
+                delay={40}
+                duration={0.8}
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                rootMargin="-80px"
+              />
+            </h3>
             <div className="projects-grid">
-              <div className="card">
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <h4>KS LED Controller</h4>
                 <p>Hardware LED controller with custom firmware and web interface.</p>
                 <a href="https://github.com/H4ch1Net/ks-led-controller" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
                 </a>
-              </div>
-              <div className="card">
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <h4>Bagley-Bot</h4>
                 <p>A Discord bot that uses ChatGPT to answer user messages.</p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
                 </a>
-              </div>
-              <div className="card">
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <h4>Portfolio Website</h4>
                 <p>This website - built with React and modern web technologies.</p>
                 <a href="https://github.com/H4ch1Net/H4ch1Net.github.io" className="btn" target="_blank" rel="noopener noreferrer">
                   View Source
                 </a>
-              </div>
+              </SpotlightCard>
             </div>
           </div>
         </section>
 
         <section id="certificates" className="section">
           <div className="container">
-            <h3>Certifications</h3>
+            <h3>
+              <SplitText
+                text="Certifications"
+                tag="span"
+                splitType="chars"
+                delay={40}
+                duration={0.8}
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                rootMargin="-80px"
+              />
+            </h3>
 
             <h4 className="cert-category">Professional Certifications</h4>
             <div className="certs-grid">
@@ -219,7 +277,18 @@ function App() {
 
         <section id="contact" className="section section-alt">
           <div className="container">
-            <h3>Get In Touch</h3>
+            <h3>
+              <SplitText
+                text="Get In Touch"
+                tag="span"
+                splitType="chars"
+                delay={40}
+                duration={0.8}
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                rootMargin="-80px"
+              />
+            </h3>
             <div className="contact-info">
               <p>
                 <strong>Email:</strong> <a href="mailto:h4ch1net@gmail.com">h4ch1net@gmail.com</a>
