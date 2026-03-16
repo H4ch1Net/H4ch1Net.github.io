@@ -39,7 +39,7 @@
 - President, COD Cyber Competition Team
 - CTF competitor: MetaCTF, SkillBit Flash CTF, Vegetable CTF, NCL (Diamond tier)
 - Co-founder, Atlas Technology Systems (ATS) — MSP startup targeting Coachella Valley SMBs
-- Helix Fellowship — AI software engineering benchmark task developer
+- Software Engineering experience
 - Bilingual: English and Spanish
 
 ## Certificates (actual files in /certificates/)
