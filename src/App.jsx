@@ -1,8 +1,158 @@
+import { useState } from 'react'
 import './App.css'
 import Particles from './components/Particles'
 import BlurText from './components/BlurText'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
+
+const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
+
+function SkillsSection() {
+  const [activeTab, setActiveTab] = useState('Cybersecurity')
+
+  return (
+    <section id="skills" className="section section-alt">
+      <div className="container">
+        <h3>
+          <SplitText
+            text="Skills"
+            tag="span"
+            splitType="chars"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0 }}
+            rootMargin="-80px"
+          />
+        </h3>
+
+        <div className="skills-tabs">
+          {SKILLS_TABS.map(tab => (
+            <button
+              key={tab}
+              className={`skills-tab${activeTab === tab ? ' skills-tab--active' : ''}`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <div className="skills-content">
+          {activeTab === 'Cybersecurity' && (
+            <div className="skills-panel">
+              <div className="skills-grid">
+                <div className="card-spotlight skills-card">
+                  <h4>Competitions & Leadership</h4>
+                  <ul className="skills-list">
+                    <li>President, COD Cyber Competition Team</li>
+                    <li>NCL Diamond Tier — 97th percentile (Team Game)</li>
+                    <li>IE/CA Mayors Cyber Cup 2025 — 3rd Place / 143 Teams, 1st in Inland Empire Colleges</li>
+                    <li>MetaCTF, SkillBit Flash CTF, Vegetable CTF</li>
+                  </ul>
+                </div>
+                <div className="card-spotlight skills-card">
+                  <h4>Skill Areas</h4>
+                  <ul className="skills-list">
+                    <li>Network Analysis</li>
+                    <li>OSINT</li>
+                    <li>Web Exploitation</li>
+                    <li>Reverse Engineering</li>
+                    <li>Steganography</li>
+                    <li>Log Analysis</li>
+                    <li>Cryptography</li>
+                  </ul>
+                </div>
+                <div className="card-spotlight skills-card">
+                  <h4>Tools</h4>
+                  <ul className="skills-list">
+                    <li>Wireshark</li>
+                    <li>Burp Suite</li>
+                    <li>Nmap</li>
+                    <li>Metasploit</li>
+                    <li>John the Ripper</li>
+                    <li>Gobuster</li>
+                    <li>CyberChef</li>
+                    <li>Autopsy</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'Computer Science' && (
+            <div className="skills-panel">
+              <div className="skills-grid">
+                <div className="card-spotlight skills-card">
+                  <h4>Education & Programs</h4>
+                  <ul className="skills-list">
+                    <li>B.S. Computer Science — CSUSB (May 2027)</li>
+                    <li>A.S. Computer Information Systems — COD</li>
+                    <li>Helix Fellowship — AI benchmark task developer</li>
+                    <li>Co-founder, Atlas Technology Systems (MSP startup, Coachella Valley)</li>
+                  </ul>
+                </div>
+                <div className="card-spotlight skills-card">
+                  <h4>Projects</h4>
+                  <ul className="skills-list">
+                    <li>Bagley AI kiosk (OpenClaw)</li>
+                    <li>OSINT exposure tool (Python)</li>
+                    <li>ESP8266 home temp monitor (Home Assistant)</li>
+                    <li>KS LED Controller</li>
+                  </ul>
+                </div>
+                <div className="card-spotlight skills-card">
+                  <h4>Languages</h4>
+                  <ul className="skills-list">
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>C</li>
+                    <li>C++</li>
+                    <li>C#</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'IT' && (
+            <div className="skills-panel">
+              <div className="skills-grid">
+                <div className="card-spotlight skills-card">
+                  <h4>Work Experience</h4>
+                  <ul className="skills-list">
+                    <li>IT Apprentice — Eisenhower Health, Rancho Mirage CA (~30–32 hrs/week)</li>
+                    <li>Roles spanning Service Desk through Systems Administrator</li>
+                  </ul>
+                </div>
+                <div className="card-spotlight skills-card">
+                  <h4>Skill Areas</h4>
+                  <ul className="skills-list">
+                    <li>Endpoint management</li>
+                    <li>Ticketing systems</li>
+                    <li>Network infrastructure</li>
+                    <li>Healthcare IT</li>
+                    <li>Active Directory</li>
+                    <li>Imaging and deployment</li>
+                  </ul>
+                </div>
+                <div className="card-spotlight skills-card">
+                  <h4>Certifications</h4>
+                  <ul className="skills-list">
+                    <li>CompTIA A+</li>
+                    <li>TestOut PC Pro</li>
+                    <li>TestOut Network Pro</li>
+                    <li>TestOut Security Pro</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 function App() {
   return (
@@ -12,6 +162,7 @@ function App() {
           <h1 className="logo">H4ch1.Net</h1>
           <nav className="nav">
             <a href="#about">About</a>
+            <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#certificates">Certificates</a>
             <a href="#contact">Contact</a>
@@ -84,6 +235,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        <SkillsSection />
 
         <section id="projects" className="section section-alt">
           <div className="container">
