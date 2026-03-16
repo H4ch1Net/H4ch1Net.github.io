@@ -38,7 +38,7 @@
   - Roles spanning Service Desk through Systems Administrator
 - President, COD Cyber Competition Team
 - CTF competitor: MetaCTF, SkillBit Flash CTF, Vegetable CTF, NCL (Diamond tier)
-- Helix Fellowship — AI software engineering benchmark task developer
+- Software Engineering experience
 - Bilingual: English and Spanish
 
 ## Certificates (actual files in /certificates/)
