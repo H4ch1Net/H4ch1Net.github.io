@@ -76,12 +76,34 @@ body {
   padding: 5rem 0;
   text-align: center;
   border-bottom: 1px solid #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h2 {
   font-size: 3rem;
   color: #00e38c;
   margin-bottom: 0.5rem;
+}
+
+.hero-blur-text {
+  font-size: 3rem;
+  color: #00e38c;
+  font-weight: 700;
+  justify-content: center;
+  margin: 0;
 }
 
 .subtitle {
@@ -133,10 +155,6 @@ body {
 }
 
 .card {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 8px;
-  padding: 2rem;
   transition: transform 0.2s, border-color 0.2s;
 }
 
