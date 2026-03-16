@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import Particles from './components/Particles'
-import BlurText from './components/BlurText'
+import ScrambleText from './components/ScrambleText'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
+import Dither from './components/Dither'
+import AsciiText from './components/AsciiText'
 
 const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
 
@@ -159,7 +161,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="container">
-          <h1 className="logo">H4ch1.Net</h1>
+          <h1 className="logo">H4CH1</h1>
           <nav className="nav">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -185,25 +187,36 @@ function App() {
             />
           </div>
           <div className="container hero-content">
-            <h2>
-              <BlurText
-                text="Hi, I'm Mauro"
-                delay={120}
-                animateBy="words"
-                direction="top"
-                stepDuration={0.4}
-                className="hero-blur-text"
+            <ScrambleText />
+            <div className="subtitle-ascii-wrapper">
+              <AsciiText
+                text="Computer Science & Information Systems Student"
+                asciiFontSize={8}
+                textFontSize={120}
+                textColor="#00e38c"
+                planeBaseHeight={4}
+                enableWaves={true}
               />
-            </h2>
-            <p className="subtitle">Computer Science & Information Systems Student</p>
+            </div>
             <p className="description">
               Passionate about cybersecurity, software development, and all things tech.
             </p>
           </div>
         </section>
 
-        <section id="about" className="section">
-          <div className="container">
+        <section id="about" className="section about-section">
+          <div className="about-dither">
+            <Dither
+              waveSpeed={0.03}
+              waveFrequency={3}
+              waveAmplitude={0.3}
+              waveColor={[0, 0.08, 0.04]}
+              colorNum={2}
+              pixelSize={4}
+              enableMouseInteraction={false}
+            />
+          </div>
+          <div className="container about-container">
             <h3>
               <SplitText
                 text="About Me"
