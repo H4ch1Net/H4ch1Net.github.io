@@ -8,7 +8,6 @@ import DecryptedText from './components/DecryptedText'
 import ScrambledText from './components/ScrambledText'
 import LetterGlitch from './components/LetterGlitch'
 import FaultyTerminal from './components/FaultyTerminal'
-import Dither from './components/Dither'
 
 const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
 
@@ -206,8 +205,8 @@ function App() {
         <section className="hero">
           <div className="hero-glitch">
             <LetterGlitch
-              glitchColors={['#00e38c', '#003d1f', '#001a0d']}
-              glitchSpeed={120}
+              glitchColors={['#003d1f', '#001a0d', '#002810']}
+              glitchSpeed={200}
               outerVignette
               smooth
             />
@@ -242,9 +241,16 @@ function App() {
         <section id="about" className="section about-section">
           <div className="container about-container">
             <h3>
-              <Dither speed={2} enableShadows enableOnHover={false}>
-                About Me
-              </Dither>
+              <SplitText
+                text="About Me"
+                tag="span"
+                splitType="chars"
+                delay={40}
+                duration={0.8}
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                rootMargin="-80px"
+              />
             </h3>
             <div className="content">
               <p>
