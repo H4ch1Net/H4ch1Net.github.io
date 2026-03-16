@@ -22,22 +22,25 @@ I'm Mauro (H4ch1Net) — a CS student at CSUSB + dual-enrolled at COD, cybersecu
 |---|---|---|
 | React | 18.3 | UI framework |
 | Vite | 6 | Build tool & dev server |
-| Framer Motion | 12 | Scroll animations (SplitText) |
-| OGL | 1 | WebGL particle system (Particles hero) |
-| HTML Canvas | — | AsciiText — no extra deps |
+| Framer Motion | 12 | Scroll animations (SplitText, DecryptedText) |
+| OGL | 1 | WebGL (Particles hero, FaultyTerminal contact) |
+| HTML Canvas | — | AsciiText, LetterGlitch — no extra deps |
 | Plain CSS | — | All styling, no UI frameworks |
 
 ---
 
 ## ✨ Features
 
-- **Particle hero** — WebGL particle field using OGL, sparse green accent particles
-- **ScrambleText** — cycles "Hi, I'm Mauro ↔ H4ch1" with a hacker-style character scramble on a 3s loop; hover to trigger instantly
+- **LetterGlitch hero background** — pure canvas matrix of glitching green characters behind the particle field
+- **Particle hero** — WebGL particle field using OGL, sparse green accent particles layered above LetterGlitch
+- **DecryptedText name** — hero name cycles Mauro ↔ H4ch1 with a hacker-style char-by-char decrypt on hover
+- **ScrambledText logo** — nav logo "H4CH1" scrambles left-to-right on hover, no GSAP required
 - **Skills tabs** — three-panel tabbed section: Cybersecurity / Computer Science / IT
 - **SpotlightCard** — mouse-tracking radial spotlight on every project card
-- **Dither background** — subtle CSS scanline pattern behind the About section
+- **GlitchText heading** — "About Me" heading rendered with CSS clip-path glitch animation
+- **FaultyTerminal contact** — OGL WebGL shader behind the Contact section, green-tinted CRT terminal aesthetic
 - **AsciiText subtitle** — hero subtitle rendered as animated ASCII art via HTML canvas
-- **SplitText headings** — all section headings animate in character-by-character on scroll
+- **SplitText headings** — section headings animate in character-by-character on scroll
 
 ---
 

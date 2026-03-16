@@ -80,16 +80,22 @@ body {
   overflow: hidden;
 }
 
-.hero-particles {
+.hero-glitch {
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero h2 {
@@ -279,6 +285,22 @@ body {
 }
 
 /* Contact */
+.contact-section {
+  position: relative;
+}
+
+.contact-faulty {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.contact-container {
+  position: relative;
+  z-index: 1;
+}
+
 .contact-info {
   text-align: center;
   font-size: 1.1rem;

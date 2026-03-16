@@ -1,12 +1,41 @@
 import { useState } from 'react'
 import './App.css'
 import Particles from './components/Particles'
-import ScrambleText from './components/ScrambleText'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
 import AsciiText from './components/AsciiText'
+import DecryptedText from './components/DecryptedText'
+import ScrambledText from './components/ScrambledText'
+import LetterGlitch from './components/LetterGlitch'
+import FaultyTerminal from './components/FaultyTerminal'
+import Dither from './components/Dither'
 
 const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
+
+function HeroName() {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <div
+      className="hero-scramble-text"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <span className="scramble-static">Hi, I'm </span>
+      <DecryptedText
+        key={hovered ? 'h4ch1' : 'mauro'}
+        text={hovered ? 'H4ch1' : 'Mauro'}
+        animateOn="view"
+        sequential
+        revealDirection="start"
+        speed={40}
+        characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$"
+        className="scramble-name"
+        encryptedClassName="scramble-active"
+      />
+    </div>
+  )
+}
 
 function SkillsSection() {
   const [activeTab, setActiveTab] = useState('Cybersecurity')
@@ -160,7 +189,9 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="container">
-          <h1 className="logo">H4CH1</h1>
+          <h1 className="logo">
+            <ScrambledText text="H4CH1" />
+          </h1>
           <nav className="nav">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -173,6 +204,14 @@ function App() {
 
       <main>
         <section className="hero">
+          <div className="hero-glitch">
+            <LetterGlitch
+              glitchColors={['#00e38c', '#003d1f', '#001a0d']}
+              glitchSpeed={120}
+              outerVignette
+              smooth
+            />
+          </div>
           <div className="hero-particles">
             <Particles
               particleCount={80}
@@ -186,7 +225,7 @@ function App() {
             />
           </div>
           <div className="container hero-content">
-            <ScrambleText />
+            <HeroName />
             <div className="subtitle-ascii-wrapper">
               <AsciiText
                 text="Computer Science & Information Systems Student"
@@ -203,16 +242,9 @@ function App() {
         <section id="about" className="section about-section">
           <div className="container about-container">
             <h3>
-              <SplitText
-                text="About Me"
-                tag="span"
-                splitType="chars"
-                delay={40}
-                duration={0.8}
-                from={{ opacity: 0, y: 30 }}
-                to={{ opacity: 1, y: 0 }}
-                rootMargin="-80px"
-              />
+              <Dither speed={2} enableShadows enableOnHover={false}>
+                About Me
+              </Dither>
             </h3>
             <div className="content">
               <p>
@@ -426,8 +458,20 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="section section-alt">
-          <div className="container">
+        <section id="contact" className="section section-alt contact-section">
+          <div className="contact-faulty">
+            <FaultyTerminal
+              tint="#00e38c"
+              brightness={0.15}
+              scanlineIntensity={0.5}
+              glitchAmount={1.2}
+              flickerAmount={0.3}
+              mouseReact={false}
+              pageLoadAnimation={false}
+              curvature={0}
+            />
+          </div>
+          <div className="container contact-container">
             <h3>
               <SplitText
                 text="Get In Touch"
