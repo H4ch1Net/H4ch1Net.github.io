@@ -4,11 +4,9 @@
 [![Built with React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)](https://react.dev)
 [![Deployed on GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-222?style=flat-square&logo=github)](https://pages.github.com)
 
-I'm Mauro (H4ch1Net) — a CS student, cybersecurity competitor, and IT professional based in the Coachella Valley. This is my personal portfolio site.
+I'm Mauro (H4ch1Net) — a CS student at CSUSB + dual-enrolled at COD, cybersecurity competitor, and IT professional based in the Coachella Valley. This is my personal portfolio site.
 
-## 🌐 Live Site
-
-**[h4ch1.net](https://h4ch1.net)**
+🌐 **[h4ch1.net](https://h4ch1.net)** &nbsp;|&nbsp; 💻 **[GitHub](https://github.com/H4ch1Net)** &nbsp;|&nbsp; 📧 **[h4ch1net@gmail.com](mailto:h4ch1net@gmail.com)**
 
 ---
 
@@ -24,11 +22,9 @@ I'm Mauro (H4ch1Net) — a CS student, cybersecurity competitor, and IT professi
 |---|---|---|
 | React | 18.3 | UI framework |
 | Vite | 6 | Build tool & dev server |
-| Framer Motion | 12 | Scroll animations (SplitText, BlurText) |
-| Three.js | 0.183 | 3D rendering (AsciiText) |
-| @react-three/fiber | 9 | React renderer for Three.js (Dither) |
-| @react-three/postprocessing | 3 | Bayer dither post-processing |
-| OGL | 1 | WebGL particle system |
+| Framer Motion | 12 | Scroll animations (SplitText) |
+| OGL | 1 | WebGL particle system (Particles hero) |
+| HTML Canvas | — | AsciiText — no extra deps |
 | Plain CSS | — | All styling, no UI frameworks |
 
 ---
@@ -39,8 +35,8 @@ I'm Mauro (H4ch1Net) — a CS student, cybersecurity competitor, and IT professi
 - **ScrambleText** — cycles "Hi, I'm Mauro ↔ H4ch1" with a hacker-style character scramble on a 3s loop; hover to trigger instantly
 - **Skills tabs** — three-panel tabbed section: Cybersecurity / Computer Science / IT
 - **SpotlightCard** — mouse-tracking radial spotlight on every project card
-- **Dither background** — subtle animated Bayer-dithered wave pattern behind the About section
-- **AsciiText subtitle** — hero subtitle rendered as animated ASCII art via Three.js
+- **Dither background** — subtle CSS scanline pattern behind the About section
+- **AsciiText subtitle** — hero subtitle rendered as animated ASCII art via HTML canvas
 - **SplitText headings** — all section headings animate in character-by-character on scroll
 
 ---
@@ -52,6 +48,8 @@ I'm Mauro (H4ch1Net) — a CS student, cybersecurity competitor, and IT professi
 - 🏥 IT Apprentice @ Eisenhower Health — spanning Service Desk through Systems Administrator
 - 🛡️ President, COD Cyber Competition Team
 - 🚀 Co-founder, Atlas Technology Systems (MSP startup, Coachella Valley)
+- 📜 CompTIA A+ certified
+- 💻 Software engineering experience
 
 ---
 

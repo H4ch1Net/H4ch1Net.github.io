@@ -4,7 +4,6 @@ import Particles from './components/Particles'
 import ScrambleText from './components/ScrambleText'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
-import Dither from './components/Dither'
 import AsciiText from './components/AsciiText'
 
 const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
@@ -90,7 +89,7 @@ function SkillsSection() {
                   <ul className="skills-list">
                     <li>B.S. Computer Science — CSUSB (May 2027)</li>
                     <li>A.S. Computer Information Systems — COD</li>
-                    <li>Helix Fellowship — AI benchmark task developer</li>
+                    <li>Software Engineering experience</li>
                     <li>Co-founder, Atlas Technology Systems (MSP startup, Coachella Valley)</li>
                   </ul>
                 </div>
@@ -191,11 +190,8 @@ function App() {
             <div className="subtitle-ascii-wrapper">
               <AsciiText
                 text="Computer Science & Information Systems Student"
-                asciiFontSize={8}
-                textFontSize={120}
-                textColor="#00e38c"
-                planeBaseHeight={4}
-                enableWaves={true}
+                color="#00e38c"
+                fontSize={8}
               />
             </div>
             <p className="description">
@@ -205,17 +201,6 @@ function App() {
         </section>
 
         <section id="about" className="section about-section">
-          <div className="about-dither">
-            <Dither
-              waveSpeed={0.03}
-              waveFrequency={3}
-              waveAmplitude={0.3}
-              waveColor={[0, 0.08, 0.04]}
-              colorNum={2}
-              pixelSize={4}
-              enableMouseInteraction={false}
-            />
-          </div>
           <div className="container about-container">
             <h3>
               <SplitText
