@@ -1,28 +1,78 @@
-# H4ch1.Net — Portfolio
+# H4ch1.Net — Personal Portfolio
 
-Personal portfolio of Mauro (H4ch1Net) — CS student, cybersecurity
-competitor, and IT professional based in the Coachella Valley.
+[![Live Site](https://img.shields.io/badge/live-h4ch1.net-00e38c?style=flat-square&logo=github)](https://h4ch1.net)
+[![Built with React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)](https://react.dev)
+[![Deployed on GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-222?style=flat-square&logo=github)](https://pages.github.com)
 
-## Live Site
-[h4ch1.net](https://h4ch1.net)
+I'm Mauro (H4ch1Net) — a CS student, cybersecurity competitor, and IT professional based in the Coachella Valley. This is my personal portfolio site.
 
-## Stack
-- React 18 + Vite 6
-- Framer Motion
-- React Bits components (Particles, ScrambleText, SplitText, SpotlightCard, Dither, AsciiText)
-- Plain CSS — no UI frameworks
-- GitHub Pages + GitHub Actions CI/CD
+## 🌐 Live Site
 
-## Highlights
-- NCL Diamond Tier — 97th percentile
-- IE/CA Mayors Cyber Cup 2025 — 3rd Place / 143 Teams
-- IT Apprentice @ Eisenhower Health
-- President, COD Cyber Competition Team
-- Co-founder, Atlas Technology Systems
+**[h4ch1.net](https://h4ch1.net)**
 
-## Dev
-```
+---
+
+## 📸 Screenshot
+
+> _Coming soon_
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Version | Purpose |
+|---|---|---|
+| React | 18.3 | UI framework |
+| Vite | 6 | Build tool & dev server |
+| Framer Motion | 12 | Scroll animations (SplitText, BlurText) |
+| Three.js | 0.183 | 3D rendering (AsciiText) |
+| @react-three/fiber | 9 | React renderer for Three.js (Dither) |
+| @react-three/postprocessing | 3 | Bayer dither post-processing |
+| OGL | 1 | WebGL particle system |
+| Plain CSS | — | All styling, no UI frameworks |
+
+---
+
+## ✨ Features
+
+- **Particle hero** — WebGL particle field using OGL, sparse green accent particles
+- **ScrambleText** — cycles "Hi, I'm Mauro ↔ H4ch1" with a hacker-style character scramble on a 3s loop; hover to trigger instantly
+- **Skills tabs** — three-panel tabbed section: Cybersecurity / Computer Science / IT
+- **SpotlightCard** — mouse-tracking radial spotlight on every project card
+- **Dither background** — subtle animated Bayer-dithered wave pattern behind the About section
+- **AsciiText subtitle** — hero subtitle rendered as animated ASCII art via Three.js
+- **SplitText headings** — all section headings animate in character-by-character on scroll
+
+---
+
+## 🏆 Highlights
+
+- 🥉 IE/CA Mayors Cyber Cup 2025 — **3rd place out of 143 teams**, 1st in Inland Empire Colleges
+- 💎 NCL Diamond Tier — **97th percentile** (Team Game, Fall 2024)
+- 🏥 IT Apprentice @ Eisenhower Health — spanning Service Desk through Systems Administrator
+- 🛡️ President, COD Cyber Competition Team
+- 🚀 Co-founder, Atlas Technology Systems (MSP startup, Coachella Valley)
+
+---
+
+## 🚀 Dev Setup
+
+```bash
+git clone https://github.com/H4ch1Net/H4ch1Net.github.io.git
+cd H4ch1Net.github.io
 npm install
-npm run dev      # localhost:5173
-npm run build    # production build
+npm run dev      # http://localhost:5173
+npm run build    # production build → dist/
 ```
+
+---
+
+## 🔄 Deploy
+
+Pushing to `main` triggers the GitHub Actions workflow (`.github/workflows/deploy.yml`) which builds and deploys to GitHub Pages automatically. No manual steps needed.
+
+---
+
+## 📄 License
+
+MIT
