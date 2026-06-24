@@ -807,6 +807,170 @@ body {
   text-decoration: underline;
 }
 
+/* Hero credential chips */
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+
+.hero-stat {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.35rem 0.7rem;
+  background: rgba(0, 227, 140, 0.03);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: hero-stat-in 0.5s ease forwards;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.hero-stat:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: rgba(0, 227, 140, 0.08);
+}
+
+@keyframes hero-stat-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtitle blinking cursor */
+.subtitle-terminal::after {
+  content: '_';
+  margin-left: 2px;
+  animation: cursor-blink 1.1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Timeline marker sonar pulse */
+.timeline-marker::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  animation: timeline-pulse 2.4s ease-out infinite;
+}
+
+@keyframes timeline-pulse {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Skills tools as pills */
+.skills-pills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-pills li {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.78rem;
+  color: var(--color-body);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.3rem 0.65rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.skills-pills li:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Project title glitch */
+.project-glitch {
+  display: inline-block;
+}
+
+/* GitHub stat shimmer skeleton */
+.github-stat-frame {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.github-stat-frame:not(.is-loaded) {
+  min-width: 300px;
+  min-height: 180px;
+}
+
+.github-stat-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, #0e0e0e 30%, #1c1c1c 50%, #0e0e0e 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s linear infinite;
+  z-index: 0;
+}
+
+.github-stat-frame.is-loaded::before {
+  display: none;
+}
+
+.github-stat-frame .github-stats-img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.github-stat-frame.is-loaded .github-stats-img {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+/* Contact icons + resume note */
+.contact-icon {
+  display: inline-block;
+  width: 1.3em;
+  font-family: 'JetBrains Mono NL', monospace;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+}
+
+.contact-resume {
+  margin-top: 1.5rem;
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat,
+  .timeline-marker::after,
+  .subtitle-terminal,
+  .subtitle-terminal::after,
+  .github-stat-frame::before {
+    animation: none !important;
+  }
+
+  .hero-stat {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .header .container {
@@ -832,6 +996,20 @@ body {
   .subtitle-terminal {
     font-size: 0.85rem;
     letter-spacing: 0.03em;
+  }
+
+  .hero-stats {
+    gap: 0.45rem;
+  }
+
+  .hero-stat {
+    font-size: 0.62rem;
+    padding: 0.3rem 0.55rem;
+  }
+
+  .github-stat-frame:not(.is-loaded) {
+    min-width: 240px;
+    min-height: 150px;
   }
 
   .section {
