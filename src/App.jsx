@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Particles from './components/Particles'
 import SplitText from './components/SplitText'
@@ -74,8 +74,8 @@ function SkillsSection() {
                   <h4>Competitions & Leadership</h4>
                   <ul className="skills-list">
                     <li>President, COD Cyber Competition Team</li>
-                    <li>NCL Diamond Tier — 97th percentile (Team Game)</li>
-                    <li>IE/CA Mayors Cyber Cup 2025 — 3rd Place / 143 Teams, 1st in Inland Empire Colleges</li>
+                    <li>NCL Diamond Tier — Top 3% (Fall 2024 Team Game)</li>
+                    <li>1st Place, Inland Empire Mayors Cyber Cup 2025 (College Division)</li>
                     <li>MetaCTF, SkillBit Flash CTF, Vegetable CTF</li>
                   </ul>
                 </div>
@@ -86,9 +86,11 @@ function SkillsSection() {
                     <li>OSINT</li>
                     <li>Web Exploitation</li>
                     <li>Reverse Engineering</li>
-                    <li>Steganography</li>
-                    <li>Log Analysis</li>
-                    <li>Cryptography</li>
+                    <li>Cryptography & Steganography</li>
+                    <li>Log Analysis & Forensics</li>
+                    <li>Vulnerability Assessment</li>
+                    <li>OWASP Top 10, MITRE ATT&CK</li>
+                    <li>CVE Research</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
@@ -114,29 +116,30 @@ function SkillsSection() {
                 <div className="card-spotlight skills-card">
                   <h4>Education & Programs</h4>
                   <ul className="skills-list">
-                    <li>B.S. Computer Science — CSUSB (May 2027)</li>
-                    <li>A.S. Computer Information Systems — COD</li>
-                    <li>Software Engineering experience</li>
-                    <li>Co-founder, Atlas Technology Systems (MSP startup, Coachella Valley)</li>
+                    <li>B.S. Computer Science — CSUSB (Expected 2029)</li>
+                    <li>A.S. Computer Information Systems — COD (Expected 2027)</li>
+                    <li>Dual-enrolled full-time at both institutions</li>
+                    <li>Software engineering & agentic AI development</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
-                  <h4>Projects</h4>
+                  <h4>AI & Automation</h4>
                   <ul className="skills-list">
-                    <li>Bagley AI kiosk (OpenClaw)</li>
-                    <li>OSINT exposure tool (Python)</li>
-                    <li>ESP8266 home temp monitor (Home Assistant)</li>
-                    <li>KS LED Controller</li>
+                    <li>Agentic AI systems</li>
+                    <li>LLM API integration (OpenAI / Anthropic)</li>
+                    <li>Automation pipeline design</li>
+                    <li>Voice + text multimodal interfaces</li>
+                    <li>AI agent development</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
-                  <h4>Languages</h4>
+                  <h4>Languages & Frameworks</h4>
                   <ul className="skills-list">
-                    <li>Python</li>
-                    <li>JavaScript</li>
-                    <li>C</li>
-                    <li>C++</li>
-                    <li>C#</li>
+                    <li>Python, MicroPython</li>
+                    <li>JavaScript, C, C++, C#</li>
+                    <li>PowerShell, Bash</li>
+                    <li>React, Vite, FastAPI</li>
+                    <li>Git & GitHub</li>
                   </ul>
                 </div>
               </div>
@@ -147,27 +150,31 @@ function SkillsSection() {
             <div className="skills-panel">
               <div className="skills-grid">
                 <div className="card-spotlight skills-card">
-                  <h4>Work Experience</h4>
+                  <h4>Systems & Infrastructure</h4>
                   <ul className="skills-list">
-                    <li>IT Apprentice — Eisenhower Health, Rancho Mirage CA (~30–32 hrs/week)</li>
-                    <li>Roles spanning Service Desk through Systems Administrator</li>
+                    <li>Active Directory & Group Policy</li>
+                    <li>PowerShell automation & imaging</li>
+                    <li>Windows 10/11/Server, Linux/Ubuntu</li>
+                    <li>VMware, Ivanti, Blancco</li>
+                    <li>Patch management & endpoint security</li>
+                    <li>Healthcare IT (HIPAA, JIRA, ticketing)</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
-                  <h4>Skill Areas</h4>
+                  <h4>Networking</h4>
                   <ul className="skills-list">
-                    <li>Endpoint management</li>
-                    <li>Ticketing systems</li>
-                    <li>Network infrastructure</li>
-                    <li>Healthcare IT</li>
-                    <li>Active Directory</li>
-                    <li>Imaging and deployment</li>
+                    <li>TCP/IP, DNS, ICMP, SNMP</li>
+                    <li>Cisco switching & port monitoring</li>
+                    <li>Infoblox (DDI)</li>
+                    <li>VPN & network monitoring</li>
+                    <li>Network automation (Python)</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
                   <h4>Certifications</h4>
                   <ul className="skills-list">
                     <li>CompTIA A+</li>
+                    <li className="cert-pending">CompTIA Security+ (In Progress — Sep 2026)</li>
                     <li>TestOut PC Pro</li>
                     <li>TestOut Network Pro</li>
                     <li>TestOut Security Pro</li>
@@ -176,6 +183,230 @@ function SkillsSection() {
               </div>
             </div>
           )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const EXPERIENCE = [
+  {
+    role: 'Systems Administrator',
+    org: 'Eisenhower Health · IT Apprenticeship',
+    location: 'Rancho Mirage, CA',
+    period: 'Jun 2025 – Present',
+    bullets: [
+      'Develop Python network automation & inventory tools for enterprise infrastructure — three production tools shipped in the first 60 days',
+      'Engineered NERD, a Python CLI replacing manual Excel tracking for 500+ switches, routers, and hardware assets with JSON-backed CRUD',
+      'Building a real-time Cisco switch port monitor using threaded ICMP processes and a live color-coded ASCII interface',
+      'Standardized all tooling on the Python standard library — zero third-party dependencies — while maintaining HIPAA compliance',
+    ],
+  },
+  {
+    role: 'IT Desktop Technician',
+    org: 'Eisenhower Health · IT Apprenticeship',
+    location: 'Rancho Mirage, CA',
+    period: 'Sep 2024 – Jun 2025',
+    bullets: [
+      'Engineered a menu-driven PowerShell deployment framework — reduced imaging from 8 hours (4 computers) to parallel fire-and-forget processing with automated verification',
+      'Managed Active Directory objects and security group memberships to enforce Group Policy; resolved 10+ daily tickets via Ivanti and RDP',
+      'Executed Windows 11 upgrades and migrations with secure data wiping via Blancco under healthcare data-handling policies',
+    ],
+  },
+  {
+    role: 'IT Service Desk',
+    org: 'Eisenhower Health · IT Apprenticeship',
+    location: 'Rancho Mirage, CA',
+    period: 'Jun 2024 – Sep 2024',
+    bullets: [
+      'Resolved 25–30+ daily IT support tickets via JIRA across clinical and administrative departments',
+      'Maintained HIPAA compliance when accessing patient-adjacent systems',
+    ],
+  },
+]
+
+function ExperienceSection() {
+  return (
+    <section id="experience" className="section experience-section">
+      <div className="container">
+        <h3>
+          <SplitText
+            text="Experience"
+            tag="span"
+            splitType="chars"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0 }}
+            rootMargin="-80px"
+          />
+        </h3>
+        <div className="timeline">
+          {EXPERIENCE.map((job, i) => (
+            <div className="timeline-entry" key={i}>
+              <div className="timeline-marker" />
+              <SpotlightCard className="timeline-content" spotlightColor="rgba(0, 227, 140, 0.08)">
+                <div className="timeline-header">
+                  <h4 className="timeline-role">{job.role}</h4>
+                  <span className="timeline-period">{job.period}</span>
+                </div>
+                <p className="timeline-org">{job.org} · {job.location}</p>
+                <ul className="skills-list timeline-bullets">
+                  {job.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                </ul>
+              </SpotlightCard>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const GITHUB_USERNAME = 'H4ch1Net'
+
+function GitHubReposSection() {
+  const [repos, setRepos] = useState([])
+  const [status, setStatus] = useState('loading')
+
+  useEffect(() => {
+    let active = true
+    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6&type=public`)
+      .then(res => {
+        if (!res.ok) throw new Error(res.status === 403 ? 'rate-limited' : 'error')
+        return res.json()
+      })
+      .then(data => {
+        if (!active) return
+        setRepos(data.filter(r => !r.fork))
+        setStatus('done')
+      })
+      .catch(() => active && setStatus('error'))
+    return () => { active = false }
+  }, [])
+
+  return (
+    <div className="github-section">
+      <h4 className="github-heading">// latest from github</h4>
+
+      <div className="github-stats-wrap">
+        <img
+          className="github-stats-img"
+          src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=00e38c&icon_color=00e38c&text_color=c0c0c0&hide=issues`}
+          alt={`${GITHUB_USERNAME} GitHub stats`}
+          loading="lazy"
+        />
+        <img
+          className="github-stats-img"
+          src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=00e38c&text_color=c0c0c0&langs_count=8`}
+          alt={`${GITHUB_USERNAME} top languages`}
+          loading="lazy"
+        />
+      </div>
+
+      {status === 'loading' && (
+        <p className="github-status">// fetching repositories…</p>
+      )}
+
+      {status === 'error' && (
+        <p className="github-status">
+          // rate limited —{' '}
+          <a href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`} target="_blank" rel="noopener noreferrer">
+            view all repos on GitHub
+          </a>
+        </p>
+      )}
+
+      {status === 'done' && repos.length > 0 && (
+        <>
+          <div className="github-repos-grid">
+            {repos.map(repo => (
+              <a
+                key={repo.id}
+                href={repo.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="github-repo-card"
+              >
+                <div className="github-repo-top">
+                  <span className="github-repo-name">{repo.name}</span>
+                  {repo.stargazers_count > 0 && (
+                    <span className="github-repo-stars">★ {repo.stargazers_count}</span>
+                  )}
+                </div>
+                <p className="github-repo-desc">{repo.description || 'No description provided.'}</p>
+                {repo.language && <span className="tag github-repo-lang">{repo.language}</span>}
+              </a>
+            ))}
+          </div>
+          <a className="github-all-link" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noopener noreferrer">
+            view all repos →
+          </a>
+        </>
+      )}
+    </div>
+  )
+}
+
+const HONORS = [
+  {
+    place: '1st',
+    title: 'Inland Empire Mayors Cyber Cup',
+    org: 'IEGO Collaborative · 2025',
+    detail: 'College Division — 3rd overall / 143 teams',
+  },
+  {
+    place: 'MVP',
+    title: 'NASA NCAS 2026',
+    org: 'National Community College Aerospace Scholars',
+    detail: 'Team MVP — selected from the full cohort for the most autonomous rover performance',
+  },
+  {
+    place: 'Diamond',
+    title: 'National Cyber League',
+    org: 'Fall 2024 Team Game',
+    detail: 'Diamond Tier — Top 3%',
+    verifyUrl: 'https://cyberskyline.com/verify/8N631HG39DG2',
+  },
+  {
+    place: 'Diamond',
+    title: 'National Cyber League',
+    org: 'Fall 2025 Individual',
+    detail: 'Diamond Tier — 83rd percentile',
+    verifyUrl: 'https://cyberskyline.com/verify/P0GK5KL1N4VA',
+  },
+]
+
+function HonorsSection() {
+  return (
+    <section id="honors" className="section honors-section">
+      <div className="container">
+        <h3>
+          <SplitText
+            text="Honors & Awards"
+            tag="span"
+            splitType="chars"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0 }}
+            rootMargin="-80px"
+          />
+        </h3>
+        <div className="honors-grid">
+          {HONORS.map((honor, i) => (
+            <SpotlightCard key={i} className="honor-card" spotlightColor="rgba(0, 227, 140, 0.1)">
+              <span className="honor-place">{honor.place}</span>
+              <h4 className="honor-title">{honor.title}</h4>
+              <p className="honor-org">{honor.org}</p>
+              <p className="honor-detail">{honor.detail}</p>
+              {honor.verifyUrl && (
+                <a className="honor-verify" href={honor.verifyUrl} target="_blank" rel="noopener noreferrer">
+                  Verify ↗
+                </a>
+              )}
+            </SpotlightCard>
+          ))}
         </div>
       </div>
     </section>
@@ -192,8 +423,10 @@ function App() {
           </h1>
           <nav className="nav">
             <a href="#about">About</a>
+            <a href="#experience">Experience</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
+            <a href="#honors">Honors</a>
             <a href="#certificates">Certificates</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -225,10 +458,11 @@ function App() {
           <div className="container hero-content">
             <HeroName />
             <p className="subtitle-terminal">
-              Computer Science &amp; Information Systems Student
+              Systems Administrator · Cybersecurity · Software Engineering
             </p>
             <p className="description">
-              Passionate about cybersecurity, software development, and all things tech.
+              Building enterprise automation tools in production while competing in
+              cybersecurity at the national level.
             </p>
           </div>
         </section>
@@ -249,23 +483,28 @@ function App() {
             </h3>
             <div className="content">
               <p>
-                I'm currently studying Computer Science at California State University, San Bernardino,
-                and Information Systems at College of the Desert. My passion for technology began when I
-                started experimenting with code, and it's grown into a fascination with cybersecurity,
-                software development, and everything in between.
+                I'm a Systems Administrator and cybersecurity competitor building enterprise-grade
+                automation tools in production at a 450-bed regional health system — all through an IT
+                apprenticeship at Eisenhower Health, while dual-enrolled full-time across two university
+                programs. I'm pursuing a B.S. in Computer Science at California State University, San Bernardino,
+                and an A.S. in Computer Information Systems at College of the Desert.
               </p>
               <p>
-                I'm bilingual in Spanish and English. My interests include coding in Python, C++, and C#,
-                working with electronics like Raspberry Pi and Arduino, and competing in cybersecurity
-                Capture the Flag events.
+                I specialize in Python-based infrastructure tooling, network automation, agentic AI systems,
+                and endpoint security in HIPAA-regulated environments. Outside of work, I compete in Capture
+                the Flag events at the national level — National Cyber League Diamond Tier — and was selected
+                Team MVP at NASA NCAS 2026 for the most autonomous rover performance in the cohort.
               </p>
               <p>
-                By day, I work as an Information Systems Apprentice and Desktop Technician at Eisenhower Health,
-                ensuring everything runs smoothly and learning along the way.
+                I'm bilingual in English and Spanish, President of the College of the Desert Cyber Competition
+                Team, and I love working close to the metal — Raspberry Pi, ESP32, Arduino, and the occasional
+                reverse-engineering rabbit hole.
               </p>
             </div>
           </div>
         </section>
+
+        <ExperienceSection />
 
         <SkillsSection />
 
@@ -285,29 +524,108 @@ function App() {
             </h3>
             <div className="projects-grid">
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
-                <h4>KS LED Controller</h4>
-                <p>Hardware LED controller with custom firmware and web interface.</p>
-                <a href="https://github.com/H4ch1Net/ks-led-controller" className="btn" target="_blank" rel="noopener noreferrer">
-                  View on GitHub
-                </a>
-              </SpotlightCard>
-              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
-                <h4>Bagley-Bot</h4>
-                <p>A Discord bot that uses ChatGPT to answer user messages.</p>
+                <div className="card-tags">
+                  <span className="tag">Python</span>
+                  <span className="tag">Agentic AI</span>
+                  <span className="tag">SSH</span>
+                </div>
+                <h4>Bagley</h4>
+                <p>
+                  Fully agentic AI assistant that SSHs into remote devices, scans networks, and runs
+                  diagnostics — all triggered by natural language via voice and text. Modular architecture
+                  with a command routing engine, real-time event handler, and LLM API integration.
+                </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
                 </a>
               </SpotlightCard>
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
-                <h4>Portfolio Website</h4>
-                <p>This website - built with React and modern web technologies.</p>
-                <a href="https://github.com/H4ch1Net/H4ch1Net.github.io" className="btn" target="_blank" rel="noopener noreferrer">
-                  View Source
+                <div className="card-tags">
+                  <span className="tag">Python</span>
+                  <span className="tag">CLI</span>
+                  <span className="tag">Production</span>
+                </div>
+                <h4>NERD</h4>
+                <p>
+                  Network Equipment Repository and Database — a production CLI in active enterprise use,
+                  tracking 500+ switches, routers, and hardware assets. JSON-backed CRUD for asset tags,
+                  serial numbers, and purchase orders, with zero third-party dependencies.
+                </p>
+                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">Python</span>
+                  <span className="tag">OSINT</span>
+                  <span className="tag">CTF</span>
+                </div>
+                <h4>Nexus</h4>
+                <p>
+                  All-in-one Python cybersecurity toolkit covering cryptography, OSINT, password cracking,
+                  log and network analysis, forensics, and exploitation. Built for CTF competition and
+                  security research, and actively maintained.
+                </p>
+                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">Python</span>
+                  <span className="tag">MicroPython</span>
+                  <span className="tag">LEGO EV3</span>
+                </div>
+                <h4>Autonomous Rover</h4>
+                <p>
+                  NASA NCAS 2026 — the most autonomous rover performance of all 4 competing teams:
+                  coordinate navigation, gyroscopic correction, ultrasonic obstacle avoidance, and mineral
+                  identification via color sensor. Selected Team MVP from the full cohort.
+                </p>
+                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">React</span>
+                  <span className="tag">Canvas API</span>
+                  <span className="tag">pdf-lib</span>
+                </div>
+                <h4>Memory Threads Mockup Generator</h4>
+                <p>
+                  Client-side React/Vite app built and demoed for a real apparel brand at the PS/NExT
+                  Vibe-a-thon (CSUSB). Generates four color-varied mockup concepts with manual artwork
+                  placement, front/back views, and layer controls — exporting to PNG, PDF, PowerPoint, and SVG.
+                </p>
+                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">Python</span>
+                  <span className="tag">Bluetooth</span>
+                  <span className="tag">Reverse Eng</span>
+                </div>
+                <h4>KS LED Controller</h4>
+                <p>
+                  Reverse-engineered the proprietary Bluetooth protocol of discontinued KS LED hardware
+                  and built an open-source, cross-platform Python controller to replace the broken vendor
+                  apps. Earned 5 GitHub stars from community adoption.
+                </p>
+                <a href="https://github.com/H4ch1Net/ks-led-controller" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
                 </a>
               </SpotlightCard>
             </div>
+
+            <GitHubReposSection />
           </div>
         </section>
+
+        <HonorsSection />
 
         <section id="certificates" className="section">
           <div className="container">
@@ -491,6 +809,9 @@ function App() {
               </p>
               <p>
                 <strong>GitHub:</strong> <a href="https://github.com/H4ch1Net" target="_blank" rel="noopener noreferrer">H4ch1Net</a>
+              </p>
+              <p>
+                <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mauro-hernandez-rico" target="_blank" rel="noopener noreferrer">mauro-hernandez-rico</a>
               </p>
             </div>
           </div>
