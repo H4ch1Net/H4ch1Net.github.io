@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Particles from './components/Particles'
 import SplitText from './components/SplitText'
@@ -17,6 +17,32 @@ const HERO_STATS = [
 ]
 
 const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
+
+// Mounts heavy WebGL/canvas background decorations only while they are near the
+// viewport, so their animation loops stop running when scrolled away. Reduced-
+// motion users never get the decoration at all.
+function LazyDecoration({ children, className, rootMargin = '150px' }) {
+  const ref = useRef(null)
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { rootMargin }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [rootMargin])
+
+  return (
+    <div ref={ref} className={className} aria-hidden="true">
+      {active ? children : null}
+    </div>
+  )
+}
 
 function HeroName() {
   const [hovered, setHovered] = useState(false)
@@ -290,28 +316,9 @@ function StatImg({ src, alt }) {
 }
 
 function GitHubReposSection() {
-  const [repos, setRepos] = useState([])
-  const [status, setStatus] = useState('loading')
-
-  useEffect(() => {
-    let active = true
-    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6&type=public`)
-      .then(res => {
-        if (!res.ok) throw new Error(res.status === 403 ? 'rate-limited' : 'error')
-        return res.json()
-      })
-      .then(data => {
-        if (!active) return
-        setRepos(data.filter(r => !r.fork))
-        setStatus('done')
-      })
-      .catch(() => active && setStatus('error'))
-    return () => { active = false }
-  }, [])
-
   return (
     <div className="github-section">
-      <h4 className="github-heading">// latest from github</h4>
+      <h4 className="github-heading">// github activity</h4>
 
       <div className="github-stats-wrap">
         <StatImg
@@ -324,46 +331,9 @@ function GitHubReposSection() {
         />
       </div>
 
-      {status === 'loading' && (
-        <p className="github-status">// fetching repositories…</p>
-      )}
-
-      {status === 'error' && (
-        <p className="github-status">
-          // rate limited.{' '}
-          <a href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`} target="_blank" rel="noopener noreferrer">
-            view all repos on GitHub
-          </a>
-        </p>
-      )}
-
-      {status === 'done' && repos.length > 0 && (
-        <>
-          <div className="github-repos-grid">
-            {repos.map(repo => (
-              <a
-                key={repo.id}
-                href={repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="github-repo-card"
-              >
-                <div className="github-repo-top">
-                  <span className="github-repo-name">{repo.name}</span>
-                  {repo.stargazers_count > 0 && (
-                    <span className="github-repo-stars">★ {repo.stargazers_count}</span>
-                  )}
-                </div>
-                <p className="github-repo-desc">{repo.description || 'No description provided.'}</p>
-                {repo.language && <span className="tag github-repo-lang">{repo.language}</span>}
-              </a>
-            ))}
-          </div>
-          <a className="github-all-link" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noopener noreferrer">
-            view all repos →
-          </a>
-        </>
-      )}
+      <a className="github-all-link" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noopener noreferrer">
+        view all repos →
+      </a>
     </div>
   )
 }
@@ -455,15 +425,15 @@ function App() {
 
       <main>
         <section className="hero">
-          <div className="hero-glitch">
+          <LazyDecoration className="hero-glitch">
             <LetterGlitch
               glitchColors={['#003d1f', '#001a0d', '#002810']}
               glitchSpeed={200}
               outerVignette
               smooth
             />
-          </div>
-          <div className="hero-particles">
+          </LazyDecoration>
+          <LazyDecoration className="hero-particles">
             <Particles
               particleCount={120}
               particleSpread={8}
@@ -474,7 +444,7 @@ function App() {
               sizeRandomness={0.8}
               disableRotation={false}
             />
-          </div>
+          </LazyDecoration>
           <div className="container hero-content">
             <HeroName />
             <p className="subtitle-terminal">
@@ -556,7 +526,7 @@ function App() {
                   AI assistant controlled by voice or text. It SSHs into machines, runs network scans,
                   and executes system tasks on command. Built in Python with LLM API integration.
                 </p>
-                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/H4ch1Net/bagley-assistant" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
                 </a>
               </SpotlightCard>
@@ -586,7 +556,7 @@ function App() {
                   My go-to Python toolkit for CTF events. Crypto, OSINT, password cracking, network
                   analysis, forensics, all in one place, actively maintained.
                 </p>
-                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/H4ch1Net/Nexus" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
                 </a>
               </SpotlightCard>
@@ -601,7 +571,7 @@ function App() {
                   Built for NASA NCAS 2026. Coordinate navigation, gyro correction, ultrasonic obstacle
                   avoidance, color-based mineral ID. Outperformed all other teams and earned Team MVP.
                 </p>
-                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/H4ch1Net/NCAS26-RedGiant-Jarvis" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
                 </a>
               </SpotlightCard>
@@ -794,7 +764,7 @@ function App() {
         </section>
 
         <section id="contact" className="section section-alt contact-section">
-          <div className="contact-faulty">
+          <LazyDecoration className="contact-faulty">
             <FaultyTerminal
               tint="#00e38c"
               brightness={0.15}
@@ -805,7 +775,7 @@ function App() {
               pageLoadAnimation={false}
               curvature={0}
             />
-          </div>
+          </LazyDecoration>
           <div className="container contact-container">
             <h3>
               <SplitText
