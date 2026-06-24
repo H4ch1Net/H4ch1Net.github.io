@@ -7,6 +7,14 @@ import DecryptedText from './components/DecryptedText'
 import ScrambledText from './components/ScrambledText'
 import LetterGlitch from './components/LetterGlitch'
 import FaultyTerminal from './components/FaultyTerminal'
+import Dither from './components/Dither'
+
+const HERO_STATS = [
+  'NCL Diamond',
+  '1st · IE Cyber Cup',
+  'NASA Team MVP',
+  'Sysadmin @ Eisenhower Health',
+]
 
 const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
 
@@ -74,7 +82,7 @@ function SkillsSection() {
                   <h4>Competitions & Leadership</h4>
                   <ul className="skills-list">
                     <li>President, COD Cyber Competition Team</li>
-                    <li>NCL Diamond Tier — Top 3% (Fall 2024 Team Game)</li>
+                    <li>NCL Diamond Tier, Top 3% (Fall 2024 Team Game)</li>
                     <li>1st Place, Inland Empire Mayors Cyber Cup 2025 (College Division)</li>
                     <li>MetaCTF, SkillBit Flash CTF</li>
                   </ul>
@@ -95,7 +103,7 @@ function SkillsSection() {
                 </div>
                 <div className="card-spotlight skills-card">
                   <h4>Tools</h4>
-                  <ul className="skills-list">
+                  <ul className="skills-pills">
                     <li>Wireshark</li>
                     <li>Burp Suite</li>
                     <li>Nmap</li>
@@ -116,8 +124,8 @@ function SkillsSection() {
                 <div className="card-spotlight skills-card">
                   <h4>Education & Programs</h4>
                   <ul className="skills-list">
-                    <li>B.S. Computer Science — CSUSB (Expected 2029)</li>
-                    <li>A.S. Computer Information Systems — COD (Expected 2027)</li>
+                    <li>B.S. Computer Science, CSUSB (Expected 2029)</li>
+                    <li>A.S. Computer Information Systems, COD (Expected 2027)</li>
                     <li>Dual-enrolled full-time at both institutions</li>
                     <li>Software engineering & agentic AI development</li>
                   </ul>
@@ -174,7 +182,7 @@ function SkillsSection() {
                   <h4>Certifications</h4>
                   <ul className="skills-list">
                     <li>CompTIA A+</li>
-                    <li className="cert-pending">CompTIA Security+ (In Progress — Sep 2026)</li>
+                    <li className="cert-pending">CompTIA Security+ (In Progress, Sep 2026)</li>
                     <li>TestOut PC Pro</li>
                     <li>TestOut Network Pro</li>
                     <li>TestOut Security Pro</li>
@@ -196,9 +204,9 @@ const EXPERIENCE = [
     location: 'Rancho Mirage, CA',
     period: 'Jun 2025 – Present',
     bullets: [
-      'Built NERD — a Python CLI replacing spreadsheets for tracking 500+ switches, routers, and hardware; full CRUD, JSON-backed, zero external libraries',
+      'Built NERD, a Python CLI replacing spreadsheets for tracking 500+ switches, routers, and hardware; full CRUD, JSON-backed, zero external libraries',
       'Building a real-time Cisco port monitor: threaded ICMP pings, color-coded ASCII output for the network team',
-      'Shipped three production tools in the first 60 days; all run on Python stdlib — no install friction on segmented hospital infrastructure',
+      'Shipped three production tools in the first 60 days; all run on Python stdlib, so there is no install friction on segmented hospital infrastructure',
       'HIPAA-compliant across all system access and data handling',
     ],
   },
@@ -208,7 +216,7 @@ const EXPERIENCE = [
     location: 'Rancho Mirage, CA',
     period: 'Sep 2024 – Jun 2025',
     bullets: [
-      'Wrote a PowerShell imaging script with AD group selection and software profiles — cut an 8-hour process down to parallel, fire-and-forget jobs',
+      'Wrote a PowerShell imaging script with AD group selection and software profiles, cutting an 8-hour process down to parallel, fire-and-forget jobs',
       'AD object management, Group Policy enforcement, 10+ daily tickets via Ivanti and RDP across clinical and admin departments',
       'Windows 11 upgrades and Blancco secure wipes for healthcare data compliance',
     ],
@@ -265,6 +273,22 @@ function ExperienceSection() {
 
 const GITHUB_USERNAME = 'H4ch1Net'
 
+function StatImg({ src, alt }) {
+  const [loaded, setLoaded] = useState(false)
+  return (
+    <div className={`github-stat-frame${loaded ? ' is-loaded' : ''}`}>
+      <img
+        className="github-stats-img"
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+      />
+    </div>
+  )
+}
+
 function GitHubReposSection() {
   const [repos, setRepos] = useState([])
   const [status, setStatus] = useState('loading')
@@ -290,17 +314,13 @@ function GitHubReposSection() {
       <h4 className="github-heading">// latest from github</h4>
 
       <div className="github-stats-wrap">
-        <img
-          className="github-stats-img"
+        <StatImg
           src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=00e38c&icon_color=00e38c&text_color=c0c0c0&hide=issues`}
           alt={`${GITHUB_USERNAME} GitHub stats`}
-          loading="lazy"
         />
-        <img
-          className="github-stats-img"
+        <StatImg
           src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=00e38c&text_color=c0c0c0&langs_count=8`}
           alt={`${GITHUB_USERNAME} top languages`}
-          loading="lazy"
         />
       </div>
 
@@ -310,7 +330,7 @@ function GitHubReposSection() {
 
       {status === 'error' && (
         <p className="github-status">
-          // rate limited —{' '}
+          // rate limited.{' '}
           <a href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`} target="_blank" rel="noopener noreferrer">
             view all repos on GitHub
           </a>
@@ -353,26 +373,26 @@ const HONORS = [
     place: '1st',
     title: 'Inland Empire Mayors Cyber Cup',
     org: 'IEGO Collaborative · 2025',
-    detail: 'College Division — 3rd overall / 143 teams',
+    detail: 'College Division, 3rd overall / 143 teams',
   },
   {
     place: 'MVP',
     title: 'NASA NCAS 2026',
     org: 'National Community College Aerospace Scholars',
-    detail: 'Selected Team MVP — most autonomous rover in the competition',
+    detail: 'Selected Team MVP, most autonomous rover in the competition',
   },
   {
     place: 'Diamond',
     title: 'National Cyber League',
     org: 'Fall 2024 Team Game',
-    detail: 'Diamond Tier — Top 3%',
+    detail: 'Diamond Tier, Top 3%',
     verifyUrl: 'https://cyberskyline.com/verify/8N631HG39DG2',
   },
   {
     place: 'Diamond',
     title: 'National Cyber League',
     org: 'Fall 2025 Individual',
-    detail: 'Diamond Tier — 83rd percentile',
+    detail: 'Diamond Tier, 83rd percentile',
     verifyUrl: 'https://cyberskyline.com/verify/P0GK5KL1N4VA',
   },
 ]
@@ -461,8 +481,15 @@ function App() {
               Systems Administrator · Cybersecurity · Software Engineering
             </p>
             <p className="description">
-              IT apprentice shipping Python tools at a health system, competing in CTFs, and studying CS — all at once.
+              IT apprentice shipping Python tools at a health system, competing in CTFs, and studying CS, all at once.
             </p>
+            <div className="hero-stats">
+              {HERO_STATS.map((stat, i) => (
+                <span className="hero-stat" key={stat} style={{ animationDelay: `${0.15 * i + 0.3}s` }}>
+                  {stat}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -482,18 +509,18 @@ function App() {
             </h3>
             <div className="content">
               <p>
-                I work in IT at Eisenhower Health through an apprenticeship — currently as Systems Administrator.
+                I work in IT at Eisenhower Health through an apprenticeship, currently as Systems Administrator.
                 At the same time, I'm studying CS at CSUSB and CIS at College of the Desert, full-time at both.
               </p>
               <p>
                 My work is mostly Python: network automation, CLI tools, and monitoring scripts that the team
-                actually runs. I also compete in CTF events — NCL Diamond tier, 1st place at the 2025 IE Mayors
+                actually runs. I also compete in CTF events: NCL Diamond tier, 1st place at the 2025 IE Mayors
                 Cyber Cup, and Team MVP at NASA NCAS 2026 for our autonomous rover.
               </p>
               <p>
-                Bilingual (English & Spanish), President of the COD Cyber Competition Team. I enjoy hardware —
-                Raspberry Pi, ESP32, Arduino — and have a habit of reverse-engineering things just to see how
-                they work.
+                Bilingual (English & Spanish), President of the COD Cyber Competition Team. I enjoy hardware
+                like Raspberry Pi, ESP32, and Arduino, and have a habit of reverse-engineering things just to
+                see how they work.
               </p>
             </div>
           </div>
@@ -524,7 +551,7 @@ function App() {
                   <span className="tag">LLM APIs</span>
                   <span className="tag">SSH</span>
                 </div>
-                <h4>Bagley</h4>
+                <h4><Dither enableOnHover className="project-glitch">Bagley</Dither></h4>
                 <p>
                   AI assistant controlled by voice or text. It SSHs into machines, runs network scans,
                   and executes system tasks on command. Built in Python with LLM API integration.
@@ -539,10 +566,10 @@ function App() {
                   <span className="tag">CLI</span>
                   <span className="tag">In Production</span>
                 </div>
-                <h4>NERD</h4>
+                <h4><Dither enableOnHover className="project-glitch">NERD</Dither></h4>
                 <p>
                   Python CLI I built at work to replace a spreadsheet. Tracks 500+ switches, routers,
-                  and hardware — asset tags, serials, purchase orders. No external dependencies.
+                  and hardware: asset tags, serials, purchase orders. No external dependencies.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -554,10 +581,10 @@ function App() {
                   <span className="tag">OSINT</span>
                   <span className="tag">CTF</span>
                 </div>
-                <h4>Nexus</h4>
+                <h4><Dither enableOnHover className="project-glitch">Nexus</Dither></h4>
                 <p>
                   My go-to Python toolkit for CTF events. Crypto, OSINT, password cracking, network
-                  analysis, forensics — everything in one place, actively maintained.
+                  analysis, forensics, all in one place, actively maintained.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -569,10 +596,10 @@ function App() {
                   <span className="tag">MicroPython</span>
                   <span className="tag">LEGO EV3</span>
                 </div>
-                <h4>Autonomous Rover</h4>
+                <h4><Dither enableOnHover className="project-glitch">Autonomous Rover</Dither></h4>
                 <p>
                   Built for NASA NCAS 2026. Coordinate navigation, gyro correction, ultrasonic obstacle
-                  avoidance, color-based mineral ID. Outperformed all other teams — got Team MVP.
+                  avoidance, color-based mineral ID. Outperformed all other teams and earned Team MVP.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -584,7 +611,7 @@ function App() {
                   <span className="tag">Canvas API</span>
                   <span className="tag">pdf-lib</span>
                 </div>
-                <h4>Memory Threads</h4>
+                <h4><Dither enableOnHover className="project-glitch">Memory Threads</Dither></h4>
                 <p>
                   Mockup generator built in a day at the PS/NExT Vibe-a-thon for a sustainable apparel
                   client. 4 color variants, front/back views, exports to PNG, PDF, PowerPoint, and SVG.
@@ -599,10 +626,10 @@ function App() {
                   <span className="tag">Bluetooth</span>
                   <span className="tag">Reverse Eng</span>
                 </div>
-                <h4>KS LED Controller</h4>
+                <h4><Dither enableOnHover className="project-glitch">KS LED Controller</Dither></h4>
                 <p>
                   Reverse-engineered the Bluetooth protocol for discontinued KS LED hardware, then wrote
-                  a Python replacement for the broken vendor app. Open source — 5 stars.
+                  a Python replacement for the broken vendor app. Open source, 5 stars.
                 </p>
                 <a href="https://github.com/H4ch1Net/ks-led-controller" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -794,14 +821,18 @@ function App() {
             </h3>
             <div className="contact-info">
               <p>
+                <span className="contact-icon">✉</span>
                 <strong>Email:</strong> <a href="mailto:h4ch1net@gmail.com">h4ch1net@gmail.com</a>
               </p>
               <p>
+                <span className="contact-icon">⌗</span>
                 <strong>GitHub:</strong> <a href="https://github.com/H4ch1Net" target="_blank" rel="noopener noreferrer">H4ch1Net</a>
               </p>
               <p>
+                <span className="contact-icon">in</span>
                 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mauro-hernandez-rico" target="_blank" rel="noopener noreferrer">mauro-hernandez-rico</a>
               </p>
+              <p className="contact-resume">Résumé available on request.</p>
             </div>
           </div>
         </section>
