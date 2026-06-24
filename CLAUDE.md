@@ -32,8 +32,8 @@
 
 ## About Me (use this content accurately)
 - Name: Mauro / Handle: H4ch1Net
-- CS student at California State University, San Bernardino (CSUSB), anticipated May 2027
-- Dual-enrolled at College of the Desert (COD), A.S. in Computer Information Systems
+- CS student at California State University, San Bernardino (CSUSB), B.S. Computer Science anticipated 2029
+- Dual-enrolled at College of the Desert (COD), A.S. in Computer Information Systems anticipated 2027
 - IT Apprentice at Eisenhower Health, Rancho Mirage CA (~30-32 hrs/week)
   - Roles spanning Service Desk through Systems Administrator
 - President, COD Cyber Competition Team
