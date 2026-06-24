@@ -7,6 +7,14 @@ import DecryptedText from './components/DecryptedText'
 import ScrambledText from './components/ScrambledText'
 import LetterGlitch from './components/LetterGlitch'
 import FaultyTerminal from './components/FaultyTerminal'
+import Dither from './components/Dither'
+
+const HERO_STATS = [
+  'NCL Diamond',
+  '1st · IE Cyber Cup',
+  'NASA Team MVP',
+  'Sysadmin @ Eisenhower Health',
+]
 
 const SKILLS_TABS = ['Cybersecurity', 'Computer Science', 'IT']
 
@@ -39,7 +47,7 @@ function SkillsSection() {
   const [activeTab, setActiveTab] = useState('Cybersecurity')
 
   return (
-    <section id="skills" className="section section-alt">
+    <section id="skills" className="section">
       <div className="container">
         <h3>
           <SplitText
@@ -74,9 +82,9 @@ function SkillsSection() {
                   <h4>Competitions & Leadership</h4>
                   <ul className="skills-list">
                     <li>President, COD Cyber Competition Team</li>
-                    <li>NCL Diamond Tier — Top 3% (Fall 2024 Team Game)</li>
+                    <li>NCL Diamond Tier, Top 3% (Fall 2024 Team Game)</li>
                     <li>1st Place, Inland Empire Mayors Cyber Cup 2025 (College Division)</li>
-                    <li>MetaCTF, SkillBit Flash CTF, Vegetable CTF</li>
+                    <li>MetaCTF, SkillBit Flash CTF</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
@@ -95,7 +103,7 @@ function SkillsSection() {
                 </div>
                 <div className="card-spotlight skills-card">
                   <h4>Tools</h4>
-                  <ul className="skills-list">
+                  <ul className="skills-pills">
                     <li>Wireshark</li>
                     <li>Burp Suite</li>
                     <li>Nmap</li>
@@ -116,20 +124,20 @@ function SkillsSection() {
                 <div className="card-spotlight skills-card">
                   <h4>Education & Programs</h4>
                   <ul className="skills-list">
-                    <li>B.S. Computer Science — CSUSB (Expected 2029)</li>
-                    <li>A.S. Computer Information Systems — COD (Expected 2027)</li>
+                    <li>B.S. Computer Science, CSUSB (Expected 2029)</li>
+                    <li>A.S. Computer Information Systems, COD (Expected 2027)</li>
                     <li>Dual-enrolled full-time at both institutions</li>
                     <li>Software engineering & agentic AI development</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
-                  <h4>AI & Automation</h4>
+                  <h4>AI & Tooling</h4>
                   <ul className="skills-list">
-                    <li>Agentic AI systems</li>
-                    <li>LLM API integration (OpenAI / Anthropic)</li>
-                    <li>Automation pipeline design</li>
-                    <li>Voice + text multimodal interfaces</li>
-                    <li>AI agent development</li>
+                    <li>LLM API integration (OpenAI, Anthropic)</li>
+                    <li>Autonomous task execution</li>
+                    <li>Voice + text input pipelines</li>
+                    <li>Python automation scripting</li>
+                    <li>FastAPI, REST</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
@@ -138,7 +146,7 @@ function SkillsSection() {
                     <li>Python, MicroPython</li>
                     <li>JavaScript, C, C++, C#</li>
                     <li>PowerShell, Bash</li>
-                    <li>React, Vite, FastAPI</li>
+                    <li>React, Vite</li>
                     <li>Git & GitHub</li>
                   </ul>
                 </div>
@@ -174,7 +182,7 @@ function SkillsSection() {
                   <h4>Certifications</h4>
                   <ul className="skills-list">
                     <li>CompTIA A+</li>
-                    <li className="cert-pending">CompTIA Security+ (In Progress — Sep 2026)</li>
+                    <li className="cert-pending">CompTIA Security+ (In Progress, Sep 2026)</li>
                     <li>TestOut PC Pro</li>
                     <li>TestOut Network Pro</li>
                     <li>TestOut Security Pro</li>
@@ -196,10 +204,10 @@ const EXPERIENCE = [
     location: 'Rancho Mirage, CA',
     period: 'Jun 2025 – Present',
     bullets: [
-      'Develop Python network automation & inventory tools for enterprise infrastructure — three production tools shipped in the first 60 days',
-      'Engineered NERD, a Python CLI replacing manual Excel tracking for 500+ switches, routers, and hardware assets with JSON-backed CRUD',
-      'Building a real-time Cisco switch port monitor using threaded ICMP processes and a live color-coded ASCII interface',
-      'Standardized all tooling on the Python standard library — zero third-party dependencies — while maintaining HIPAA compliance',
+      'Built NERD, a Python CLI replacing spreadsheets for tracking 500+ switches, routers, and hardware; full CRUD, JSON-backed, zero external libraries',
+      'Building a real-time Cisco port monitor: threaded ICMP pings, color-coded ASCII output for the network team',
+      'Shipped three production tools in the first 60 days; all run on Python stdlib, so there is no install friction on segmented hospital infrastructure',
+      'HIPAA-compliant across all system access and data handling',
     ],
   },
   {
@@ -208,9 +216,9 @@ const EXPERIENCE = [
     location: 'Rancho Mirage, CA',
     period: 'Sep 2024 – Jun 2025',
     bullets: [
-      'Engineered a menu-driven PowerShell deployment framework — reduced imaging from 8 hours (4 computers) to parallel fire-and-forget processing with automated verification',
-      'Managed Active Directory objects and security group memberships to enforce Group Policy; resolved 10+ daily tickets via Ivanti and RDP',
-      'Executed Windows 11 upgrades and migrations with secure data wiping via Blancco under healthcare data-handling policies',
+      'Wrote a PowerShell imaging script with AD group selection and software profiles, cutting an 8-hour process down to parallel, fire-and-forget jobs',
+      'AD object management, Group Policy enforcement, 10+ daily tickets via Ivanti and RDP across clinical and admin departments',
+      'Windows 11 upgrades and Blancco secure wipes for healthcare data compliance',
     ],
   },
   {
@@ -219,15 +227,15 @@ const EXPERIENCE = [
     location: 'Rancho Mirage, CA',
     period: 'Jun 2024 – Sep 2024',
     bullets: [
-      'Resolved 25–30+ daily IT support tickets via JIRA across clinical and administrative departments',
-      'Maintained HIPAA compliance when accessing patient-adjacent systems',
+      '25–30+ tickets per day via JIRA across clinical and admin departments',
+      'HIPAA compliance on all patient-adjacent system access',
     ],
   },
 ]
 
 function ExperienceSection() {
   return (
-    <section id="experience" className="section experience-section">
+    <section id="experience" className="section section-alt experience-section">
       <div className="container">
         <h3>
           <SplitText
@@ -265,6 +273,22 @@ function ExperienceSection() {
 
 const GITHUB_USERNAME = 'H4ch1Net'
 
+function StatImg({ src, alt }) {
+  const [loaded, setLoaded] = useState(false)
+  return (
+    <div className={`github-stat-frame${loaded ? ' is-loaded' : ''}`}>
+      <img
+        className="github-stats-img"
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+      />
+    </div>
+  )
+}
+
 function GitHubReposSection() {
   const [repos, setRepos] = useState([])
   const [status, setStatus] = useState('loading')
@@ -290,17 +314,13 @@ function GitHubReposSection() {
       <h4 className="github-heading">// latest from github</h4>
 
       <div className="github-stats-wrap">
-        <img
-          className="github-stats-img"
+        <StatImg
           src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=00e38c&icon_color=00e38c&text_color=c0c0c0&hide=issues`}
           alt={`${GITHUB_USERNAME} GitHub stats`}
-          loading="lazy"
         />
-        <img
-          className="github-stats-img"
+        <StatImg
           src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=00e38c&text_color=c0c0c0&langs_count=8`}
           alt={`${GITHUB_USERNAME} top languages`}
-          loading="lazy"
         />
       </div>
 
@@ -310,7 +330,7 @@ function GitHubReposSection() {
 
       {status === 'error' && (
         <p className="github-status">
-          // rate limited —{' '}
+          // rate limited.{' '}
           <a href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`} target="_blank" rel="noopener noreferrer">
             view all repos on GitHub
           </a>
@@ -353,26 +373,26 @@ const HONORS = [
     place: '1st',
     title: 'Inland Empire Mayors Cyber Cup',
     org: 'IEGO Collaborative · 2025',
-    detail: 'College Division — 3rd overall / 143 teams',
+    detail: 'College Division, 3rd overall / 143 teams',
   },
   {
     place: 'MVP',
     title: 'NASA NCAS 2026',
     org: 'National Community College Aerospace Scholars',
-    detail: 'Team MVP — selected from the full cohort for the most autonomous rover performance',
+    detail: 'Selected Team MVP, most autonomous rover in the competition',
   },
   {
     place: 'Diamond',
     title: 'National Cyber League',
     org: 'Fall 2024 Team Game',
-    detail: 'Diamond Tier — Top 3%',
+    detail: 'Diamond Tier, Top 3%',
     verifyUrl: 'https://cyberskyline.com/verify/8N631HG39DG2',
   },
   {
     place: 'Diamond',
     title: 'National Cyber League',
     org: 'Fall 2025 Individual',
-    detail: 'Diamond Tier — 83rd percentile',
+    detail: 'Diamond Tier, 83rd percentile',
     verifyUrl: 'https://cyberskyline.com/verify/P0GK5KL1N4VA',
   },
 ]
@@ -461,9 +481,15 @@ function App() {
               Systems Administrator · Cybersecurity · Software Engineering
             </p>
             <p className="description">
-              Building enterprise automation tools in production while competing in
-              cybersecurity at the national level.
+              IT apprentice shipping Python tools at a health system, competing in CTFs, and studying CS, all at once.
             </p>
+            <div className="hero-stats">
+              {HERO_STATS.map((stat, i) => (
+                <span className="hero-stat" key={stat} style={{ animationDelay: `${0.15 * i + 0.3}s` }}>
+                  {stat}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -483,22 +509,18 @@ function App() {
             </h3>
             <div className="content">
               <p>
-                I'm a Systems Administrator and cybersecurity competitor building enterprise-grade
-                automation tools in production at a 450-bed regional health system — all through an IT
-                apprenticeship at Eisenhower Health, while dual-enrolled full-time across two university
-                programs. I'm pursuing a B.S. in Computer Science at California State University, San Bernardino,
-                and an A.S. in Computer Information Systems at College of the Desert.
+                I work in IT at Eisenhower Health through an apprenticeship, currently as Systems Administrator.
+                At the same time, I'm studying CS at CSUSB and CIS at College of the Desert, full-time at both.
               </p>
               <p>
-                I specialize in Python-based infrastructure tooling, network automation, agentic AI systems,
-                and endpoint security in HIPAA-regulated environments. Outside of work, I compete in Capture
-                the Flag events at the national level — National Cyber League Diamond Tier — and was selected
-                Team MVP at NASA NCAS 2026 for the most autonomous rover performance in the cohort.
+                My work is mostly Python: network automation, CLI tools, and monitoring scripts that the team
+                actually runs. I also compete in CTF events: NCL Diamond tier, 1st place at the 2025 IE Mayors
+                Cyber Cup, and Team MVP at NASA NCAS 2026 for our autonomous rover.
               </p>
               <p>
-                I'm bilingual in English and Spanish, President of the College of the Desert Cyber Competition
-                Team, and I love working close to the metal — Raspberry Pi, ESP32, Arduino, and the occasional
-                reverse-engineering rabbit hole.
+                Bilingual (English & Spanish), President of the COD Cyber Competition Team. I enjoy hardware
+                like Raspberry Pi, ESP32, and Arduino, and have a habit of reverse-engineering things just to
+                see how they work.
               </p>
             </div>
           </div>
@@ -526,14 +548,13 @@ function App() {
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <div className="card-tags">
                   <span className="tag">Python</span>
-                  <span className="tag">Agentic AI</span>
+                  <span className="tag">LLM APIs</span>
                   <span className="tag">SSH</span>
                 </div>
-                <h4>Bagley</h4>
+                <h4><Dither enableOnHover className="project-glitch">Bagley</Dither></h4>
                 <p>
-                  Fully agentic AI assistant that SSHs into remote devices, scans networks, and runs
-                  diagnostics — all triggered by natural language via voice and text. Modular architecture
-                  with a command routing engine, real-time event handler, and LLM API integration.
+                  AI assistant controlled by voice or text. It SSHs into machines, runs network scans,
+                  and executes system tasks on command. Built in Python with LLM API integration.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -543,13 +564,12 @@ function App() {
                 <div className="card-tags">
                   <span className="tag">Python</span>
                   <span className="tag">CLI</span>
-                  <span className="tag">Production</span>
+                  <span className="tag">In Production</span>
                 </div>
-                <h4>NERD</h4>
+                <h4><Dither enableOnHover className="project-glitch">NERD</Dither></h4>
                 <p>
-                  Network Equipment Repository and Database — a production CLI in active enterprise use,
-                  tracking 500+ switches, routers, and hardware assets. JSON-backed CRUD for asset tags,
-                  serial numbers, and purchase orders, with zero third-party dependencies.
+                  Python CLI I built at work to replace a spreadsheet. Tracks 500+ switches, routers,
+                  and hardware: asset tags, serials, purchase orders. No external dependencies.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -561,11 +581,10 @@ function App() {
                   <span className="tag">OSINT</span>
                   <span className="tag">CTF</span>
                 </div>
-                <h4>Nexus</h4>
+                <h4><Dither enableOnHover className="project-glitch">Nexus</Dither></h4>
                 <p>
-                  All-in-one Python cybersecurity toolkit covering cryptography, OSINT, password cracking,
-                  log and network analysis, forensics, and exploitation. Built for CTF competition and
-                  security research, and actively maintained.
+                  My go-to Python toolkit for CTF events. Crypto, OSINT, password cracking, network
+                  analysis, forensics, all in one place, actively maintained.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -577,11 +596,10 @@ function App() {
                   <span className="tag">MicroPython</span>
                   <span className="tag">LEGO EV3</span>
                 </div>
-                <h4>Autonomous Rover</h4>
+                <h4><Dither enableOnHover className="project-glitch">Autonomous Rover</Dither></h4>
                 <p>
-                  NASA NCAS 2026 — the most autonomous rover performance of all 4 competing teams:
-                  coordinate navigation, gyroscopic correction, ultrasonic obstacle avoidance, and mineral
-                  identification via color sensor. Selected Team MVP from the full cohort.
+                  Built for NASA NCAS 2026. Coordinate navigation, gyro correction, ultrasonic obstacle
+                  avoidance, color-based mineral ID. Outperformed all other teams and earned Team MVP.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -593,11 +611,10 @@ function App() {
                   <span className="tag">Canvas API</span>
                   <span className="tag">pdf-lib</span>
                 </div>
-                <h4>Memory Threads Mockup Generator</h4>
+                <h4><Dither enableOnHover className="project-glitch">Memory Threads</Dither></h4>
                 <p>
-                  Client-side React/Vite app built and demoed for a real apparel brand at the PS/NExT
-                  Vibe-a-thon (CSUSB). Generates four color-varied mockup concepts with manual artwork
-                  placement, front/back views, and layer controls — exporting to PNG, PDF, PowerPoint, and SVG.
+                  Mockup generator built in a day at the PS/NExT Vibe-a-thon for a sustainable apparel
+                  client. 4 color variants, front/back views, exports to PNG, PDF, PowerPoint, and SVG.
                 </p>
                 <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -609,11 +626,10 @@ function App() {
                   <span className="tag">Bluetooth</span>
                   <span className="tag">Reverse Eng</span>
                 </div>
-                <h4>KS LED Controller</h4>
+                <h4><Dither enableOnHover className="project-glitch">KS LED Controller</Dither></h4>
                 <p>
-                  Reverse-engineered the proprietary Bluetooth protocol of discontinued KS LED hardware
-                  and built an open-source, cross-platform Python controller to replace the broken vendor
-                  apps. Earned 5 GitHub stars from community adoption.
+                  Reverse-engineered the Bluetooth protocol for discontinued KS LED hardware, then wrote
+                  a Python replacement for the broken vendor app. Open source, 5 stars.
                 </p>
                 <a href="https://github.com/H4ch1Net/ks-led-controller" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -627,7 +643,7 @@ function App() {
 
         <HonorsSection />
 
-        <section id="certificates" className="section">
+        <section id="certificates" className="section section-alt">
           <div className="container">
             <h3>
               <SplitText
@@ -805,14 +821,18 @@ function App() {
             </h3>
             <div className="contact-info">
               <p>
+                <span className="contact-icon">✉</span>
                 <strong>Email:</strong> <a href="mailto:h4ch1net@gmail.com">h4ch1net@gmail.com</a>
               </p>
               <p>
+                <span className="contact-icon">⌗</span>
                 <strong>GitHub:</strong> <a href="https://github.com/H4ch1Net" target="_blank" rel="noopener noreferrer">H4ch1Net</a>
               </p>
               <p>
+                <span className="contact-icon">in</span>
                 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mauro-hernandez-rico" target="_blank" rel="noopener noreferrer">mauro-hernandez-rico</a>
               </p>
+              <p className="contact-resume">Résumé available on request.</p>
             </div>
           </div>
         </section>
