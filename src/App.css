@@ -155,6 +155,16 @@ body {
   text-align: center;
 }
 
+.section h3::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: #00e38c;
+  margin: 0.5rem auto 0;
+  opacity: 0.6;
+}
+
 .content {
   max-width: 800px;
   margin: 0 auto;
@@ -170,11 +180,13 @@ body {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   transition: transform 0.2s, border-color 0.2s;
 }
 
@@ -185,28 +197,41 @@ body {
 
 .card h4 {
   color: #00e38c;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .card p {
   color: #c0c0c0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card .btn {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 .btn {
   display: inline-block;
-  background: #00e38c;
-  color: #000;
-  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  padding: 0.5rem 1.1rem;
   text-decoration: none;
   border-radius: 4px;
   font-weight: 600;
-  transition: background 0.2s;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono NL', monospace;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
 }
 
 .btn:hover {
-  background: #00c078;
+  background: var(--color-accent);
+  color: #000;
 }
 
 /* Certificates */
@@ -535,6 +560,11 @@ body {
 .timeline-content {
   flex: 1;
   min-width: 0;
+  border-left: 3px solid rgba(0, 227, 140, 0.35) !important;
+}
+
+.timeline-content:hover {
+  border-left-color: var(--color-accent) !important;
 }
 
 .timeline-header {
@@ -740,11 +770,12 @@ body {
 
 .honor-place {
   font-family: 'JetBrains Mono NL', monospace;
-  font-size: 1.9rem;
+  font-size: 2.75rem;
   font-weight: 700;
   color: var(--color-accent);
   line-height: 1;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(0, 227, 140, 0.3);
 }
 
 .honor-title {
@@ -780,12 +811,14 @@ body {
 @media (max-width: 768px) {
   .header .container {
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
   .nav {
-    flex-direction: column;
-    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
   }
 
   .hero h2 {
@@ -797,8 +830,8 @@ body {
   }
 
   .subtitle-terminal {
-    font-size: 0.9rem;
-    letter-spacing: 0.04em;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
   }
 
   .section {
@@ -811,10 +844,6 @@ body {
   .github-repos-grid,
   .honors-grid {
     grid-template-columns: 1fr;
-  }
-
-  .nav {
-    justify-content: center;
   }
 
   .timeline::before,
