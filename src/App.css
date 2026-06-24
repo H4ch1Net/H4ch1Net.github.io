@@ -1,3 +1,15 @@
+:root {
+  --color-bg:        #0a0a0a;
+  --color-bg-alt:    #050505;
+  --color-bg-card:   #1a1a1a;
+  --color-accent:    #00e38c;
+  --color-accent-dk: #00c078;
+  --color-text:      #e0e0e0;
+  --color-body:      #c0c0c0;
+  --color-muted:     #a0a0a0;
+  --color-border:    #2a2a2a;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -57,7 +69,8 @@ body {
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 1.25rem;
+  flex-wrap: wrap;
 }
 
 .nav a {
@@ -482,6 +495,287 @@ body {
   left: 0;
 }
 
+/* Experience timeline */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-accent), rgba(0, 227, 140, 0.15));
+}
+
+.timeline-entry {
+  display: flex;
+  gap: 1.75rem;
+  align-items: flex-start;
+}
+
+.timeline-marker {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-accent);
+  margin-top: 1.75rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 12px rgba(0, 227, 140, 0.25);
+}
+
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.timeline-role {
+  color: var(--color-accent);
+  font-size: 1.2rem;
+}
+
+.timeline-period {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.timeline-org {
+  color: var(--color-body);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.timeline-bullets li {
+  line-height: 1.5;
+}
+
+/* Project tags */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.tag {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.72rem;
+  background: rgba(0, 227, 140, 0.08);
+  color: var(--color-accent);
+  border: 1px solid rgba(0, 227, 140, 0.25);
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* Pending certification */
+.cert-pending {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.cert-pending::before {
+  content: '○' !important;
+  color: var(--color-muted) !important;
+}
+
+/* GitHub section */
+.github-section {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.github-heading {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 1rem;
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.github-stats-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.github-stats-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.github-status {
+  text-align: center;
+  color: var(--color-muted);
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+}
+
+.github-status a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.github-status a:hover {
+  text-decoration: underline;
+}
+
+.github-repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.github-repo-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.github-repo-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+.github-repo-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.github-repo-name {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.95rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.github-repo-stars {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.github-repo-desc {
+  font-size: 0.875rem;
+  color: var(--color-body);
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+  flex: 1;
+}
+
+.github-repo-lang {
+  align-self: flex-start;
+}
+
+.github-all-link {
+  display: block;
+  text-align: right;
+  margin-top: 1.25rem;
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.github-all-link:hover {
+  text-decoration: underline;
+}
+
+/* Honors */
+.honors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.honor-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.honor-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.honor-place {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.honor-title {
+  color: var(--color-text);
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.honor-org {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.honor-detail {
+  font-size: 0.9rem;
+  color: var(--color-body);
+}
+
+.honor-verify {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.honor-verify:hover {
+  text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .header .container {
@@ -513,8 +807,28 @@ body {
 
   .projects-grid,
   .certs-grid,
-  .skills-grid {
+  .skills-grid,
+  .github-repos-grid,
+  .honors-grid {
     grid-template-columns: 1fr;
+  }
+
+  .nav {
+    justify-content: center;
+  }
+
+  .timeline::before,
+  .timeline-marker {
+    display: none;
+  }
+
+  .timeline-entry {
+    gap: 0;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
   .skills-tabs {
