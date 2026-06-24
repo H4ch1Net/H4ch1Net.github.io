@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -659,85 +660,10 @@ body {
   border-radius: 8px;
 }
 
-.github-status {
-  text-align: center;
-  color: var(--color-muted);
-  font-family: 'JetBrains Mono NL', monospace;
-  font-size: 0.9rem;
-  padding: 1.5rem 0;
-}
-
-.github-status a {
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.github-status a:hover {
-  text-decoration: underline;
-}
-
-.github-repos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-}
-
-.github-repo-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 1.25rem;
-  text-decoration: none;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.github-repo-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-3px);
-}
-
-.github-repo-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.github-repo-name {
-  font-family: 'JetBrains Mono NL', monospace;
-  font-size: 0.95rem;
-  color: var(--color-accent);
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.github-repo-stars {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  white-space: nowrap;
-}
-
-.github-repo-desc {
-  font-size: 0.875rem;
-  color: var(--color-body);
-  line-height: 1.5;
-  margin-bottom: 0.85rem;
-  flex: 1;
-}
-
-.github-repo-lang {
-  align-self: flex-start;
-}
-
 .github-all-link {
   display: block;
-  text-align: right;
-  margin-top: 1.25rem;
+  text-align: center;
+  margin-top: 1.5rem;
   font-family: 'JetBrains Mono NL', monospace;
   font-size: 0.85rem;
   color: var(--color-accent);
@@ -1038,7 +964,6 @@ body {
   .projects-grid,
   .certs-grid,
   .skills-grid,
-  .github-repos-grid,
   .honors-grid {
     grid-template-columns: 1fr;
   }
