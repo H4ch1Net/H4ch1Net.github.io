@@ -973,16 +973,35 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .header {
+    padding: 0.6rem 0;
+  }
+
   .header .container {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 0.5rem;
   }
 
   .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem 1rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav a {
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 0.9rem;
   }
 
   .hero h2 {
