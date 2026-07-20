@@ -569,6 +569,36 @@ function App() {
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <div className="card-tags">
                   <span className="tag">Python</span>
+                  <span className="tag">Detection Engineering</span>
+                  <span className="tag">FastAPI</span>
+                </div>
+                <h4>sentryd</h4>
+                <p>
+                  AI-powered network anomaly detection tool. A rule-based detection engine paired
+                  with an LLM analyst layer, a Textual terminal dashboard, and a FastAPI web UI
+                  for reviewing flagged events.
+                </p>
+                <a href="https://github.com/H4ch1Net/sentryd" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">Python</span>
+                  <span className="tag">Automation</span>
+                  <span className="tag">SQLite</span>
+                </div>
+                <h4>job-hunter</h4>
+                <p>
+                  Personal job search automation. Aggregates listings from Adzuna, USAJobs,
+                  The Muse, and RemoteOK, scores relevance with an LLM, and serves results
+                  through a local dashboard backed by SQLite.
+                </p>
+                <span className="card-private">Private repo</span>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">Python</span>
                   <span className="tag">LLM APIs</span>
                   <span className="tag">SSH</span>
                 </div>
