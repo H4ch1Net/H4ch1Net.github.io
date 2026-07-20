@@ -214,8 +214,8 @@ body {
   color: #000;
 }
 
-/* Private-repo note on project cards (takes the .btn slot, but inert) */
-.card .card-private {
+/* No-link status note on project cards (takes the .btn slot, but inert) */
+.card .card-note {
   align-self: flex-start;
   margin-top: auto;
   display: inline-block;
@@ -672,22 +672,17 @@ body {
   font-size: 1rem;
   color: var(--color-accent);
   letter-spacing: 0.06em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
-.github-stats-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-}
-
-.github-stats-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
+.github-blurb {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--color-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .github-all-link {
@@ -848,48 +843,6 @@ body {
   border-color: var(--color-accent);
 }
 
-/* GitHub stat shimmer skeleton */
-.github-stat-frame {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.github-stat-frame:not(.is-loaded) {
-  min-width: 300px;
-  min-height: 180px;
-}
-
-.github-stat-frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, #0e0e0e 30%, #1c1c1c 50%, #0e0e0e 70%);
-  background-size: 200% 100%;
-  animation: shimmer 1.3s linear infinite;
-  z-index: 0;
-}
-
-.github-stat-frame.is-loaded::before {
-  display: none;
-}
-
-.github-stat-frame .github-stats-img {
-  position: relative;
-  z-index: 1;
-  display: block;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.github-stat-frame.is-loaded .github-stats-img {
-  opacity: 1;
-}
-
-@keyframes shimmer {
-  to { background-position: -200% 0; }
-}
-
 /* Contact icons + resume note */
 .contact-icon {
   display: inline-block;
@@ -987,7 +940,6 @@ body {
   .timeline-marker::after,
   .subtitle-terminal,
   .subtitle-terminal::after,
-  .github-stat-frame::before,
   .log-dot,
   .status-dot,
   .scramble-name {
@@ -1050,11 +1002,6 @@ body {
   .hero-stat {
     font-size: 0.62rem;
     padding: 0.3rem 0.55rem;
-  }
-
-  .github-stat-frame:not(.is-loaded) {
-    min-width: 240px;
-    min-height: 150px;
   }
 
   .section {
