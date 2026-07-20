@@ -3,11 +3,7 @@ import './App.css'
 import Particles from './components/Particles'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
-import DecryptedText from './components/DecryptedText'
-import ScrambledText from './components/ScrambledText'
-import LetterGlitch from './components/LetterGlitch'
 import FaultyTerminal from './components/FaultyTerminal'
-import Dither from './components/Dither'
 import { loadLogs } from './lib/loadLogs'
 
 const HERO_STATS = [
@@ -55,17 +51,23 @@ function HeroName() {
       onMouseLeave={() => setHovered(false)}
     >
       <span className="scramble-static">Hi, I'm </span>
-      <DecryptedText
-        key={hovered ? 'h4ch1' : 'mauro'}
-        text={hovered ? 'H4ch1' : 'Mauro'}
-        animateOn="view"
-        sequential
-        revealDirection="start"
-        speed={40}
-        characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$"
-        className="scramble-name"
-        encryptedClassName="scramble-active"
-      />
+      <span className="scramble-name" key={hovered ? 'h4ch1' : 'mauro'}>
+        {hovered ? 'H4ch1' : 'Mauro'}
+      </span>
+    </div>
+  )
+}
+
+// Baseline for the hero uptime counter — start of the Eisenhower apprenticeship.
+const SITE_EPOCH = Date.parse('2024-06-01T00:00:00')
+
+function StatusIndicator() {
+  const days = Math.floor((Date.now() - SITE_EPOCH) / 86400000)
+  return (
+    <div className="status-indicator">
+      <span className="status-dot" aria-hidden="true" />
+      <span className="status-label">operational</span>
+      <span className="status-uptime">uptime {days}d</span>
     </div>
   )
 }
@@ -458,9 +460,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="container">
-          <h1 className="logo">
-            <ScrambledText text="H4CH1" />
-          </h1>
+          <h1 className="logo">H4CH1</h1>
           <nav className="nav">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
@@ -476,14 +476,6 @@ function App() {
 
       <main>
         <section className="hero">
-          <LazyDecoration className="hero-glitch">
-            <LetterGlitch
-              glitchColors={['#003d1f', '#001a0d', '#002810']}
-              glitchSpeed={200}
-              outerVignette
-              smooth
-            />
-          </LazyDecoration>
           <LazyDecoration className="hero-particles">
             <Particles
               particleCount={120}
@@ -497,6 +489,7 @@ function App() {
             />
           </LazyDecoration>
           <div className="container hero-content">
+            <StatusIndicator />
             <HeroName />
             <p className="subtitle-terminal">
               Systems Administrator · Cybersecurity · Software Engineering
@@ -602,7 +595,7 @@ function App() {
                   <span className="tag">LLM APIs</span>
                   <span className="tag">SSH</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Bagley</Dither></h4>
+                <h4>Bagley</h4>
                 <p>
                   AI assistant controlled by voice or text. It SSHs into machines, runs network scans,
                   and executes system tasks on command. Built in Python with LLM API integration.
@@ -617,7 +610,7 @@ function App() {
                   <span className="tag">CLI</span>
                   <span className="tag">In Production</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">NERD</Dither></h4>
+                <h4>NERD</h4>
                 <p>
                   Python CLI I built at work to replace a spreadsheet. Tracks 500+ switches, routers,
                   and hardware: asset tags, serials, purchase orders. No external dependencies.
@@ -632,7 +625,7 @@ function App() {
                   <span className="tag">OSINT</span>
                   <span className="tag">CTF</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Nexus</Dither></h4>
+                <h4>Nexus</h4>
                 <p>
                   My go-to Python toolkit for CTF events. Crypto, OSINT, password cracking, network
                   analysis, forensics, all in one place, actively maintained.
@@ -647,7 +640,7 @@ function App() {
                   <span className="tag">MicroPython</span>
                   <span className="tag">LEGO EV3</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Autonomous Rover</Dither></h4>
+                <h4>Autonomous Rover</h4>
                 <p>
                   Built for NASA NCAS 2026. Coordinate navigation, gyro correction, ultrasonic obstacle
                   avoidance, color-based mineral ID. Outperformed all other teams and earned Team MVP.
@@ -662,7 +655,7 @@ function App() {
                   <span className="tag">Canvas API</span>
                   <span className="tag">pdf-lib</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Memory Threads</Dither></h4>
+                <h4>Memory Threads</h4>
                 <p>
                   Mockup generator built in a day at the PS/NExT Vibe-a-thon for a sustainable apparel
                   client. 4 color variants, front/back views, exports to PNG, PDF, PowerPoint, and SVG.
@@ -677,7 +670,7 @@ function App() {
                   <span className="tag">Bluetooth</span>
                   <span className="tag">Reverse Eng</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">KS LED Controller</Dither></h4>
+                <h4>KS LED Controller</h4>
                 <p>
                   Reverse-engineered the Bluetooth protocol for discontinued KS LED hardware, then wrote
                   a Python replacement for the broken vendor app. Open source, 5 stars.
