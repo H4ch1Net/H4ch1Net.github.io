@@ -3,11 +3,8 @@ import './App.css'
 import Particles from './components/Particles'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
-import DecryptedText from './components/DecryptedText'
-import ScrambledText from './components/ScrambledText'
-import LetterGlitch from './components/LetterGlitch'
 import FaultyTerminal from './components/FaultyTerminal'
-import Dither from './components/Dither'
+import { loadLogs } from './lib/loadLogs'
 
 const HERO_STATS = [
   'NCL Diamond',
@@ -54,17 +51,23 @@ function HeroName() {
       onMouseLeave={() => setHovered(false)}
     >
       <span className="scramble-static">Hi, I'm </span>
-      <DecryptedText
-        key={hovered ? 'h4ch1' : 'mauro'}
-        text={hovered ? 'H4ch1' : 'Mauro'}
-        animateOn="view"
-        sequential
-        revealDirection="start"
-        speed={40}
-        characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$"
-        className="scramble-name"
-        encryptedClassName="scramble-active"
-      />
+      <span className="scramble-name" key={hovered ? 'h4ch1' : 'mauro'}>
+        {hovered ? 'H4ch1' : 'Mauro'}
+      </span>
+    </div>
+  )
+}
+
+// Baseline for the hero uptime counter — start of the Eisenhower apprenticeship.
+const SITE_EPOCH = Date.parse('2024-06-01T00:00:00')
+
+function StatusIndicator() {
+  const days = Math.floor((Date.now() - SITE_EPOCH) / 86400000)
+  return (
+    <div className="status-indicator">
+      <span className="status-dot" aria-hidden="true" />
+      <span className="status-label">operational</span>
+      <span className="status-uptime">uptime {days}d</span>
     </div>
   )
 }
@@ -108,9 +111,7 @@ function SkillsSection() {
                   <h4>Competitions & Leadership</h4>
                   <ul className="skills-list">
                     <li>President, COD Cyber Competition Team</li>
-                    <li>NCL Diamond Tier, Top 3% (Fall 2024 Team Game)</li>
-                    <li>1st Place, Inland Empire Mayors Cyber Cup 2025 (College Division)</li>
-                    <li>MetaCTF, SkillBit Flash CTF</li>
+                    <li>NCL, MetaCTF, SkillBit Flash CTF competitor</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
@@ -209,6 +210,7 @@ function SkillsSection() {
                   <ul className="skills-list">
                     <li>CompTIA A+</li>
                     <li className="cert-pending">CompTIA Security+ (In Progress, Sep 2026)</li>
+                    <li className="cert-pending">CCNA (In Progress, Fall 2026)</li>
                     <li>TestOut PC Pro</li>
                     <li>TestOut Network Pro</li>
                     <li>TestOut Security Pro</li>
@@ -403,14 +405,61 @@ function HonorsSection() {
   )
 }
 
+const LOGS = loadLogs()
+
+function LogsSection() {
+  return (
+    <section id="logs" className="section logs-section">
+      <div className="container">
+        <h3>
+          <SplitText
+            text="Logs"
+            tag="span"
+            splitType="chars"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0 }}
+            rootMargin="-80px"
+          />
+        </h3>
+        <p className="logs-intro">Field notes from work, competitions, and the lab. Short, dated, unpolished.</p>
+        {LOGS.length === 0 ? (
+          <p className="logs-empty">── no entries logged ──</p>
+        ) : (
+          <div className="logs-list">
+            {LOGS.map(entry => (
+              <SpotlightCard
+                key={`${entry.date}-${entry.title}`}
+                className="log-entry"
+                spotlightColor="rgba(0, 227, 140, 0.08)"
+              >
+                <div className="log-meta">
+                  <span className="log-dot" aria-hidden="true" />
+                  <span className="log-date">{entry.date}</span>
+                  {entry.tags.map(tag => (
+                    <span className="tag" key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <h4 className="log-title">{entry.title}</h4>
+                {entry.paragraphs.map((p, i) => (
+                  <p className="log-body" key={i}>{p}</p>
+                ))}
+              </SpotlightCard>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
 function App() {
   return (
     <div className="app">
       <header className="header">
         <div className="container">
-          <h1 className="logo">
-            <ScrambledText text="H4CH1" />
-          </h1>
+          <h1 className="logo">H4CH1</h1>
           <nav className="nav">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
@@ -418,6 +467,7 @@ function App() {
             <a href="#projects">Projects</a>
             <a href="#honors">Honors</a>
             <a href="#certificates">Certificates</a>
+            <a href="#logs">Logs</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
@@ -425,14 +475,6 @@ function App() {
 
       <main>
         <section className="hero">
-          <LazyDecoration className="hero-glitch">
-            <LetterGlitch
-              glitchColors={['#003d1f', '#001a0d', '#002810']}
-              glitchSpeed={200}
-              outerVignette
-              smooth
-            />
-          </LazyDecoration>
           <LazyDecoration className="hero-particles">
             <Particles
               particleCount={120}
@@ -446,6 +488,7 @@ function App() {
             />
           </LazyDecoration>
           <div className="container hero-content">
+            <StatusIndicator />
             <HeroName />
             <p className="subtitle-terminal">
               Systems Administrator · Cybersecurity · Software Engineering
@@ -484,8 +527,8 @@ function App() {
               </p>
               <p>
                 My work is mostly Python: network automation, CLI tools, and monitoring scripts that the team
-                actually runs. I also compete in CTF events: NCL Diamond tier, 1st place at the 2025 IE Mayors
-                Cyber Cup, and Team MVP at NASA NCAS 2026 for our autonomous rover.
+                actually runs. I also compete in CTF events year-round — placements and verifications are
+                down in the Honors section.
               </p>
               <p>
                 Bilingual (English & Spanish), President of the COD Cyber Competition Team. I enjoy hardware
@@ -518,10 +561,40 @@ function App() {
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <div className="card-tags">
                   <span className="tag">Python</span>
+                  <span className="tag">Detection Engineering</span>
+                  <span className="tag">FastAPI</span>
+                </div>
+                <h4>sentryd</h4>
+                <p>
+                  AI-powered network anomaly detection tool. A rule-based detection engine paired
+                  with an LLM analyst layer, a Textual terminal dashboard, and a FastAPI web UI
+                  for reviewing flagged events.
+                </p>
+                <a href="https://github.com/H4ch1Net/sentryd" className="btn" target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">Python</span>
+                  <span className="tag">Automation</span>
+                  <span className="tag">SQLite</span>
+                </div>
+                <h4>job-hunter</h4>
+                <p>
+                  Personal job search automation. Aggregates listings from Adzuna, USAJobs,
+                  The Muse, and RemoteOK, scores relevance with an LLM, and serves results
+                  through a local dashboard backed by SQLite.
+                </p>
+                <span className="card-private">Private repo</span>
+              </SpotlightCard>
+              <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
+                <div className="card-tags">
+                  <span className="tag">Python</span>
                   <span className="tag">LLM APIs</span>
                   <span className="tag">SSH</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Bagley</Dither></h4>
+                <h4>Bagley</h4>
                 <p>
                   AI assistant controlled by voice or text. It SSHs into machines, runs network scans,
                   and executes system tasks on command. Built in Python with LLM API integration.
@@ -536,7 +609,7 @@ function App() {
                   <span className="tag">CLI</span>
                   <span className="tag">In Production</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">NERD</Dither></h4>
+                <h4>NERD</h4>
                 <p>
                   Python CLI I built at work to replace a spreadsheet. Tracks 500+ switches, routers,
                   and hardware: asset tags, serials, purchase orders. No external dependencies.
@@ -551,7 +624,7 @@ function App() {
                   <span className="tag">OSINT</span>
                   <span className="tag">CTF</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Nexus</Dither></h4>
+                <h4>Nexus</h4>
                 <p>
                   My go-to Python toolkit for CTF events. Crypto, OSINT, password cracking, network
                   analysis, forensics, all in one place, actively maintained.
@@ -566,7 +639,7 @@ function App() {
                   <span className="tag">MicroPython</span>
                   <span className="tag">LEGO EV3</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Autonomous Rover</Dither></h4>
+                <h4>Autonomous Rover</h4>
                 <p>
                   Built for NASA NCAS 2026. Coordinate navigation, gyro correction, ultrasonic obstacle
                   avoidance, color-based mineral ID. Outperformed all other teams and earned Team MVP.
@@ -581,7 +654,7 @@ function App() {
                   <span className="tag">Canvas API</span>
                   <span className="tag">pdf-lib</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">Memory Threads</Dither></h4>
+                <h4>Memory Threads</h4>
                 <p>
                   Mockup generator built in a day at the PS/NExT Vibe-a-thon for a sustainable apparel
                   client. 4 color variants, front/back views, exports to PNG, PDF, PowerPoint, and SVG.
@@ -596,7 +669,7 @@ function App() {
                   <span className="tag">Bluetooth</span>
                   <span className="tag">Reverse Eng</span>
                 </div>
-                <h4><Dither enableOnHover className="project-glitch">KS LED Controller</Dither></h4>
+                <h4>KS LED Controller</h4>
                 <p>
                   Reverse-engineered the Bluetooth protocol for discontinued KS LED hardware, then wrote
                   a Python replacement for the broken vendor app. Open source, 5 stars.
@@ -762,6 +835,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        <LogsSection />
 
         <section id="contact" className="section section-alt contact-section">
           <LazyDecoration className="contact-faulty">
