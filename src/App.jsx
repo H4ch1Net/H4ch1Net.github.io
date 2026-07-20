@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
-import Particles from './components/Particles'
+import NetworkParticles from './components/NetworkParticles'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
 import FaultyTerminal from './components/FaultyTerminal'
@@ -58,7 +58,7 @@ function HeroName() {
   )
 }
 
-// Baseline for the hero uptime counter — start of the Eisenhower apprenticeship.
+// Baseline for the hero uptime counter: start of the Eisenhower apprenticeship.
 const SITE_EPOCH = Date.parse('2024-06-01T00:00:00')
 
 function StatusIndicator() {
@@ -230,7 +230,7 @@ const EXPERIENCE = [
     role: 'Systems Administrator',
     org: 'Eisenhower Health · IT Apprenticeship',
     location: 'Rancho Mirage, CA',
-    period: 'Jun 2025 – Present',
+    period: 'Jun 2025 - Present',
     bullets: [
       'Built NERD, a Python CLI replacing spreadsheets for tracking 500+ switches, routers, and hardware; full CRUD, JSON-backed, zero external libraries',
       'Building a real-time Cisco port monitor: threaded ICMP pings, color-coded ASCII output for the network team',
@@ -242,7 +242,7 @@ const EXPERIENCE = [
     role: 'IT Desktop Technician',
     org: 'Eisenhower Health · IT Apprenticeship',
     location: 'Rancho Mirage, CA',
-    period: 'Sep 2024 – Jun 2025',
+    period: 'Sep 2024 - Jun 2025',
     bullets: [
       'Wrote a PowerShell imaging script with AD group selection and software profiles, cutting an 8-hour process down to parallel, fire-and-forget jobs',
       'AD object management, Group Policy enforcement, 10+ daily tickets via Ivanti and RDP across clinical and admin departments',
@@ -253,9 +253,9 @@ const EXPERIENCE = [
     role: 'IT Service Desk',
     org: 'Eisenhower Health · IT Apprenticeship',
     location: 'Rancho Mirage, CA',
-    period: 'Jun 2024 – Sep 2024',
+    period: 'Jun 2024 - Sep 2024',
     bullets: [
-      '25–30+ tickets per day via JIRA across clinical and admin departments',
+      '25-30+ tickets per day via JIRA across clinical and admin departments',
       'HIPAA compliance on all patient-adjacent system access',
     ],
   },
@@ -301,38 +301,14 @@ function ExperienceSection() {
 
 const GITHUB_USERNAME = 'H4ch1Net'
 
-function StatImg({ src, alt }) {
-  const [loaded, setLoaded] = useState(false)
-  return (
-    <div className={`github-stat-frame${loaded ? ' is-loaded' : ''}`}>
-      <img
-        className="github-stats-img"
-        src={src}
-        alt={alt}
-        loading="lazy"
-        onLoad={() => setLoaded(true)}
-        onError={() => setLoaded(true)}
-      />
-    </div>
-  )
-}
-
 function GitHubReposSection() {
   return (
     <div className="github-section">
-      <h4 className="github-heading">// github activity</h4>
-
-      <div className="github-stats-wrap">
-        <StatImg
-          src={`https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&hide_border=true&bg_color=0a0a0a&title_color=00e38c&icon_color=00e38c&text_color=c0c0c0&hide=issues`}
-          alt={`${GITHUB_USERNAME} GitHub stats`}
-        />
-        <StatImg
-          src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&hide_border=true&bg_color=0a0a0a&title_color=00e38c&text_color=c0c0c0&langs_count=8`}
-          alt={`${GITHUB_USERNAME} top languages`}
-        />
-      </div>
-
+      <h4 className="github-heading">// more on github</h4>
+      <p className="github-blurb">
+        Most of what I build lives on GitHub, from CTF tooling to work automation. Public repos are
+        open to browse.
+      </p>
       <a className="github-all-link" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noopener noreferrer">
         view all repos →
       </a>
@@ -455,6 +431,14 @@ function LogsSection() {
 }
 
 function App() {
+  useEffect(() => {
+    console.log(
+      '%c H4ch1.Net %c\n\nThanks for looking under the hood. If you like what you see and you\'re hiring, reach me at h4ch1net@gmail.com',
+      'background:#00e38c;color:#000;font-weight:700;padding:2px 8px;border-radius:3px;font-family:monospace;',
+      'color:#00e38c;font-family:monospace;'
+    )
+  }, [])
+
   return (
     <div className="app">
       <header className="header">
@@ -476,16 +460,7 @@ function App() {
       <main>
         <section className="hero">
           <LazyDecoration className="hero-particles">
-            <Particles
-              particleCount={120}
-              particleSpread={8}
-              speed={0.05}
-              particleColors={['#00e38c', '#00e38c', '#00c078']}
-              alphaParticles={true}
-              particleBaseSize={80}
-              sizeRandomness={0.8}
-              disableRotation={false}
-            />
+            <NetworkParticles color="#00e38c" linkDistance={150} speed={0.25} />
           </LazyDecoration>
           <div className="container hero-content">
             <StatusIndicator />
@@ -527,8 +502,8 @@ function App() {
               </p>
               <p>
                 My work is mostly Python: network automation, CLI tools, and monitoring scripts that the team
-                actually runs. I also compete in CTF events year-round — placements and verifications are
-                down in the Honors section.
+                actually runs. I also compete in CTF events. The placements and verifications are in the
+                Honors section below.
               </p>
               <p>
                 Bilingual (English & Spanish), President of the COD Cyber Competition Team. I enjoy hardware
@@ -566,9 +541,9 @@ function App() {
                 </div>
                 <h4>sentryd</h4>
                 <p>
-                  AI-powered network anomaly detection tool. A rule-based detection engine paired
-                  with an LLM analyst layer, a Textual terminal dashboard, and a FastAPI web UI
-                  for reviewing flagged events.
+                  Network anomaly detection tool. A rule-based detection engine paired with an LLM
+                  analyst layer, a Textual terminal dashboard, and a FastAPI web UI for reviewing
+                  flagged events.
                 </p>
                 <a href="https://github.com/H4ch1Net/sentryd" className="btn" target="_blank" rel="noopener noreferrer">
                   View on GitHub
@@ -586,7 +561,7 @@ function App() {
                   The Muse, and RemoteOK, scores relevance with an LLM, and serves results
                   through a local dashboard backed by SQLite.
                 </p>
-                <span className="card-private">Private repo</span>
+                <span className="card-note">Private repo</span>
               </SpotlightCard>
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <div className="card-tags">
@@ -614,9 +589,7 @@ function App() {
                   Python CLI I built at work to replace a spreadsheet. Tracks 500+ switches, routers,
                   and hardware: asset tags, serials, purchase orders. No external dependencies.
                 </p>
-                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
-                  View on GitHub
-                </a>
+                <span className="card-note">Internal tool</span>
               </SpotlightCard>
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <div className="card-tags">
@@ -659,9 +632,7 @@ function App() {
                   Mockup generator built in a day at the PS/NExT Vibe-a-thon for a sustainable apparel
                   client. 4 color variants, front/back views, exports to PNG, PDF, PowerPoint, and SVG.
                 </p>
-                <a href="https://github.com/H4ch1Net" className="btn" target="_blank" rel="noopener noreferrer">
-                  View on GitHub
-                </a>
+                <span className="card-note">Private repo</span>
               </SpotlightCard>
               <SpotlightCard className="card" spotlightColor="rgba(0, 227, 140, 0.1)">
                 <div className="card-tags">
