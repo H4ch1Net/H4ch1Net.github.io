@@ -32,8 +32,8 @@ add it as `public/resume.pdf` and swap the `contact-resume` line in App.jsx from
 │   ├── components/         ← decorative effect components (Particles, SplitText, etc.)
 │   ├── content/logs/*.md   ← individual write-up entries, loaded at build time via import.meta.glob
 │   └── lib/loadLogs.js     ← small frontmatter parser + loader
-├── certificates/       ← PDF and PNG certificates (not bundled by Vite; verify links are external)
 ├── index.html          ← Vite entry HTML, do not touch
+├── LICENSE             ← MIT
 └── CLAUDE.md           ← this file
 ```
 New component files are allowed when they separate a genuinely reusable unit
@@ -84,19 +84,11 @@ reintroduce glitch/scramble/decrypt effects.
 - Software Engineering experience
 - Bilingual: English and Spanish
 
-## Certificates (actual files in /certificates/)
-- certificates/Certificate.pdf
-- certificates/Certificate-1.pdf
-- certificates/Certificate-2.pdf
-- certificates/Mauro Hernandez - Cyber Skyline Certificate.pdf
-- certificates/Mauro Hernandez - Cyber Skyline Certificate-1.pdf
-- certificates/Mauro Hernandez Rico - Cyber Skyline Certificate.pdf
-- certificates/Mauro Hernandez Rico - Cyber Skyline Certificate-1.pdf
-- certificates/Mauro Hernandez Rico - Cyber Skyline Certificate-2.pdf
-- certificates/Mauro Hernandez Rico - Cyber Skyline Certificate-3.pdf
-- certificates/6-2C6-M4997.png (TestOut PC Pro)
-- certificates/6-2C6-SP9QT.png (TestOut Network Pro)
-- certificates/6-2C6-V3A3KA.png (TestOut Security Pro)
+## Certificates
+Certificates are verified through external links only (cyberskyline.com, TestOut,
+CompTIA CertMetrics) — the site does not host any certificate files. Do NOT commit
+certificate PDFs/PNGs to this repo; their filenames leak full-name PII and they add
+no value over the external verify links.
 
 ## Key Verify Links (already in App.jsx — preserve these exactly)
 - CompTIA A+: https://cp.certmetrics.com/comptia/en/public/verify/credential/NXCDHT0Y8JFE20DJ
