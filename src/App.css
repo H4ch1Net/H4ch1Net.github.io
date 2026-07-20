@@ -94,13 +94,6 @@ body {
   overflow: hidden;
 }
 
-.hero-glitch {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.12;
-}
-
 .hero-particles {
   position: absolute;
   inset: 0;
@@ -111,20 +104,6 @@ body {
 .hero-content {
   position: relative;
   z-index: 2;
-}
-
-.hero h2 {
-  font-size: 3rem;
-  color: #00e38c;
-  margin-bottom: 0.5rem;
-}
-
-.hero-blur-text {
-  font-size: 3rem;
-  color: #00e38c;
-  font-weight: 700;
-  justify-content: center;
-  margin: 0;
 }
 
 .subtitle {
@@ -233,6 +212,21 @@ body {
 .btn:hover {
   background: var(--color-accent);
   color: #000;
+}
+
+/* Private-repo note on project cards (takes the .btn slot, but inert) */
+.card .card-private {
+  align-self: flex-start;
+  margin-top: auto;
+  display: inline-block;
+  color: var(--color-muted);
+  border: 1px dashed var(--color-border);
+  padding: 0.5rem 1.1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono NL', monospace;
+  letter-spacing: 0.04em;
 }
 
 /* Certificates */
@@ -372,7 +366,42 @@ body {
   color: #a0a0a0;
 }
 
-/* ScrambleText */
+/* Hero status indicator */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.35rem 0.8rem;
+  margin-bottom: 1.25rem;
+  background: rgba(0, 227, 140, 0.03);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px rgba(0, 227, 140, 0.6);
+  animation: dot-pulse 2.4s ease-in-out infinite;
+}
+
+.status-label {
+  color: var(--color-accent);
+}
+
+.status-uptime::before {
+  content: '· ';
+  color: var(--color-border);
+}
+
+/* Hero name */
 .hero-scramble-text {
   font-size: 3rem;
   color: #00e38c;
@@ -387,12 +416,13 @@ body {
 
 .scramble-name {
   color: #00e38c;
-  transition: color 0.1s;
+  display: inline-block;
+  animation: name-swap 0.25s ease;
 }
 
-.scramble-active {
-  color: #00e38c;
-  font-family: 'JetBrains Mono NL', monospace;
+@keyframes name-swap {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Terminal subtitle */
@@ -818,11 +848,6 @@ body {
   border-color: var(--color-accent);
 }
 
-/* Project title glitch */
-.project-glitch {
-  display: inline-block;
-}
-
 /* GitHub stat shimmer skeleton */
 .github-stat-frame {
   position: relative;
@@ -881,13 +906,91 @@ body {
   color: var(--color-muted);
 }
 
+/* Logs section */
+.logs-intro {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.logs-empty {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.logs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  max-width: 720px;
+}
+
+.log-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.2s;
+}
+
+.log-entry:hover {
+  border-color: var(--color-accent);
+}
+
+.log-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.log-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px rgba(0, 227, 140, 0.6);
+  animation: dot-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.log-date {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+}
+
+.log-title {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.log-body {
+  color: var(--color-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   .hero-stat,
   .timeline-marker::after,
   .subtitle-terminal,
   .subtitle-terminal::after,
-  .github-stat-frame::before {
+  .github-stat-frame::before,
+  .log-dot,
+  .status-dot,
+  .scramble-name {
     animation: none !important;
   }
 
@@ -930,9 +1033,6 @@ body {
     font-size: 0.9rem;
   }
 
-  .hero h2 {
-    font-size: 2rem;
-  }
 
   .hero-scramble-text {
     font-size: 2rem;
