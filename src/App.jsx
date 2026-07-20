@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
-import Particles from './components/Particles'
+import NetworkParticles from './components/NetworkParticles'
 import SplitText from './components/SplitText'
 import SpotlightCard from './components/SpotlightCard'
 import FaultyTerminal from './components/FaultyTerminal'
@@ -460,16 +460,7 @@ function App() {
       <main>
         <section className="hero">
           <LazyDecoration className="hero-particles">
-            <Particles
-              particleCount={120}
-              particleSpread={8}
-              speed={0.05}
-              particleColors={['#00e38c', '#00e38c', '#00c078']}
-              alphaParticles={true}
-              particleBaseSize={80}
-              sizeRandomness={0.8}
-              disableRotation={false}
-            />
+            <NetworkParticles color="#00e38c" linkDistance={150} speed={0.25} />
           </LazyDecoration>
           <div className="container hero-content">
             <StatusIndicator />
