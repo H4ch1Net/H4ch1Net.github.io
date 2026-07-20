@@ -111,9 +111,7 @@ function SkillsSection() {
                   <h4>Competitions & Leadership</h4>
                   <ul className="skills-list">
                     <li>President, COD Cyber Competition Team</li>
-                    <li>NCL Diamond Tier, Top 3% (Fall 2024 Team Game)</li>
-                    <li>1st Place, Inland Empire Mayors Cyber Cup 2025 (College Division)</li>
-                    <li>MetaCTF, SkillBit Flash CTF</li>
+                    <li>NCL, MetaCTF, SkillBit Flash CTF competitor</li>
                   </ul>
                 </div>
                 <div className="card-spotlight skills-card">
@@ -528,8 +526,8 @@ function App() {
               </p>
               <p>
                 My work is mostly Python: network automation, CLI tools, and monitoring scripts that the team
-                actually runs. I also compete in CTF events: NCL Diamond tier, 1st place at the 2025 IE Mayors
-                Cyber Cup, and Team MVP at NASA NCAS 2026 for our autonomous rover.
+                actually runs. I also compete in CTF events year-round — placements and verifications are
+                down in the Honors section.
               </p>
               <p>
                 Bilingual (English & Spanish), President of the COD Cyber Competition Team. I enjoy hardware
