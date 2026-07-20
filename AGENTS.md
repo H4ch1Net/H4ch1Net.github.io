@@ -1,4 +1,4 @@
-# H4ch1Net Portfolio — CLAUDE.md
+# H4ch1Net Portfolio - AGENTS.md
 
 ## Stack
 - React 18 + Vite 6 (vanilla JSX, no TypeScript)
@@ -34,7 +34,7 @@ add it as `public/resume.pdf` and swap the `contact-resume` line in App.jsx from
 │   └── lib/loadLogs.js     ← small frontmatter parser + loader
 ├── index.html          ← Vite entry HTML, do not touch
 ├── LICENSE             ← MIT
-└── CLAUDE.md           ← this file
+└── AGENTS.md           ← this file
 ```
 New component files are allowed when they separate a genuinely reusable unit
 (e.g. the log loader) — the old "single file only" rule is retired.
