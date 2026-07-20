@@ -881,13 +881,89 @@ body {
   color: var(--color-muted);
 }
 
+/* Logs section */
+.logs-intro {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.logs-empty {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.logs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  max-width: 720px;
+}
+
+.log-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.2s;
+}
+
+.log-entry:hover {
+  border-color: var(--color-accent);
+}
+
+.log-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.log-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px rgba(0, 227, 140, 0.6);
+  animation: log-dot-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes log-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.log-date {
+  font-family: 'JetBrains Mono NL', monospace;
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+}
+
+.log-title {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.log-body {
+  color: var(--color-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   .hero-stat,
   .timeline-marker::after,
   .subtitle-terminal,
   .subtitle-terminal::after,
-  .github-stat-frame::before {
+  .github-stat-frame::before,
+  .log-dot {
     animation: none !important;
   }
 
