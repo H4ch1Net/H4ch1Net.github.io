@@ -235,6 +235,21 @@ body {
   color: #000;
 }
 
+/* Private-repo note on project cards (takes the .btn slot, but inert) */
+.card .card-private {
+  align-self: flex-start;
+  margin-top: auto;
+  display: inline-block;
+  color: var(--color-muted);
+  border: 1px dashed var(--color-border);
+  padding: 0.5rem 1.1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono NL', monospace;
+  letter-spacing: 0.04em;
+}
+
 /* Certificates */
 .cert-category {
   color: #00e38c;
