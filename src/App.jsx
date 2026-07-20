@@ -210,6 +210,7 @@ function SkillsSection() {
                   <ul className="skills-list">
                     <li>CompTIA A+</li>
                     <li className="cert-pending">CompTIA Security+ (In Progress, Sep 2026)</li>
+                    <li className="cert-pending">CCNA (In Progress, Fall 2026)</li>
                     <li>TestOut PC Pro</li>
                     <li>TestOut Network Pro</li>
                     <li>TestOut Security Pro</li>
