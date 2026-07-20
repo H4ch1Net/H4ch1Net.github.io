@@ -8,6 +8,7 @@ import ScrambledText from './components/ScrambledText'
 import LetterGlitch from './components/LetterGlitch'
 import FaultyTerminal from './components/FaultyTerminal'
 import Dither from './components/Dither'
+import { loadLogs } from './lib/loadLogs'
 
 const HERO_STATS = [
   'NCL Diamond',
@@ -403,6 +404,55 @@ function HonorsSection() {
   )
 }
 
+const LOGS = loadLogs()
+
+function LogsSection() {
+  return (
+    <section id="logs" className="section logs-section">
+      <div className="container">
+        <h3>
+          <SplitText
+            text="Logs"
+            tag="span"
+            splitType="chars"
+            delay={40}
+            duration={0.8}
+            from={{ opacity: 0, y: 30 }}
+            to={{ opacity: 1, y: 0 }}
+            rootMargin="-80px"
+          />
+        </h3>
+        <p className="logs-intro">Field notes from work, competitions, and the lab. Short, dated, unpolished.</p>
+        {LOGS.length === 0 ? (
+          <p className="logs-empty">── no entries logged ──</p>
+        ) : (
+          <div className="logs-list">
+            {LOGS.map(entry => (
+              <SpotlightCard
+                key={`${entry.date}-${entry.title}`}
+                className="log-entry"
+                spotlightColor="rgba(0, 227, 140, 0.08)"
+              >
+                <div className="log-meta">
+                  <span className="log-dot" aria-hidden="true" />
+                  <span className="log-date">{entry.date}</span>
+                  {entry.tags.map(tag => (
+                    <span className="tag" key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <h4 className="log-title">{entry.title}</h4>
+                {entry.paragraphs.map((p, i) => (
+                  <p className="log-body" key={i}>{p}</p>
+                ))}
+              </SpotlightCard>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
 function App() {
   return (
     <div className="app">
@@ -418,6 +468,7 @@ function App() {
             <a href="#projects">Projects</a>
             <a href="#honors">Honors</a>
             <a href="#certificates">Certificates</a>
+            <a href="#logs">Logs</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
@@ -762,6 +813,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        <LogsSection />
 
         <section id="contact" className="section section-alt contact-section">
           <LazyDecoration className="contact-faulty">
