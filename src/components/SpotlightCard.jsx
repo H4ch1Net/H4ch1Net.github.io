@@ -1,24 +1,24 @@
-import { useRef } from 'react';
-import './SpotlightCard.css';
+import { useRef } from 'react'
+import './SpotlightCard.css'
 
-const SpotlightCard = ({ children, className = '', spotlightColor = 'rgba(0, 227, 140, 0.08)' }) => {
-  const divRef = useRef(null);
+// Card with a soft radial highlight that follows the pointer. Extra props
+// (e.g. data-reveal) pass through to the root element.
+const SpotlightCard = ({ children, className = '', as: Tag = 'div', ...rest }) => {
+  const divRef = useRef(null)
 
   const handleMouseMove = e => {
-    const rect = divRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    divRef.current.style.setProperty('--mouse-x', `${x}px`);
-    divRef.current.style.setProperty('--mouse-y', `${y}px`);
-    divRef.current.style.setProperty('--spotlight-color', spotlightColor);
-  };
+    const el = divRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    el.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
+    el.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
+  }
 
   return (
-    <div ref={divRef} onMouseMove={handleMouseMove} className={`card-spotlight ${className}`}>
+    <Tag ref={divRef} onMouseMove={handleMouseMove} className={`card-spotlight ${className}`} {...rest}>
       {children}
-    </div>
-  );
-};
+    </Tag>
+  )
+}
 
-export default SpotlightCard;
+export default SpotlightCard
