@@ -1,29 +1,48 @@
 .card-spotlight {
   position: relative;
-  border-radius: 8px;
-  border: 1px solid #2a2a2a;
-  background-color: #1a1a1a;
-  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border-soft);
+  background: linear-gradient(180deg, #101010 0%, #0c0c0c 100%);
   overflow: hidden;
+  isolation: isolate;
   --mouse-x: 50%;
   --mouse-y: 50%;
-  --spotlight-color: rgba(0, 227, 140, 0.08);
+  transition: border-color 0.3s ease, transform 0.4s var(--ease-out);
+}
+
+/* Pointer-follow glow, plus a brighter rim where the pointer meets the border. */
+.card-spotlight::before,
+.card-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .card-spotlight::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(420px circle at var(--mouse-x) var(--mouse-y), rgba(0, 227, 140, 0.075), transparent 60%);
+}
+
+.card-spotlight::after {
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mouse-x) var(--mouse-y), rgba(0, 227, 140, 0.55), transparent 65%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.card-spotlight:hover,
+.card-spotlight:focus-within {
+  border-color: var(--color-border);
 }
 
 .card-spotlight:hover::before,
-.card-spotlight:focus-within::before {
+.card-spotlight:hover::after,
+.card-spotlight:focus-within::before,
+.card-spotlight:focus-within::after {
   opacity: 1;
 }
