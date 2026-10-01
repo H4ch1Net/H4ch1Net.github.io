@@ -1,7 +1,7 @@
 {
   "name": "h4ch1net-portfolio",
   "private": true,
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,8 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^12.37.0",
-    "ogl": "^1.0.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
