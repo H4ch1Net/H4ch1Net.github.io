@@ -1,0 +1,188 @@
+/* Argus preview: globe stage on the left, feed column on the right. */
+
+.pv-argus__body {
+  display: flex;
+}
+
+.pv-argus__stage {
+  position: relative;
+  flex: 0 0 62%;
+  min-width: 0;
+}
+
+.pv-argus__readout {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: pre;
+  color: var(--color-dim);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.pv-argus__readout-val {
+  color: var(--color-muted);
+}
+
+.pv-argus__ok {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  vertical-align: 1px;
+}
+
+.pv-argus__feeds {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 10px;
+  border-left: 1px solid var(--color-border-soft);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0) 55%);
+}
+
+.pv-argus__feeds-head,
+.pv-argus__feeds-foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pv-argus__feeds-head {
+  justify-content: space-between;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--color-border-soft);
+  color: var(--color-muted);
+}
+
+.pv-argus__feeds-foot {
+  gap: 8px;
+  padding-top: 9px;
+  border-top: 1px solid var(--color-border-soft);
+  color: var(--color-dim);
+}
+
+.pv-argus__key {
+  flex: none;
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, var(--color-muted) 55%, var(--color-border) 55%);
+}
+
+.pv-argus__list {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+}
+
+.pv-argus__row {
+  --pv-argus-tone: var(--color-accent);
+  display: grid;
+  grid-template-columns: 6px minmax(0, 1fr) auto;
+  align-items: center;
+  align-content: center;
+  column-gap: 8px;
+  row-gap: 6px;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.pv-argus__row--info {
+  --pv-argus-tone: var(--color-info);
+}
+
+.pv-argus__row--warn {
+  --pv-argus-tone: var(--color-warn);
+}
+
+.pv-argus__row--hit-a {
+  animation: pv-argus-hit-a 1.6s var(--ease-out);
+}
+
+.pv-argus__row--hit-b {
+  animation: pv-argus-hit-b 1.6s var(--ease-out);
+}
+
+.pv-argus__swatch {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pv-argus-tone);
+}
+
+.pv-argus__name {
+  overflow: hidden;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pv-argus__count {
+  font-size: 10.5px;
+  color: var(--color-body);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.pv-argus__budget {
+  grid-column: 2 / -1;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color-border-soft);
+  overflow: hidden;
+}
+
+.pv-argus__fill {
+  display: block;
+  height: 100%;
+  background: var(--pv-argus-tone);
+  opacity: 0.7;
+  transform-origin: left center;
+  transform: scaleX(var(--pv-argus-budget, 0));
+}
+
+/* Two identical keyframes so toggling between them restarts the fade */
+@keyframes pv-argus-hit-a {
+  from { background-color: rgba(0, 227, 140, 0.1); }
+  to { background-color: rgba(0, 227, 140, 0); }
+}
+
+@keyframes pv-argus-hit-b {
+  from { background-color: rgba(0, 227, 140, 0.1); }
+  to { background-color: rgba(0, 227, 140, 0); }
+}
+
+@container pv (max-width: 440px) {
+  .pv-argus__stage {
+    flex: 1 1 auto;
+  }
+  .pv-argus__feeds,
+  .pv-argus__readout {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-argus__row--hit-a,
+  .pv-argus__row--hit-b {
+    animation: none;
+  }
+}

@@ -1,0 +1,828 @@
+/* switch-vis preview: Catalyst-style faceplate, port inspector and legend.
+   Status lives in LEDs and dots; text always stays in the text tokens. */
+
+.pv-switch {
+  --pv-switch-rim: #202020;
+  --pv-switch-hole: #020202;
+  --pv-switch-led-off: #1c1c1c;
+  --pv-switch-admin: #4a4a4a;
+}
+
+.pv-switch__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 14px 12px;
+}
+
+/* ---- Faceplate ---------------------------------------------------------- */
+
+.pv-switch__face {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.9cqi, 12px);
+  padding: 13px 25px;
+  border: 1px solid #262626;
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--color-surface-2) 0%, #0c0c0c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 16px 28px -18px rgba(0, 0, 0, 0.95);
+}
+
+/* Rack ears with two mounting screws each. */
+.pv-switch__ear {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 13px;
+  background:
+    radial-gradient(circle at 45% 40%, #5a5a5a 0, #2e2e2e 1.6px, #161616 2.6px, rgba(0, 0, 0, 0.7) 3.1px, transparent 3.6px)
+      50% 22% / 9px 9px no-repeat,
+    radial-gradient(circle at 45% 40%, #5a5a5a 0, #2e2e2e 1.6px, #161616 2.6px, rgba(0, 0, 0, 0.7) 3.1px, transparent 3.6px)
+      50% 78% / 9px 9px no-repeat;
+}
+
+.pv-switch__ear--l {
+  left: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.6), 1px 0 0 rgba(255, 255, 255, 0.03);
+}
+
+.pv-switch__ear--r {
+  right: 0;
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.6), -1px 0 0 rgba(255, 255, 255, 0.03);
+}
+
+.pv-switch__sys {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 54px;
+}
+
+.pv-switch__model {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.pv-switch__sysleds {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pv-switch__sysled {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pv-switch__lamp {
+  flex: none;
+  width: 5px;
+  height: 3px;
+  border-radius: 1px;
+  background: var(--color-accent);
+  box-shadow: 0 0 4px rgba(0, 227, 140, 0.6);
+}
+
+.pv-switch__sysled-label,
+.pv-switch__num,
+.pv-switch__uplinks-label {
+  font-size: 7px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--color-dim);
+  white-space: nowrap;
+}
+
+.pv-switch__ports {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: clamp(5px, 1.6cqi, 10px);
+}
+
+/* 2 x 6 ports per block (odd on top), with silkscreen numbers at the corners. */
+.pv-switch__block {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: clamp(1.5px, 0.32cqi, 2px);
+  row-gap: 3px;
+}
+
+.pv-switch__num {
+  text-align: center;
+}
+
+.pv-switch__num--tl { grid-area: 1 / 1; }
+.pv-switch__num--tr { grid-area: 1 / 6; }
+.pv-switch__num--bl { grid-area: 4 / 1; }
+.pv-switch__num--br { grid-area: 4 / 6; }
+
+.pv-switch__block > .pv-switch__port--top { grid-row: 2; }
+.pv-switch__block > .pv-switch__port--bot { grid-row: 3; }
+
+/* A port is its LED plus the socket (jack or SFP cage). Bottom-row ports are
+   mirrored: latch notch and LED face down. */
+.pv-switch__port {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.pv-switch__port--bot {
+  flex-direction: column-reverse;
+}
+
+.pv-switch__led {
+  flex: none;
+  width: 42%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--pv-switch-led-off);
+}
+
+.pv-switch__port--up .pv-switch__led {
+  background: var(--color-accent);
+  box-shadow: 0 0 4px rgba(0, 227, 140, 0.55);
+}
+
+.pv-switch__port--err .pv-switch__led {
+  background: var(--color-warn);
+  box-shadow: 0 0 5px rgba(250, 178, 25, 0.6);
+  animation: pv-switch-err 2.4s ease-in-out infinite;
+}
+
+.pv-switch__port--admin .pv-switch__led {
+  background: var(--pv-switch-admin);
+}
+
+.pv-switch__jack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  border-radius: 1px;
+  background:
+    repeating-linear-gradient(90deg, rgba(196, 164, 98, 0.3) 0 1px, transparent 1px 2px)
+      50% calc(100% - 1px) / 56% 2px no-repeat,
+    linear-gradient(180deg, var(--pv-switch-hole), #080808);
+  box-shadow:
+    0 0 0 1px var(--pv-switch-rim),
+    inset 0 2px 3px rgba(0, 0, 0, 0.9);
+}
+
+.pv-switch__port--bot .pv-switch__jack {
+  background-position: 50% 1px, 0 0;
+}
+
+.pv-switch__port--poe .pv-switch__jack {
+  box-shadow:
+    0 0 0 1px var(--pv-switch-rim),
+    inset 0 2px 3px rgba(0, 0, 0, 0.9),
+    inset 0 0 6px rgba(0, 227, 140, 0.14);
+}
+
+/* RJ45 latch notch: opens outward from the socket, merging with its rim. */
+.pv-switch__jack::before {
+  content: '';
+  position: absolute;
+  left: 27%;
+  right: 27%;
+  bottom: calc(100% - 1px);
+  height: 4px;
+  border: 1px solid var(--pv-switch-rim);
+  border-bottom: 0;
+  border-radius: 1px 1px 0 0;
+  background: var(--pv-switch-hole);
+}
+
+.pv-switch__port--bot .pv-switch__jack::before {
+  top: calc(100% - 1px);
+  bottom: auto;
+  border-top: 0;
+  border-bottom: 1px solid var(--pv-switch-rim);
+  border-radius: 0 0 1px 1px;
+}
+
+/* Selection ring, always present so it can fade and scale in. */
+.pv-switch__jack::after,
+.pv-switch__cage::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  box-shadow:
+    0 0 10px rgba(0, 227, 140, 0.35),
+    inset 0 0 5px rgba(0, 227, 140, 0.2);
+  opacity: 0;
+  transform: scale(1.35);
+  transition:
+    opacity 0.25s var(--ease-out),
+    transform 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.pv-switch__port--top .pv-switch__jack::after { top: -6px; }
+.pv-switch__port--bot .pv-switch__jack::after { bottom: -6px; }
+
+.pv-switch__port--sel {
+  z-index: 1;
+}
+
+.pv-switch__port--sel .pv-switch__jack::after,
+.pv-switch__port--sel .pv-switch__cage::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* SFP+ uplink cages, 2 x 2 */
+.pv-switch__uplinks {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+.pv-switch__sfps {
+  display: grid;
+  grid-template-columns: repeat(2, 26px);
+  column-gap: 5px;
+  row-gap: 3px;
+}
+
+.pv-switch__port--sfp {
+  gap: 4px;
+}
+
+.pv-switch__port--sfp .pv-switch__led {
+  width: 26%;
+}
+
+.pv-switch__cage {
+  position: relative;
+  width: 100%;
+  height: 11px;
+  border: 1px solid;
+  border-color: #4d4d4d #2f2f2f #242424;
+  border-radius: 1.5px;
+  background: linear-gradient(180deg, #030303, #0a0a0a);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+/* A seated optic: lighter module face with an LC duplex pair. */
+.pv-switch__port--up .pv-switch__cage {
+  background: linear-gradient(180deg, #2b2b2b, #1a1a1a);
+}
+
+.pv-switch__port--up .pv-switch__cage::before {
+  content: '';
+  position: absolute;
+  inset: 2px 5px;
+  background:
+    linear-gradient(#040404, #040404) left / 40% 100% no-repeat,
+    linear-gradient(#040404, #040404) right / 40% 100% no-repeat;
+}
+
+/* ---- LED activity: six rhythms x four phases, so neighbours never sync -- */
+
+.pv-switch__port--r1 .pv-switch__led { animation: pv-switch-act-a 2.8s linear infinite; }
+.pv-switch__port--r2 .pv-switch__led { animation: pv-switch-act-b 2.1s linear infinite; }
+.pv-switch__port--r3 .pv-switch__led { animation: pv-switch-act-a 3.7s linear infinite; }
+.pv-switch__port--r4 .pv-switch__led { animation: pv-switch-act-c 1.8s linear infinite; }
+.pv-switch__port--r5 .pv-switch__led { animation: pv-switch-act-b 5.2s linear infinite; }
+.pv-switch__port--r6 .pv-switch__led { animation: pv-switch-act-c 3.4s linear infinite; }
+
+.pv-switch__port--d1 .pv-switch__led { animation-delay: -0.4s; }
+.pv-switch__port--d2 .pv-switch__led { animation-delay: -1.1s; }
+.pv-switch__port--d3 .pv-switch__led { animation-delay: -1.9s; }
+
+@keyframes pv-switch-act-a {
+  0%, 5%, 9%, 13%, 17%, 58%, 64%, 100% { opacity: 1; }
+  7% { opacity: 0.45; }
+  15% { opacity: 0.55; }
+  61% { opacity: 0.5; }
+}
+
+@keyframes pv-switch-act-b {
+  0%, 44%, 50%, 100% { opacity: 1; }
+  47% { opacity: 0.45; }
+}
+
+@keyframes pv-switch-act-c {
+  0%, 8%, 16%, 28%, 34%, 50%, 58%, 75%, 81%, 100% { opacity: 1; }
+  12% { opacity: 0.5; }
+  31% { opacity: 0.6; }
+  54% { opacity: 0.45; }
+  78% { opacity: 0.55; }
+}
+
+@keyframes pv-switch-err {
+  50% { opacity: 0.3; }
+}
+
+/* ---- Inspector: port detail | poll log ---------------------------------- */
+
+.pv-switch__insp {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.008));
+  overflow: hidden;
+}
+
+/* 1px poll progress along the top edge: fills over one poll, then resets. */
+.pv-switch__poll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.pv-switch__poll-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  opacity: 0.75;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  animation: pv-switch-poll 5s linear both;
+}
+
+.pv-switch__poll-fill--static {
+  transform: scaleX(0.4);
+  animation: none;
+}
+
+@keyframes pv-switch-poll {
+  0%, 88% { opacity: 0.75; }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+.pv-switch__polled,
+.pv-switch__log-head {
+  display: flex;
+  align-items: center;
+  height: 21px;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.pv-switch__polled {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-switch__detail {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  animation: pv-switch-in 0.35s var(--ease-out) both;
+}
+
+@keyframes pv-switch-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+}
+
+.pv-switch__insp-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 21px;
+  white-space: nowrap;
+}
+
+.pv-switch__ifname {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.pv-switch__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--color-body);
+}
+
+.pv-switch__dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.pv-switch__dot--up {
+  background: var(--color-accent);
+  box-shadow: 0 0 6px rgba(0, 227, 140, 0.5);
+}
+
+.pv-switch__dot--err {
+  background: var(--color-warn);
+}
+
+.pv-switch__dot--admin {
+  background: var(--pv-switch-admin);
+}
+
+.pv-switch__dot--off {
+  border: 1px solid var(--color-dim);
+}
+
+/* Rows share whatever height the card has, up to a comfortable maximum. */
+.pv-switch__kv {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-auto-rows: minmax(0, 38px);
+  align-content: start;
+  margin-top: 8px;
+}
+
+.pv-switch__kv-row {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: baseline;
+  align-content: center;
+  min-width: 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.pv-switch__kv-row:last-child {
+  border-bottom: 0;
+}
+
+.pv-switch__k {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.pv-switch__v {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11.5px;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Poll log: newest on top; each entry pushes the list down one line. */
+.pv-switch__log {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  border-left: 1px solid var(--color-border-soft);
+}
+
+.pv-switch__log-list {
+  flex: 1;
+  min-height: 0;
+  margin-top: 8px;
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
+  animation: pv-switch-push 0.5s var(--ease-out);
+}
+
+.pv-switch__log-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.pv-switch__log-line:first-child {
+  animation: pv-switch-fade 0.6s var(--ease-out);
+}
+
+.pv-switch__log-time {
+  flex: none;
+  color: var(--color-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-switch__log-tool {
+  flex: none;
+  width: 32px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.pv-switch__log-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-body);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes pv-switch-push {
+  from { transform: translateY(-20px); }
+}
+
+@keyframes pv-switch-fade {
+  from { opacity: 0; }
+}
+
+/* ---- Legend ------------------------------------------------------------- */
+
+.pv-switch__legend {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.pv-switch__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pv-switch__counts {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Paused offscreen --------------------------------------------------- */
+
+.pv-switch--paused .pv-dot,
+.pv-switch--paused .pv-switch__led,
+.pv-switch--paused .pv-switch__poll-fill {
+  animation-play-state: paused;
+}
+
+/* ---- Narrower frames ---------------------------------------------------- */
+
+@container pv (max-width: 620px) {
+  .pv-switch__body {
+    gap: 10px;
+    padding: 12px 12px 10px;
+  }
+
+  .pv-switch__face {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  .pv-switch__insp {
+    padding: 12px 14px;
+  }
+
+  .pv-switch__polled {
+    top: 12px;
+    right: 14px;
+  }
+}
+
+/* Single-column inspector: the log steps aside, details pair up. */
+@container pv (max-width: 540px) {
+  .pv-switch__face {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .pv-switch__ear,
+  .pv-switch__log,
+  .pv-switch__counts {
+    display: none;
+  }
+
+  .pv-switch__insp {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pv-switch__insp-head {
+    padding-right: 104px;
+  }
+
+  .pv-switch__kv {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+
+  .pv-switch__kv-row {
+    grid-template-columns: 50px minmax(0, 1fr);
+    column-gap: 8px;
+  }
+
+  .pv-switch__kv-row:nth-last-child(2) {
+    border-bottom: 0;
+  }
+
+  .pv-switch__legend {
+    gap: 12px;
+    font-size: 9px;
+  }
+}
+
+/* Phone-sized frames: every port still fits; secondary labels drop out. */
+@container pv (max-width: 440px) {
+  .pv-switch__body {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .pv-switch__face {
+    padding: 8px 7px;
+    border-radius: 4px;
+  }
+
+  .pv-switch__model,
+  .pv-switch__sysled-label,
+  .pv-switch__num,
+  .pv-switch__uplinks-label,
+  .pv-switch__kv-row--opt {
+    display: none;
+  }
+
+  .pv-switch__sys {
+    width: auto;
+  }
+
+  .pv-switch__sysleds {
+    gap: 4px;
+  }
+
+  .pv-switch__lamp {
+    width: 4px;
+    height: 2px;
+  }
+
+  .pv-switch__block {
+    row-gap: 2px;
+  }
+
+  .pv-switch__port {
+    gap: 3px;
+  }
+
+  .pv-switch__led {
+    height: 1.5px;
+  }
+
+  .pv-switch__jack {
+    background: linear-gradient(180deg, var(--pv-switch-hole), #080808);
+  }
+
+  .pv-switch__jack::before {
+    left: 25%;
+    right: 25%;
+    height: 3px;
+  }
+
+  .pv-switch__jack::after,
+  .pv-switch__cage::after {
+    inset: -2px;
+    border-radius: 2px;
+  }
+
+  .pv-switch__port--top .pv-switch__jack::after { top: -4px; }
+  .pv-switch__port--bot .pv-switch__jack::after { bottom: -4px; }
+
+  .pv-switch__sfps {
+    grid-template-columns: repeat(2, 14px);
+    column-gap: 3px;
+  }
+
+  .pv-switch__cage {
+    height: 7px;
+  }
+
+  .pv-switch__port--up .pv-switch__cage::before {
+    inset: 1px 2px;
+  }
+
+  .pv-switch__insp {
+    padding: 10px 10px 8px;
+    border-radius: 6px;
+  }
+
+  .pv-switch__polled {
+    top: 10px;
+    right: 10px;
+    height: 18px;
+    font-size: 9px;
+  }
+
+  .pv-switch__insp-head {
+    gap: 8px;
+    height: 18px;
+    padding-right: 92px;
+  }
+
+  .pv-switch__ifname {
+    font-size: 12px;
+  }
+
+  .pv-switch__state {
+    font-size: 10px;
+  }
+
+  .pv-switch__kv {
+    column-gap: 12px;
+    margin-top: 4px;
+  }
+
+  .pv-switch__kv-row {
+    grid-template-columns: 32px minmax(0, 1fr);
+    column-gap: 6px;
+  }
+
+  .pv-switch__kv-row:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+
+  .pv-switch__k {
+    letter-spacing: 0.06em;
+  }
+
+  .pv-switch__v {
+    font-size: 10px;
+  }
+
+  .pv-switch__legend {
+    gap: 9px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+
+  .pv-switch__legend-item {
+    gap: 4px;
+  }
+
+  .pv-switch__dot {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-switch .pv-switch__port .pv-switch__led,
+  .pv-switch .pv-switch__poll .pv-switch__poll-fill,
+  .pv-switch .pv-switch__insp .pv-switch__detail,
+  .pv-switch .pv-switch__log .pv-switch__log-list,
+  .pv-switch .pv-switch__log .pv-switch__log-line {
+    animation: none;
+  }
+
+  .pv-switch .pv-switch__poll .pv-switch__poll-fill {
+    transform: scaleX(0.4);
+  }
+
+  .pv-switch .pv-switch__jack::after,
+  .pv-switch .pv-switch__cage::after {
+    transition: none;
+  }
+}
