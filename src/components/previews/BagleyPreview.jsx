@@ -166,7 +166,9 @@ function Line({ line }) {
 
   // The whole reply is laid out up front and revealed word by word, so line
   // breaks never shift mid-stream. The caret hangs off a zero-width anchor
-  // after the newest word (outside its fade-in) and takes no space itself.
+  // beside the newest word (outside its fade-in) and takes no space itself;
+  // each word and its anchor share a no-wrap box, because an absolutely
+  // positioned child would otherwise add a line-break opportunity.
   if (line.kind === 'reply') {
     const streaming = line.phase !== 'done'
     const caret = lead => (
@@ -183,15 +185,17 @@ function Line({ line }) {
           bagley<span className="pv-bagley__chev">›</span>
         </span>
         <span className="pv-bagley__reply">
-          {streaming && !line.count && caret(true)}
           {ex.words.map((w, k) => (
             <Fragment key={k}>
               {k > 0 && ' '}
-              <span className={`pv-bagley__word${k < line.count ? '' : ' pv-bagley__word--hidden'}`}>
-                {w.em && <span className="pv-bagley__em">{w.em}</span>}
-                {w.tail}
+              <span className="pv-bagley__slot">
+                {streaming && !k && !line.count && caret(true)}
+                <span className={`pv-bagley__word${k < line.count ? '' : ' pv-bagley__word--hidden'}`}>
+                  {w.em && <span className="pv-bagley__em">{w.em}</span>}
+                  {w.tail}
+                </span>
+                {streaming && k === line.count - 1 && caret(false)}
               </span>
-              {streaming && k === line.count - 1 && caret(false)}
             </Fragment>
           ))}
         </span>

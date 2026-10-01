@@ -428,6 +428,10 @@
   color: var(--color-body);
 }
 
+.pv-bagley__slot {
+  white-space: nowrap;
+}
+
 .pv-bagley__word {
   transition: opacity 160ms ease-out;
 }
