@@ -115,8 +115,14 @@ function formatClock(date, timeZone) {
   }
 }
 
-function daysSince(iso) {
-  return Math.floor((Date.now() - Date.parse(iso)) / 86400000)
+// Whole months since the given start, shown as "2 yr 4 mo". The start month is
+// on record but not the day, so a day count would be false precision.
+function tenure(iso) {
+  const start = new Date(iso)
+  const now = new Date()
+  const months = (now.getFullYear() - start.getFullYear()) * 12 + now.getMonth() - start.getMonth()
+  const years = Math.floor(months / 12)
+  return years > 0 ? `${years} yr ${months % 12} mo` : `${months} mo`
 }
 
 /* ------------------------------------------------------------------ */
@@ -316,7 +322,7 @@ function Heartbeat() {
 function Hero() {
   const now = useClock(15000)
   const clock = formatClock(now, PROFILE.timeZone)
-  const uptime = daysSince(PROFILE.itSince)
+  const uptime = tenure(PROFILE.itSince)
 
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
@@ -385,8 +391,8 @@ function Hero() {
           <div className="hud__cell">
             <dt>Uptime</dt>
             <dd>
-              <span className="hud__value hud__value--mono">{uptime.toLocaleString('en-US')} days</span>
-              <span className="hud__sub">in enterprise IT, and counting</span>
+              <span className="hud__value hud__value--mono">{uptime}</span>
+              <span className="hud__sub">in enterprise IT, since June 2024</span>
             </dd>
           </div>
         </dl>
@@ -449,7 +455,10 @@ function FeaturedProject({ project, index }) {
       aria-labelledby={`project-${project.id}-title`}
     >
       <div className="work-item__visual" data-reveal="">
-        <div className="work-visual">{Preview && <Preview />}</div>
+        <div className="work-item__frame">
+          <div className="work-visual">{Preview && <Preview />}</div>
+        </div>
+        <p className="work-item__caption">Animated mockup · simulated data</p>
       </div>
       <div className="work-item__body" data-reveal="1">
         <p className="work-item__meta">
@@ -516,7 +525,7 @@ function WorkSection() {
           id="work-title"
           index="01"
           kicker="Selected work"
-          title="Software I've designed, built, and shipped."
+          title="Software I've designed and built."
           aside={`${FEATURED.length} featured · ${PROJECTS.length} more`}
         />
         <div className="work-list">
@@ -564,16 +573,14 @@ function ExperienceSection() {
           id="experience-title"
           index="02"
           kicker="Experience"
-          title="From the service desk to systems administration in a year."
+          title="From the service desk to systems administration."
         />
         <div className="xp">
           <aside className="xp__aside" data-reveal="">
             <div className="employer">
               <p className="employer__label">Employer</p>
               <p className="employer__name">{EMPLOYER.name}</p>
-              <p className="employer__meta">
-                {EMPLOYER.program} · {EMPLOYER.location}
-              </p>
+              <p className="employer__meta">{EMPLOYER.program}</p>
               <p className="employer__blurb">{EMPLOYER.blurb}</p>
               <ol className="ladder" aria-label="Role progression">
                 {steps.map((job, i) => (
@@ -818,8 +825,8 @@ function RecognitionSection() {
           id="recognition-title"
           index="05"
           kicker="Recognition"
-          title="Competition-tested, independently verified."
-          aside="Every result links to its source"
+          title="Competing since 2022."
+          aside="Verification links where available"
         />
 
         <div className="honors">
@@ -1042,7 +1049,7 @@ function ContactSection({ onCopyEmail, copied }) {
           <li>
             <a href={PROFILE.linkedin} {...EXTERNAL}>
               <LinkedInMark size={16} />
-              in/{PROFILE.linkedinLabel}
+              LinkedIn
             </a>
           </li>
         </ul>
@@ -1062,9 +1069,7 @@ function Footer() {
           <span className="pulse-dot" aria-hidden="true" />
           All systems operational
         </p>
-        <p className="site-footer__built">
-          Designed and built by {PROFILE.name}. React, hand-written canvas, zero UI libraries.
-        </p>
+        <p className="site-footer__built">Built with React and hand-written canvas. No UI libraries.</p>
         <p className="site-footer__meta">
           <span>
             build {__BUILD_SHA__} · {__BUILD_DATE__}
@@ -1208,7 +1213,7 @@ function App() {
         id: 'linkedin',
         group: 'Links',
         label: 'LinkedIn',
-        hint: PROFILE.linkedinLabel,
+        hint: 'Profile',
         keywords: 'profile',
         icon: 'linkedin',
         run: () => openExternal(PROFILE.linkedin),

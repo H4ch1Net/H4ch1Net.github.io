@@ -1051,8 +1051,12 @@ main:focus {
   position: relative;
 }
 
+.work-item__frame {
+  position: relative;
+}
+
 /* Viewfinder corner ticks around each preview. */
-.work-item__visual::before {
+.work-item__frame::before {
   content: '';
   position: absolute;
   inset: -12px;
@@ -1072,7 +1076,7 @@ main:focus {
   transition: inset 0.6s var(--ease-out), opacity 0.4s ease;
 }
 
-.work-item:hover .work-item__visual::before {
+.work-item:hover .work-item__frame::before {
   inset: -16px;
   opacity: 1;
 }
@@ -1102,6 +1106,26 @@ main:focus {
     0 0 0 1px rgba(255, 255, 255, 0.02) inset,
     0 60px 110px -40px rgba(0, 0, 0, 0.95),
     0 40px 140px -50px rgba(0, 227, 140, 0.32);
+}
+
+.work-item__caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-subtle);
+}
+
+.work-item__caption::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--color-subtle);
+  transform: rotate(45deg);
 }
 
 .work-item__meta {
@@ -2865,7 +2889,7 @@ main:focus {
   }
 
 
-  .work-item__visual::before {
+  .work-item__frame::before {
     display: none;
   }
 
