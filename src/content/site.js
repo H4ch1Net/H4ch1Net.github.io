@@ -8,8 +8,7 @@ export const PROFILE = {
   email: 'h4ch1net@gmail.com',
   github: 'https://github.com/H4ch1Net',
   linkedin: 'https://linkedin.com/in/mauro-hernandez-rico',
-  linkedinLabel: 'mauro-hernandez-rico',
-  region: 'Coachella Valley, CA',
+  region: 'Southern California',
   timeZone: 'America/Los_Angeles',
   source: 'https://github.com/H4ch1Net/H4ch1Net.github.io',
   // Start of the Eisenhower Health apprenticeship; drives the "uptime" readout.
@@ -29,20 +28,24 @@ export const NAV = [
 export const HERO = {
   eyebrow: 'Software engineering · Security · Infrastructure',
   eyebrowShort: 'Software · Security · Infrastructure',
-  titleLines: ['I build software', 'for systems that'],
-  titleAccent: 'can\u2019t go down.',
-  lede: "I'm Mauro, a computer science student and systems administrator. I ship Python tooling into production at a 450-bed hospital, build open-source detection and network-visibility tools, and compete nationally in cybersecurity.",
+  titleLines: ['I write software', 'for the networks'],
+  titleAccent: 'I work on.',
+  lede: "I'm Mauro, a computer science student and IT apprentice working as a systems administrator at a 450-bed hospital, where I build Python network automation that runs in production. I also build open-source security and network tools, and I compete nationally in CTFs.",
 }
 
 export const HUD = [
-  { label: 'Now', value: 'Systems Administrator', sub: 'Eisenhower Health' },
-  { label: 'Studying', value: 'B.S. Computer Science', sub: 'CSUSB, class of 2029' },
+  { label: 'Now', value: 'Systems Administrator', sub: 'IT apprenticeship, Eisenhower Health' },
+  { label: 'Studying', value: 'B.S. Computer Science', sub: 'CSUSB, expected 2029' },
 ]
 
 export const METRICS = [
   { value: 450, suffix: '-bed', label: 'hospital infrastructure my Python automation supports' },
-  { value: 3, label: 'production tools shipped in my first 60 days as a sysadmin' },
-  { value: 1, suffix: 'st', label: 'place, college division, IE Mayors Cyber Cup 2025 (3rd of 143 overall)' },
+  { value: 3, label: 'production tools shipped in the first 60 days of my sysadmin rotation' },
+  {
+    value: 1,
+    suffix: 'st',
+    label: 'place in the college division, IE Mayors Cyber Cup 2025 (team), 3rd of 143 teams overall',
+  },
   { value: 3, prefix: 'Top ', suffix: '%', label: 'National Cyber League, Diamond tier, Fall 2024 team game' },
 ]
 
@@ -178,11 +181,11 @@ export const PROJECTS = [
   },
   {
     id: 'ks-led',
-    name: 'KS LED Controller',
-    kind: 'Bluetooth reverse engineering',
+    name: 'KS Light',
+    kind: 'Bluetooth light control',
     summary:
-      'Reverse-engineered the Bluetooth protocol of discontinued KS LED hardware, then wrote an open-source Python controller to replace the broken vendor app.',
-    stack: ['Python', 'Bluetooth LE', 'Reverse engineering'],
+      'Local, cloud-free control for KS Bluetooth lights over their reverse-engineered BLE protocol: an Android app with presets, scenes, effects, and widgets, plus an optional Python hub for Home Assistant and Stream Deck. MIT licensed.',
+    stack: ['Kotlin', 'Python', 'Bluetooth LE', 'MQTT'],
     href: 'https://github.com/H4ch1Net/ks-led-controller',
   },
   {
@@ -231,9 +234,8 @@ export const EXPERIENCE = [
 export const EMPLOYER = {
   name: 'Eisenhower Health',
   program: 'IT Apprenticeship',
-  location: 'Rancho Mirage, CA',
   blurb:
-    '450-bed regional health system. HIPAA-regulated, segmented networks, clinical systems that run around the clock.',
+    '450-bed regional health system. Apprenticeship rotations from the service desk through desktop support to systems administration, in a HIPAA-regulated environment.',
 }
 
 export const LEADERSHIP = {
@@ -247,9 +249,9 @@ export const LEADERSHIP = {
 }
 
 export const ABOUT = {
-  title: 'Studying full time. Shipping full time.',
+  title: 'Studying full time. Working full time.',
   bio: [
-    "I'm Mauro, also known online as H4ch1Net. I started on a hospital service desk in 2024 and have worked my way into systems administration, automating whatever the job let me automate along the way: first a PowerShell deployment framework, then Python network automation and inventory tooling that's still in production.",
+    "I'm Mauro, also known online as H4ch1Net. I started on a hospital service desk in 2024 and moved through desktop support into systems administration as part of an IT apprenticeship, automating what I could along the way: first a PowerShell deployment framework, then the Python network automation and inventory tools I build and maintain now.",
     "I'm dual-enrolled full time at CSUSB and College of the Desert while working full time in enterprise IT. Outside of that, I compete in CTFs, run my college's cybersecurity club, and build tools for detection, network visibility, and automation. Software engineering is where I'm headed.",
   ],
   education: [
@@ -278,7 +280,7 @@ export const STACK = [
   {
     id: 'swe',
     title: 'Software engineering',
-    blurb: 'Backend services, CLIs, and developer tooling, mostly in Python and increasingly full stack.',
+    blurb: 'CLIs, backend services, and automation, mostly in Python, plus some React and JavaScript on the front end.',
     groups: [
       { label: 'Languages', items: ['Python', 'JavaScript', 'C++', 'C#', 'SQL', 'PowerShell', 'Bash', 'MicroPython'] },
       {
@@ -294,7 +296,8 @@ export const STACK = [
   {
     id: 'sec',
     title: 'Security',
-    blurb: 'Offense-informed defense: competition experience feeding detection engineering and tooling.',
+    blurb:
+      'Competing in CTFs since 2022, and building security tools: a CTF toolkit, a detection engine, and an OSINT console.',
     groups: [
       {
         label: 'Tools',
@@ -310,7 +313,7 @@ export const STACK = [
   {
     id: 'infra',
     title: 'Infrastructure & IT',
-    blurb: 'Enterprise Windows and Cisco networks in a HIPAA-regulated, around-the-clock environment.',
+    blurb: 'Enterprise Windows and Cisco networking in a HIPAA-regulated healthcare environment.',
     groups: [
       {
         label: 'Systems',
@@ -440,5 +443,5 @@ export const CERTS_IN_PROGRESS = ['CompTIA Security+', 'Cisco CCNA']
 
 export const CONTACT = {
   title: ['Let’s build something', 'that stays up.'],
-  lede: "I'm open to software engineering internships and roles, especially where reliability and security matter. Email is the fastest way to reach me.",
+  lede: "I'm looking for software engineering opportunities, especially where reliability and security matter. Email is the fastest way to reach me.",
 }

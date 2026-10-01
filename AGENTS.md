@@ -81,7 +81,7 @@ labels, monitoring-style panels. The site is positioned as a software engineerin
 portfolio, with IT and security as the differentiators.
 
 The motion set is purposeful and small:
-- Hero: `NetworkSphere` (drag to rotate) and an ECG trace under "can't go down."
+- Hero: `NetworkSphere` (drag to rotate) and an ECG trace under the accent line.
 - Project previews: each featured project has a live mock panel showing what it does.
 - Sections reveal on scroll (`data-reveal`), the experience timeline fills as you scroll,
   metrics count up, and the contact section has a slow radar sweep.
@@ -97,7 +97,8 @@ when offscreen (`useInView`) and respect `prefers-reduced-motion` (render a stat
 - The résumé linked from this site is a portfolio-safe version with reduced PII
   (name, email, LinkedIn, GitHub only — no phone number, no home address). The
   full résumé used for direct applications is never committed here.
-- The site shows location only as "Coachella Valley, CA" (region level).
+- The site shows location only as "Southern California" (region level). The LinkedIn
+  link is labeled "LinkedIn"; don't print the full-name URL slug as visible text.
 - job-hunter's project card intentionally has no GitHub link ("Private repo" label)
   until its history is verified clean of personal config.
 
@@ -137,6 +138,9 @@ no value over the external verify links.
 - No inline `style={{}}` in JSX. Dynamic values go through CSS custom properties set from refs.
 - No !important unless absolutely necessary (the reduced-motion override is the one exception)
 - Copy style: no em dashes in visible text.
+- Accuracy: every claim must match the résumé or a public repo. No embellishment, no
+  false precision, and no authorship claims about the site itself. Preview panels show
+  simulated data and stay captioned "Animated mockup · simulated data".
 
 ## How to Verify Changes
 ```bash

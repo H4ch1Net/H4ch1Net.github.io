@@ -4,9 +4,10 @@
 [![Built with React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)](https://react.dev)
 [![Deployed on GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-222?style=flat-square&logo=github)](https://pages.github.com)
 
-I'm Mauro (H4ch1Net): a CS student at CSUSB, dual-enrolled at College of the Desert, a
-systems administrator in the Coachella Valley, and a cybersecurity competitor working
-toward software engineering. This is my personal portfolio site.
+I'm Mauro (H4ch1Net): a CS student at CSUSB, dual-enrolled at College of the Desert, an
+IT apprentice working as a systems administrator in Southern California, and a
+cybersecurity competitor working toward software engineering. This is my personal
+portfolio site.
 
 **[h4ch1.net](https://h4ch1.net)** &nbsp;|&nbsp; **[GitHub](https://github.com/H4ch1Net)** &nbsp;|&nbsp; **[h4ch1net@gmail.com](mailto:h4ch1net@gmail.com)**
 
@@ -24,15 +25,16 @@ toward software engineering. This is my personal portfolio site.
 
 - **Network sphere hero.** A draggable 3D mesh of network nodes with packets walking the
   links and a periodic "health check" ring sweeping pole to pole. Hand-rolled projection.
-- **Live project previews.** Each featured project has an animated panel that shows what
-  it does: sentryd's detection chart and alert feed, switch-vis's front panel with
-  hoverable ports, Argus's dotted-earth globe with feed arcs, and Bagley's agent pipeline.
+- **Project previews.** Each featured project has an animated mockup panel (simulated
+  data, clearly labeled) that shows what it does: sentryd's detection chart and alert
+  feed, switch-vis's front panel with hoverable ports, Argus's dotted-earth globe with
+  feed arcs, and Bagley's agent pipeline.
 - **Command menu.** Press `Ctrl+K` / `Cmd+K` (or `/`) to jump to sections, open projects,
   or copy my email.
-- **NOC-style framing.** Status dots, a live local clock, an uptime counter, scroll progress,
-  and a timeline that fills as you scroll.
-- **Verified recognition.** NCL results, competitions, and certifications all link to their
-  official verification pages.
+- **NOC-style framing.** Status dots, a live local clock, time in enterprise IT, scroll
+  progress, and a timeline that fills as you scroll.
+- **Verifiable recognition.** NCL results and certifications link to their official
+  verification pages, as do competitions wherever a verification page exists.
 - **Accessible and fast.** Semantic landmarks, keyboard support, `prefers-reduced-motion`
   support everywhere, and every animation pauses when offscreen.
 - **Markdown-driven Logs.** Drop a `.md` file in `src/content/logs/`, push, and it publishes.
