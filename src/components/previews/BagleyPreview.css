@@ -1,0 +1,620 @@
+/* Bagley preview: pipeline strip, scripted ops transcript, session footer.
+   Motion is transform/opacity only; layout itself never transitions. */
+
+.pv-bagley {
+  --pv-bagley-pad: 16px;
+  --pv-bagley-tag: 74px;
+  --pv-bagley-col-gap: 10px;
+  --pv-bagley-fade: 28px;
+  --pv-bagley-glide: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.pv-bagley__sep {
+  color: var(--color-dim);
+}
+
+.pv-bagley__body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pipeline strip */
+
+.pv-bagley__pipe {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 14px var(--pv-bagley-pad) 0;
+}
+
+.pv-bagley__node {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 11px 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.pv-bagley__node::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border: 1px solid var(--color-accent);
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(0, 227, 140, 0.08), rgba(0, 227, 140, 0.02));
+  box-shadow: 0 0 0 3px rgba(0, 227, 140, 0.06), 0 0 18px rgba(0, 227, 140, 0.16);
+  opacity: 0;
+  transition: opacity 380ms var(--ease-out);
+}
+
+.pv-bagley__node-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  line-height: 14px;
+  color: var(--color-text);
+  opacity: 0.68;
+  transition: opacity 380ms var(--ease-out);
+}
+
+.pv-bagley__node-dot {
+  position: relative;
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--color-dim);
+}
+
+.pv-bagley__node-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px rgba(0, 227, 140, 0.7);
+  opacity: 0;
+  transition: opacity 380ms var(--ease-out);
+}
+
+/* Muted at rest (≈ --color-dim); brightens with its node via opacity alone. */
+.pv-bagley__node-sub {
+  padding-left: 11px;
+  font-size: 9.5px;
+  line-height: 12px;
+  color: var(--color-muted);
+  opacity: 0.66;
+  white-space: nowrap;
+  transition: opacity 380ms var(--ease-out);
+}
+
+.pv-bagley__node--past .pv-bagley__node-dot::after {
+  opacity: 0.4;
+}
+
+/* The incoming spark takes ~0.5s to cross a link, so a node lights on arrival. */
+.pv-bagley__node--active::after,
+.pv-bagley__node--active .pv-bagley__node-name,
+.pv-bagley__node--active .pv-bagley__node-sub,
+.pv-bagley__node--active .pv-bagley__node-dot::after {
+  opacity: 1;
+  transition-delay: 300ms;
+}
+
+.pv-bagley__link {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 10px;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.pv-bagley__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: opacity 420ms var(--ease-out), transform 0s linear 420ms;
+}
+
+.pv-bagley__link--done::after {
+  opacity: 0.4;
+  transform: scaleX(1);
+  transition: transform 520ms var(--pv-bagley-glide), opacity 0s;
+}
+
+.pv-bagley__spark {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.pv-bagley__spark::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2.5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-text);
+  box-shadow: 0 0 6px 1px rgba(0, 227, 140, 0.9), 0 0 14px rgba(0, 227, 140, 0.45);
+}
+
+.pv-bagley__link--done .pv-bagley__spark {
+  animation: pv-bagley-spark 520ms var(--pv-bagley-glide) both;
+}
+
+/* Transcript */
+
+.pv-bagley__log {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  --pv-bagley-mask: linear-gradient(
+    180deg,
+    transparent 0,
+    rgba(0, 0, 0, 0.12) calc(var(--pv-bagley-fade) * 0.3),
+    rgba(0, 0, 0, 0.5) calc(var(--pv-bagley-fade) * 0.6),
+    #000 var(--pv-bagley-fade)
+  );
+  -webkit-mask-image: var(--pv-bagley-mask);
+  mask-image: var(--pv-bagley-mask);
+}
+
+/* Top-anchored until it overflows, then bottom-anchored: the newest line is
+   always whole and older ones slide under the mask. */
+.pv-bagley__list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: var(--pv-bagley-fade) var(--pv-bagley-pad) 12px;
+}
+
+/* `backwards` so a finished entrance stops owning opacity and the dim below
+   can transition it. */
+.pv-bagley__row {
+  display: grid;
+  grid-template-columns: var(--pv-bagley-tag) minmax(0, 1fr);
+  column-gap: var(--pv-bagley-col-gap);
+  align-items: baseline;
+  animation: pv-bagley-in 460ms var(--ease-out) backwards;
+  transition: opacity 700ms var(--ease-out);
+}
+
+/* The previous pass of the conversation recedes as the next one begins. */
+.pv-bagley__row--old {
+  opacity: 0.45;
+}
+
+.pv-bagley__row--ask:not(:first-child) {
+  margin-top: 9px;
+}
+
+.pv-bagley__tag {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 19px;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.pv-bagley__chev {
+  margin-left: auto;
+  color: var(--color-dim);
+}
+
+.pv-bagley__mark {
+  align-self: center;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 11px;
+  height: 11px;
+}
+
+.pv-bagley__glyph {
+  width: 11px;
+  height: 11px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pv-bagley__bot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px rgba(0, 227, 140, 0.6);
+}
+
+/* User ask: the transcript and the listening waveform share one grid cell,
+   so the row's height never changes when one hands off to the other. */
+.pv-bagley__ask {
+  display: grid;
+  min-width: 0;
+}
+
+.pv-bagley__said,
+.pv-bagley__wave {
+  grid-area: 1 / 1;
+}
+
+.pv-bagley__said,
+.pv-bagley__reply {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 19px;
+  text-wrap: pretty;
+}
+
+.pv-bagley__said {
+  color: var(--color-text);
+  transition: opacity 420ms var(--ease-out) 120ms, transform 420ms var(--ease-out) 120ms;
+}
+
+.pv-bagley__ask--listen .pv-bagley__said {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+/* Typed asks keep the untyped remainder in layout, invisibly. */
+.pv-bagley__typed {
+  position: relative;
+}
+
+.pv-bagley__ghost {
+  opacity: 0;
+}
+
+.pv-bagley__ibeam {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 1.5px;
+  height: 14px;
+  margin: -7px 0 0 1px;
+  background: var(--color-text);
+}
+
+.pv-bagley__wave {
+  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 19px;
+  transition: opacity 280ms var(--ease-out);
+}
+
+.pv-bagley__bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  transform-origin: 0 50%;
+  transition: transform 320ms var(--ease-out);
+}
+
+.pv-bagley__bar {
+  flex: none;
+  width: 2px;
+  height: 16px;
+  border-radius: 1px;
+  background: var(--color-accent);
+  opacity: 0.65;
+  animation: pv-bagley-wave 0.9s ease-in-out infinite alternate;
+}
+
+.pv-bagley__bar--l1 { height: 4px; }
+.pv-bagley__bar--l2 { height: 7px; }
+.pv-bagley__bar--l3 { height: 9px; }
+.pv-bagley__bar--l4 { height: 12px; }
+.pv-bagley__bar--l5 { height: 15px; }
+.pv-bagley__bar--l6 { height: 18px; }
+
+.pv-bagley__bar:nth-child(2n) { animation-duration: 0.7s; animation-delay: -0.35s; }
+.pv-bagley__bar:nth-child(3n) { animation-duration: 1.15s; animation-delay: -0.6s; }
+.pv-bagley__bar:nth-child(5n + 1) { animation-duration: 0.56s; animation-delay: -0.2s; }
+.pv-bagley__bar:nth-child(7n + 2) { animation-duration: 0.84s; animation-delay: -0.75s; }
+
+.pv-bagley__listening {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.pv-bagley__rec {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: pv-bagley-breathe 1.4s ease-in-out infinite;
+}
+
+.pv-bagley__ask--final .pv-bagley__wave {
+  opacity: 0;
+}
+
+.pv-bagley__ask--final .pv-bagley__bars {
+  transform: scale(0.85, 0.1);
+}
+
+.pv-bagley__ask--final .pv-bagley__bar,
+.pv-bagley__ask--final .pv-bagley__rec {
+  animation-play-state: paused;
+}
+
+/* Route lines sit under the content column, like a sub-step of the ask. */
+.pv-bagley__route {
+  grid-column: 2;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.pv-bagley__arrow {
+  color: var(--color-accent);
+}
+
+.pv-bagley__verb {
+  color: var(--color-dim);
+}
+
+.pv-bagley__cmd {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pv-bagley__status {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding-left: 12px;
+  font-size: 10px;
+  color: var(--color-dim);
+  animation: pv-bagley-fade 300ms var(--ease-out) both;
+}
+
+.pv-bagley__status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.pv-bagley__status--run .pv-bagley__status-dot {
+  animation: pv-bagley-breathe 0.9s ease-in-out infinite;
+}
+
+.pv-bagley__status--done .pv-bagley__status-dot {
+  opacity: 0.55;
+}
+
+.pv-bagley__reply {
+  color: var(--color-body);
+}
+
+.pv-bagley__word {
+  transition: opacity 160ms ease-out;
+}
+
+.pv-bagley__word--hidden {
+  opacity: 0;
+}
+
+.pv-bagley__em {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Empty inline box: no width, no break opportunity, just a position. */
+.pv-bagley__anchor {
+  position: relative;
+}
+
+/* Each new word remounts the caret, restarting its blink: solid while text
+   streams, blinking while it waits. */
+.pv-bagley__caret {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 7px;
+  height: 13px;
+  margin-top: -6.5px;
+  border-radius: 1px;
+  background: var(--color-accent);
+  opacity: 0.85;
+  animation: pv-bagley-blink 1s ease-in-out infinite;
+}
+
+.pv-bagley__anchor--lead .pv-bagley__caret {
+  left: 0;
+}
+
+/* Footer */
+
+.pv-bagley__foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 30px;
+  padding: 0 var(--pv-bagley-pad);
+  border-top: 1px solid var(--color-border-soft);
+  font-size: 10px;
+  color: var(--color-dim);
+  white-space: nowrap;
+}
+
+.pv-bagley__stat--push {
+  margin-left: auto;
+}
+
+.pv-bagley__val {
+  margin-left: 4px;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-bagley--paused *,
+.pv-bagley--paused *::before,
+.pv-bagley--paused *::after {
+  animation-play-state: paused;
+}
+
+@keyframes pv-bagley-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes pv-bagley-fade {
+  from { opacity: 0; }
+}
+
+@keyframes pv-bagley-wave {
+  0% { transform: scaleY(0.3); }
+  45% { transform: scaleY(1); }
+  70% { transform: scaleY(0.55); }
+  100% { transform: scaleY(0.9); }
+}
+
+@keyframes pv-bagley-spark {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pv-bagley-breathe {
+  50% { opacity: 0.3; }
+}
+
+@keyframes pv-bagley-blink {
+  40% { opacity: 0.85; }
+  60%,
+  90% { opacity: 0.1; }
+}
+
+/* Below ~540px the four captioned nodes no longer fit side by side. */
+@container pv (max-width: 540px) {
+  .pv-bagley__node-sub {
+    display: none;
+  }
+}
+
+@container pv (max-width: 440px) {
+  .pv-bagley {
+    --pv-bagley-pad: 10px;
+    --pv-bagley-tag: 64px;
+    --pv-bagley-col-gap: 8px;
+    --pv-bagley-fade: 20px;
+  }
+
+  .pv-bagley__pipe {
+    padding-top: 10px;
+  }
+
+  .pv-bagley__node {
+    padding: 5px 8px;
+    border-radius: 6px;
+  }
+
+  .pv-bagley__node-name {
+    gap: 5px;
+    font-size: 9.5px;
+    line-height: 13px;
+  }
+
+  .pv-bagley__status,
+  .pv-bagley__foot {
+    display: none;
+  }
+
+  .pv-bagley__list {
+    gap: 5px;
+    padding-bottom: 8px;
+  }
+
+  .pv-bagley__row--ask:not(:first-child) {
+    margin-top: 6px;
+  }
+
+  .pv-bagley__tag {
+    gap: 5px;
+    font-size: 10px;
+    line-height: 17px;
+  }
+
+  .pv-bagley__said,
+  .pv-bagley__reply {
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  .pv-bagley__caret {
+    height: 12px;
+    margin-top: -6px;
+  }
+
+  .pv-bagley__wave {
+    height: 17px;
+  }
+
+  .pv-bagley__route {
+    font-size: 10px;
+    line-height: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-bagley *,
+  .pv-bagley *::before,
+  .pv-bagley *::after {
+    animation: none;
+    transition: none;
+  }
+}
