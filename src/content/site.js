@@ -30,7 +30,7 @@ export const HERO = {
   eyebrowShort: 'Software · Security · Infrastructure',
   titleLines: ['I write software', 'for the networks'],
   titleAccent: 'I work on.',
-  lede: "I'm Mauro, a computer science student and IT apprentice working as a systems administrator at a hospital, where I build Python network automation that runs in production. I also build open-source security and network tools, and I compete nationally in CTFs.",
+  lede: "I'm Mauro, a computer science student at CSUSB working full time in hospital IT, currently in the systems administration rotation of an IT apprenticeship. On my own time I build open-source security and network tools.",
 }
 
 export const HUD = [
@@ -39,14 +39,14 @@ export const HUD = [
 ]
 
 export const METRICS = [
-  { value: 450, suffix: '-bed', label: 'hospital infrastructure my Python automation supports' },
-  { value: 3, label: 'production tools shipped in the first 60 days of my sysadmin rotation' },
+  { value: 16, label: 'computers imaged at once with my PowerShell tool, up from at most 4 in 8 hours' },
   {
     value: 1,
     suffix: 'st',
     label: 'place in the college division, IE Mayors Cyber Cup 2025 (team), 3rd of 143 teams overall',
   },
   { value: 3, prefix: 'Top ', suffix: '%', label: 'National Cyber League, Diamond tier, Fall 2024 team game' },
+  { value: 4, prefix: '1 of ', label: 'Team MVPs chosen by mentors from 44 students, NASA NCAS 2026' },
 ]
 
 export const MARQUEE = [
@@ -78,6 +78,7 @@ export const MARQUEE = [
 export const FEATURED = [
   {
     id: 'sentryd',
+    aiAssisted: true,
     name: 'sentryd',
     kind: 'Network anomaly detection platform',
     year: '2026',
@@ -93,6 +94,7 @@ export const FEATURED = [
   },
   {
     id: 'switch-vis',
+    aiAssisted: true,
     name: 'switch-vis',
     kind: 'Live switch front-panel visualizer',
     year: '2026',
@@ -108,6 +110,7 @@ export const FEATURED = [
   },
   {
     id: 'argus',
+    aiAssisted: true,
     name: 'Argus',
     kind: 'OSINT geospatial intelligence console',
     year: '2026',
@@ -123,6 +126,7 @@ export const FEATURED = [
   },
   {
     id: 'bagley',
+    aiAssisted: true,
     name: 'Bagley',
     kind: 'Agentic AI operations assistant',
     year: '2024 - present',
@@ -157,7 +161,7 @@ export const PROJECTS = [
     summary:
       'Menu-driven CLI over a JSON-backed datastore for network equipment inventory: lookup, add, modify, and delete across switches, purchase orders, serial numbers, and asset attributes.',
     stack: ['Python', 'Standard library only', 'JSON'],
-    status: 'In production · internal',
+    status: 'Co-built with another apprentice',
   },
   {
     id: 'rover',
@@ -165,7 +169,8 @@ export const PROJECTS = [
     kind: 'NASA NCAS 2026',
     year: 'Jan 2026',
     summary:
-      'Most autonomous rover of the 4 competing teams: coordinate navigation, gyroscopic drift correction, ultrasonic obstacle avoidance, and mineral identification by color sensor.',
+      'Outperformed the other teams in autonomy: gyro heading correction, gyro turns, obstacle-zone detour, tape edge detection, and path retrace.',
+    credit: 'I wrote the code; a teammate handled design and math. Docs and simulator were AI-assisted.',
     stack: ['Python', 'MicroPython', 'LEGO EV3', 'ev3dev'],
     href: 'https://github.com/H4ch1Net/NCAS26-RedGiant-Jarvis',
   },
@@ -205,17 +210,16 @@ export const EXPERIENCE = [
     period: 'Jun 2025 - Present',
     current: true,
     points: [
-      'Build and maintain Python network automation and asset management tooling for the enterprise infrastructure of a hospital. Shipped three production tools in the first 60 days.',
-      'Built NERD, a menu-driven CLI over a JSON-backed datastore for network equipment inventory: lookup, add, modify, and delete across switches, purchase orders, serial numbers, and asset attributes.',
-      'Standardized all tooling on the Python standard library with zero third-party dependencies, removing deployment friction across segmented hospital networks while maintaining HIPAA compliance.',
+      'Assisted with Cisco firmware and configuration deployment for switches and access points in a new building.',
+      'Co-built NERD with another apprentice: a menu-driven Python CLI over a JSON-backed datastore for network equipment inventory, covering switches, purchase orders, serial numbers, and asset attributes.',
     ],
-    tags: ['Python', 'Network automation', 'Cisco IOS', 'HIPAA'],
+    tags: ['Cisco IOS', 'Switches & APs', 'Python', 'HIPAA'],
   },
   {
     role: 'IT Desktop Technician',
     period: 'Sep 2024 - Jun 2025',
     points: [
-      'Engineered a menu-driven PowerShell deployment framework covering Active Directory group assignment, role-based software installs, and Windows and driver updates. It replaced an 8-hour manual imaging cycle for four workstations with parallel, unattended deployment and automated post-build verification.',
+      'Built an interactive PowerShell tool for workstation deployment covering Active Directory group assignment, role-based software installs, and Windows and driver updates. It took imaging from at most 4 computers in 8 hours to up to 16 at once in 3 to 4 hours.',
       'Administered Active Directory computer objects and security group membership to enforce Group Policy, and resolved 10+ tickets a day, on site and over remote desktop, across clinical and administrative environments.',
       'Ran Windows 11 upgrades and device migrations with certified data sanitization under healthcare data-handling policy.',
     ],
@@ -251,7 +255,7 @@ export const LEADERSHIP = {
 export const ABOUT = {
   title: 'Studying full time. Working full time.',
   bio: [
-    "I'm Mauro, also known online as H4ch1Net. I started on a hospital service desk in 2024 and moved through desktop support into systems administration as part of an IT apprenticeship, automating what I could along the way: first a PowerShell deployment framework, then the Python network automation and inventory tools I build and maintain now.",
+    "I'm Mauro, also known online as H4ch1Net. I started on a hospital service desk in 2024 and moved through desktop support into systems administration as part of an IT apprenticeship, automating what I could along the way: I wrote an interactive PowerShell deployment tool and co-built a Python equipment tracker.",
     "I'm dual-enrolled full time at CSUSB and College of the Desert while working full time in enterprise IT. Outside of that, I compete in CTFs, run my college's cybersecurity club, and build tools for detection, network visibility, and automation. Software engineering is where I'm headed.",
   ],
   education: [
@@ -349,7 +353,7 @@ export const HONORS = [
     mark: 'MVP',
     title: 'NASA NCAS 2026',
     meta: 'National Community College Aerospace Scholars',
-    detail: 'Team MVP, selected from the full cohort for technical leadership and performance.',
+    detail: 'Team MVP, 1 of 4 chosen by mentors from 44 students.',
   },
   {
     mark: 'Top 3%',

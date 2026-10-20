@@ -1151,6 +1151,19 @@ main:focus {
   color: var(--color-border);
 }
 
+.work-item__meta > .work-item__tag {
+  padding: 3px 7px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--color-subtle);
+}
+
+.work-item__meta > .work-item__tag::before {
+  content: none;
+}
+
 .work-item__title {
   margin-bottom: 18px;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -1302,6 +1315,15 @@ main:focus {
   color: var(--color-body);
 }
 
+.project-card__credit {
+  margin: -8px 0 20px;
+  padding-left: 12px;
+  border-left: 1px solid var(--color-border);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
 .project-card .chips {
   margin-bottom: 22px;
 }
@@ -1350,12 +1372,6 @@ main:focus {
   border: 1px solid var(--color-subtle);
 }
 
-.project-card__status--live::before {
-  border: 0;
-  border-radius: 50%;
-  background: var(--color-accent);
-  box-shadow: 0 0 8px rgba(0, 227, 140, 0.7);
-}
 
 .more-work__all {
   display: flex;

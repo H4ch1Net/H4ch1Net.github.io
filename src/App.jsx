@@ -465,6 +465,7 @@ function FeaturedProject({ project, index }) {
           <span className="work-item__index">{String(index + 1).padStart(2, '0')}</span>
           <span>{project.kind}</span>
           <span className="work-item__year">{project.year}</span>
+          {project.aiAssisted && <span className="work-item__tag">AI-assisted</span>}
         </p>
         <h3 id={`project-${project.id}-title`} className="work-item__title">
           {project.name}
@@ -498,6 +499,7 @@ function ProjectCard({ project, index }) {
       <h4 className="project-card__name">{project.name}</h4>
       <p className="project-card__kind">{project.kind}</p>
       <p className="project-card__summary">{project.summary}</p>
+      {project.credit && <p className="project-card__credit">{project.credit}</p>}
       <Chips items={project.stack} small />
       <div className="project-card__foot">
         {project.href ? (
@@ -506,11 +508,7 @@ function ProjectCard({ project, index }) {
             <ArrowUpRight size={14} />
           </a>
         ) : (
-          <span
-            className={`project-card__status${/production/i.test(project.status) ? ' project-card__status--live' : ''}`}
-          >
-            {project.status}
-          </span>
+          <span className="project-card__status">{project.status}</span>
         )}
       </div>
     </SpotlightCard>
