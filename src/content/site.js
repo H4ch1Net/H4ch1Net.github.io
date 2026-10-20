@@ -30,7 +30,7 @@ export const HERO = {
   eyebrowShort: 'Software · Security · Infrastructure',
   titleLines: ['I write software', 'for the networks'],
   titleAccent: 'I work on.',
-  lede: "I'm Mauro, a computer science student at CSUSB working full time in hospital IT, currently in the systems administration rotation of an IT apprenticeship. On my own time I build open-source security and network tools.",
+  lede: "I'm Mauro, a computer science student at CSUSB. I work in IT at Eisenhower Health, currently in the systems administration rotation of an IT apprenticeship. On my own time I build open-source security and network tools.",
 }
 
 export const HUD = [
@@ -253,10 +253,10 @@ export const LEADERSHIP = {
 }
 
 export const ABOUT = {
-  title: 'Studying full time. Working full time.',
+  title: 'Studying computer science. Working in IT.',
   bio: [
     "I'm Mauro, also known online as H4ch1Net. I started on a hospital service desk in 2024 and moved through desktop support into systems administration as part of an IT apprenticeship, automating what I could along the way: I wrote an interactive PowerShell deployment tool and co-built a Python equipment tracker.",
-    "I'm dual-enrolled full time at CSUSB and College of the Desert while working full time in enterprise IT. Outside of that, I compete in CTFs, run my college's cybersecurity club, and build tools for detection, network visibility, and automation. Software engineering is where I'm headed.",
+    "I'm dual-enrolled at CSUSB and College of the Desert, and I work in IT at Eisenhower Health. Outside of that, I compete in CTFs, run my college's cybersecurity club, and build tools for detection, network visibility, and automation. Software engineering is where I'm headed.",
   ],
   education: [
     {
@@ -336,7 +336,7 @@ export const STACK = [
       },
       {
         label: 'Operations',
-        items: ['JIRA / ITSM', 'Patch management', 'Imaging & deployment', 'HIPAA'],
+        items: ['JIRA / ITSM', 'Patch management', 'Data sanitization', 'Imaging & deployment', 'HIPAA'],
       },
     ],
   },
@@ -366,7 +366,7 @@ export const HONORS = [
     mark: "Dean's List",
     title: 'CSUSB',
     meta: 'College of Natural Sciences · Spring 2026',
-    detail: 'Earned while working full time and dual-enrolled.',
+    detail: 'Earned while working and dual-enrolled.',
   },
 ]
 

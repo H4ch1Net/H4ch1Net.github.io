@@ -713,7 +713,7 @@ function AboutSection() {
                 </li>
               ))}
             </ul>
-            <p className="tile-sub">Dual-enrolled full time at both, while working full time.</p>
+            <p className="tile-sub">Dual-enrolled at both.</p>
           </div>
 
           <ClockTile />
